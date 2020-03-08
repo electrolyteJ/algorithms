@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+def sourceDirs = [
+        'basic',
+]
+group 'com.hawksjamesf.algorithm'
+version '1.0-SNAPSHOT'
+sourceSets {
+    main {
+        sourceDirs.forEach {
+            java.srcDirs += "src/$it"
+        }
+    }
+}
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
