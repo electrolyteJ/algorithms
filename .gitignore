@@ -72,3 +72,4 @@ fabric.properties
 .gradle
 .idea
 build
+src/basic/mock/__pycache__/
