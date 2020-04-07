@@ -42,11 +42,11 @@ class Solution:  # linked list :1->2->3->4->5->None
 def main():
     datas = [1, 2, 3, 4, 5]
     listnode = ListNode.create(datas)
-    print('{}'.format(listnode))
+    print('raw datas---> {}'.format(listnode))
     s = Solution()
-    print('{}'.format(s.reverseList0(listnode)))
+    print('迭代--->{}'.format(s.reverseList0(listnode)))
     listnode2 = ListNode.create(datas)
-    print('{}'.format(s.reverseList1(listnode2)))
+    print('递归--->{}'.format(s.reverseList1(listnode2)))
 
 
 if __name__ == '__main__':

@@ -18,9 +18,9 @@ class Solution:
 
 
 def main():
-    datas = [1, 2, 3, 4, 5]
+    datas = [1, 2, 3, 4]
     listnode = ListNode.create(datas)
-    print('{}'.format(listnode))
+    print('raw datas--->{}'.format(listnode))
     s = Solution()
     print('{}'.format(s.swapPairs(listnode)))
     listnode2 = ListNode.create(datas)
