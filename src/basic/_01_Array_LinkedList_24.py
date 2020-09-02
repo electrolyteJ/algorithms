@@ -7,24 +7,43 @@
 
 示例:
 
-给定 1->2->3->4, 你应该返回 2->1->4->3.
+给定 1->2->3->4->5, 你应该返回 2->1->4->3->5.
 '''
 
 from mock.ListNode import ListNode
 
 
 class Solution:
-    def swapPairs(self, head: ListNode) -> ListNode: pass
+    def swapPairs0(self, head: ListNode) -> ListNode:  # 迭代
+        if not head or not head.next:
+            return head
+        first = head
+        sec = head.next
+        while sec:
+            sec.next, first.next, = first, sec.next
+            if sec.next:
+                first = sec.next
+            # if sec.next.next:
+            #     sec = sec.next.next
+            print(first, sec)
+            break
+
+            # if sec.next:
+            #     sec = sec.next.next
+        return sec
+
+    def swapPairs1(self, head: ListNode) -> ListNode:  # 递归
+        pass
 
 
 def main():
-    datas = [1, 2, 3, 4]
+    datas = [1, 2, 3, 4, 5]
     listnode = ListNode.create(datas)
     print('raw datas--->{}'.format(listnode))
     s = Solution()
-    print('{}'.format(s.swapPairs(listnode)))
+    print('迭代--->{}'.format(s.swapPairs0(listnode)))
     listnode2 = ListNode.create(datas)
-    print('{}'.format(s.swapPairs(listnode2)))
+    print('递归--->{}'.format(s.swapPairs1(listnode2)))
 
 
 if __name__ == '__main__':

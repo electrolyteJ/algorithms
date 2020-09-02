@@ -51,6 +51,21 @@ async def await0():
 
 async def await1():
     print("await1")
+    await await11()
+    await await12()
+    await await13()
+
+
+async def await11():
+    print("await11")
+
+
+async def await12():
+    print("await12")
+
+
+async def await13():
+    print("await13")
 
 
 async def await2():

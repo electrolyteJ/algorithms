@@ -27,6 +27,7 @@ class Solution:  # linked list :1->2->3->4->5->None
         # return preNode
         curNode, preNode = head, None
         while curNode:
+            print(preNode, curNode)
             curNode.next, preNode, curNode = preNode, curNode, curNode.next
         return preNode
 
