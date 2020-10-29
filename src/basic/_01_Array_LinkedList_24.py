@@ -15,22 +15,28 @@ from mock.ListNode import ListNode
 
 class Solution:
     def swapPairs0(self, head: ListNode) -> ListNode:  # 迭代
-        if not head or not head.next:
-            return head
-        first = head
-        sec = head.next
-        while sec:
-            sec.next, first.next, = first, sec.next
-            if sec.next:
-                first = sec.next
-            # if sec.next.next:
-            #     sec = sec.next.next
-            print(first, sec)
-            break
+        dummy = ListNode(-1)
+        dummy.next = head
 
-            # if sec.next:
-            #     sec = sec.next.next
-        return sec
+        prev_node = dummy
+
+        while head and head.next:
+
+            # Nodes to be swapped
+            first_node = head
+            second_node = head.next
+
+            # Swapping
+            prev_node.next = second_node
+            first_node.next = second_node.next
+            second_node.next = first_node
+
+            # Reinitializing the head and prev_node for next swap
+            prev_node = first_node
+            head = first_node.next
+
+        # Return the new head node.
+        return dummy.next
 
     def swapPairs1(self, head: ListNode) -> ListNode:  # 递归
         pass
