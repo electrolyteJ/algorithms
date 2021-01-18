@@ -27,7 +27,8 @@ class Solution:  # linked list :1->2->3->4->5->None
         # return preNode
         curNode, preNode = head, None
         while curNode:
-            print(preNode, curNode)
+            print("curNode.next:", curNode.next, "preNode:", preNode, "curNode:",
+                  curNode)
             curNode.next, preNode, curNode = preNode, curNode, curNode.next
         return preNode
 
@@ -43,11 +44,11 @@ class Solution:  # linked list :1->2->3->4->5->None
 def main():
     datas = [1, 2, 3, 4, 5]
     listnode = ListNode.create(datas)
-    print('raw datas---> {}'.format(listnode))
+    print('raw datas: {}'.format(listnode))
     s = Solution()
-    print('迭代--->{}'.format(s.reverseList0(listnode)))
+    print('迭代:{}'.format(s.reverseList0(listnode)))
     listnode2 = ListNode.create(datas)
-    print('递归--->{}'.format(s.reverseList1(listnode2)))
+    print('递归:{}'.format(s.reverseList1(listnode2)))
 
 
 if __name__ == '__main__':

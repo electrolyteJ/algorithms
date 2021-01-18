@@ -9,7 +9,8 @@ class ListNode:
         self.next = None
 
     def __str__(self):
-        return self.joinStr(self, "linked list :{}".format(self.value))
+        # return self.joinStr(self, "linked list :{}".format(self.value))
+        return self.joinStr(self, "{}".format(self.value))
 
     def joinStr(self, node, formatStr):
         if node.next:
