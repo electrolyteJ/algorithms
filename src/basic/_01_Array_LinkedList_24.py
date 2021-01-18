@@ -37,17 +37,14 @@ class Solution:
 
         # Return the new head node.
         return dummy.next
-
     def swapPairs1(self, head: ListNode) -> ListNode:  # 递归
         if head is None or head.next is None:
             return head
-        tmp = head.next
-        head.next = head
-
-        # head.next.next = head
-
-        return head
-        # self.swapPairs1()
+        first_node = head
+        sec_node=head.next
+        first_node.next = self.swapPairs1(sec_node.next)
+        sec_node.next =  first_node
+        return sec_node
 
 
 def main():
