@@ -33,7 +33,24 @@ from mock.ListNode import ListNode
 
 
 class Solution:
-    def hasCycle(self, head: ListNode) -> bool: pass
+
+    def hasCycle1(self, head: ListNode) -> bool:  # hash
+        s = set()
+        while head:
+            if head in s:
+                return True
+            s.add(head)
+            head = head.next
+        return False
+
+    def hasCycle2(self, head: ListNode) -> bool:  # 快慢指针
+        fast = slow = head
+        while slow and fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if fast == slow:
+                return True
+        return False
 
 
 def main():
@@ -41,9 +58,9 @@ def main():
     listnode = ListNode.create(datas)
     print('{}'.format(listnode))
     s = Solution()
-    print('{}'.format(s.hasCycle(listnode)))
+    print('{}'.format(s.hasCycle1(listnode)))
     listnode2 = ListNode.create(datas)
-    print('{}'.format(s.hasCycle(listnode2)))
+    print('{}'.format(s.hasCycle2(listnode2)))
 
 
 if __name__ == '__main__':

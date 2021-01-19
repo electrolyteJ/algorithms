@@ -73,3 +73,4 @@ fabric.properties
 .idea
 build
 src/basic/mock/__pycache__/
+.vscode/settings.json
