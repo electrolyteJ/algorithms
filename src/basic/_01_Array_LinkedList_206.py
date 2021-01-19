@@ -17,20 +17,13 @@ from mock.ListNode import ListNode
 
 class Solution:  # linked list :1->2->3->4->5->None
     def reverseList0(self, head: ListNode) -> ListNode:  # 迭代
-        # curNode = head
-        # preNode = None
-        # while curNode:
-        #     nextTmp = curNode.next
-        #     curNode.next = preNode
-        #     preNode = curNode
-        #     curNode = nextTmp
-        # return preNode
-        curNode, preNode = head, None
-        while curNode:
-            print("curNode.next:", curNode.next, "preNode:", preNode, "curNode:",
-                  curNode)
-            curNode.next, preNode, curNode = preNode, curNode, curNode.next
-        return preNode
+        cur_node, ret_node = head, None
+        while cur_node:
+            tmp = cur_node.next
+            cur_node.next = ret_node
+            ret_node = cur_node
+            cur_node = tmp
+        return ret_node
 
     def reverseList1(self, head: ListNode) -> ListNode:  # 递归
         if not head or not head.next:
