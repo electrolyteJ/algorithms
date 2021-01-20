@@ -15,46 +15,38 @@ from mock.ListNode import ListNode
 
 class Solution:
     def swapPairs0(self, head: ListNode) -> ListNode:  # 迭代
-        dummy = ListNode(-1)
-        dummy.next = head
+        dummyHead = ListNode(-1)
+        dummyHead.next = head
+        cur_node = dummyHead
+        while cur_node.next and cur_node.next.next:
+            node1 = cur_node.next
+            node2 = cur_node.next.next
 
-        prev_node = dummy
+            cur_node.next = node2
+            node1.next = node2.next
+            node2.next = node1
 
-        while head and head.next:
+            cur_node = node1
+        return dummyHead.next
 
-            # Nodes to be swapped
-            first_node = head
-            second_node = head.next
-
-            # Swapping
-            prev_node.next = second_node
-            first_node.next = second_node.next
-            second_node.next = first_node
-
-            # Reinitializing the head and prev_node for next swap
-            prev_node = first_node
-            head = first_node.next
-
-        # Return the new head node.
-        return dummy.next
     def swapPairs1(self, head: ListNode) -> ListNode:  # 递归
         if head is None or head.next is None:
             return head
         first_node = head
-        sec_node=head.next
+        sec_node = head.next
         first_node.next = self.swapPairs1(sec_node.next)
-        sec_node.next =  first_node
+        sec_node.next = first_node
         return sec_node
 
 
 def main():
     datas = [1, 2, 3, 4, 5]
     listnode = ListNode.create(datas)
-    print('raw datas--->{}'.format(listnode))
+    print('raw datas:{}'.format(listnode))
     s = Solution()
-    print('迭代--->{}'.format(s.swapPairs0(listnode)))
+    print('迭代:{}'.format(s.swapPairs0(listnode)))
     listnode2 = ListNode.create(datas)
-    print('递归--->{}'.format(s.swapPairs1(listnode2)))
+    print('递归:{}'.format(s.swapPairs1(listnode2)))
 
 
 if __name__ == '__main__':

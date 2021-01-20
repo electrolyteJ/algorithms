@@ -20,8 +20,8 @@ class Solution:  # linked list :1->2->3->4->5->None
         cur_node, ret_node = head, None
         while cur_node:
             tmp = cur_node.next
-            cur_node.next = ret_node
-            ret_node = cur_node
+            # re-order
+            cur_node.next, ret_node = ret_node, cur_node
             cur_node = tmp
         return ret_node
 
