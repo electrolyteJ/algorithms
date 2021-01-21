@@ -51,12 +51,12 @@ class Solution:  # linked list :1->2->3->4->5->None
             tail = dummy_tail.next
             # print('before', head, dummy_tail)
             head, dummy_tail = self.reverse(head, tail)
-            print('after', head, dummy_tail)
+            # print('after', head, dummy_tail)
             # 把子链表重新接回原链表
             cur.next = head
+            head = tail
             dummy_tail.next = tail
             cur = dummy_tail
-            head = tail
         return dummy_head.next
 
 
