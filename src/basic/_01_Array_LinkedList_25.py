@@ -56,7 +56,7 @@ class Solution:  # linked list :1->2->3->4->5->None
             cur.next = head
             dummy_tail.next = tail
             cur = dummy_tail
-            head = dummy_tail.next
+            head = tail
         return dummy_head.next
 
 
@@ -67,7 +67,7 @@ def main():
     s = Solution()
     print('k =2 {}'.format(s.reverseKGroup(listnode, 4)))
     listnode2 = ListNode.create(datas)
-    # print('k = 3 {}'.format(s.reverseKGroup(listnode2, 3)))
+    print('k = 3 {}'.format(s.reverseKGroup(listnode2, 3)))
 
 
 if __name__ == '__main__':
