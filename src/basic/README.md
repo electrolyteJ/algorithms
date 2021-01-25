@@ -1,11 +1,33 @@
   Data Structure
  ============
   Array
-  Stack / Queue
-  Priority Queue
+  Stack
+  Queue
+  - priority queue
+  - lifo queue
   Linkedlist
-  Queue/Priority queue
-  Tree/ Binary Search Tree
+  - Singly linked list
+  - Doubly linked list
+  - Multiply linked list
+  - Circular linked list
+  - Hash linking
+  - ...
+  Tree
+  - binary tree
+    - 完全二叉树
+    - 平衡二叉树
+    - binary search tree
+    - 线索二叉树
+  - heap
+    - max heap/min heap
+    - 二项堆
+    - 斐波那契堆
+    - 左偏堆
+  - b tree
+    - b+ tree
+    - b* tree
+  - dic tree
+
   Hash Table
   Disjoint Set
   Trie
