@@ -33,24 +33,41 @@ kthLargest.add(4);   // return 8
 最多调用 add 方法 104 次
 题目数据保证，在查找第 k 大元素时，数组中至少有 k 个元素
 '''
+import heapq
 
 
 class KthLargest:
 
-    def __init__(self, k: int, nums: List[int]):
-        pass
+    def __init__(self, k: int, nums):
+        self.k = k
+        self.nums = nums
+        heapq.heapify(self.nums)
+        while len(self.nums) > k:
+            heapq.heappop(self.nums)
 
     def add(self, val: int) -> int:
-        pass
+        if len(self.nums) < self.k:
+            heapq.heappush(self.nums)
+        elif self.nums[0] < val:
+            heapq.heappushpop(self.nums, val)
+        return self.nums[0]
 
 
 def main():
-    s = MyQueue()
-    s.push(1)
-    s.push(2)
-    s.peek()
-    s.pop()
-    s.empty()
+
+    l = [4, 2, 5, 1, 3]
+    ks = KthLargest(4, l)
+    print(ks.nums)
+    print(ks.add(4))
+    print(ks.nums)
+    print(ks.add(2))
+    print(ks.nums)
+    print(ks.add(5))
+    print(ks.nums)
+    print(ks.add(1))
+    print(ks.nums)
+    print(ks.add(3))
+    print(ks.nums)
 
 
 if __name__ == '__main__':
