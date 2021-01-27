@@ -47,27 +47,56 @@ class KthLargest:
 
     def add(self, val: int) -> int:
         if len(self.nums) < self.k:
-            heapq.heappush(self.nums)
+            heapq.heappush(self.nums,val)
         elif self.nums[0] < val:
             heapq.heappushpop(self.nums, val)
         return self.nums[0]
 
+from queue import PriorityQueue
+class KthLargest2:
+
+    def __init__(self, k: int, nums):
+        self.k = k
+        self.q = PriorityQueue(k)
+        for e in nums:
+            self.add(e)
+
+    def add(self, val: int) -> int:
+        if self.q.qsize() < self.k:
+            self.q.put(val)
+        elif self.q.queue[0] < val:
+            self.q.get()
+            self.q.put(val)
+        return self.q.queue[0]
 
 def main():
 
     l = [4, 2, 5, 1, 3]
     ks = KthLargest(4, l)
-    print(ks.nums)
+    # print(ks.nums)
+    # print(ks.add(4))
+    # print(ks.nums)
+    # print(ks.add(2))
+    # print(ks.nums)
+    # print(ks.add(5))
+    # print(ks.nums)
+    # print(ks.add(1))
+    # print(ks.nums)
+    # print(ks.add(3))
+    # print(ks.nums)
+
+    ks = KthLargest2(4, [4, 2, 5, 1, 3])
+    print(ks.q.queue)
     print(ks.add(4))
-    print(ks.nums)
+    print(ks.q.queue)
     print(ks.add(2))
-    print(ks.nums)
+    print(ks.q.queue)
     print(ks.add(5))
-    print(ks.nums)
+    print(ks.q.queue)
     print(ks.add(1))
-    print(ks.nums)
+    print(ks.q.queue)
     print(ks.add(3))
-    print(ks.nums)
+    print(ks.q.queue)
 
 
 if __name__ == '__main__':
