@@ -66,19 +66,18 @@ class Solution:
     def maxSlidingWindow2(self, nums, k: int):  # 大顶推
         if not nums or k == 0:
             return None
-        n = len(nums)
         q = [(-nums[i], i) for i in range(0, k)]
         heapq.heapify(q)
         ret = []
         ret.append(-q[0][0])
         # O(log n)
-        for i in range(k, n):
+        for i in range(k, len(nums)):
             heapq.heappush(q, (-nums[i], i))
-            print(i-k, q)
-            while q[0][1] <= i-k:
-                print('before', q)
+            print(i-k, (-nums[i], i), q)
+            while q[0][1] <= i-k:  # 通过i-k算出滑动窗口的左边界index，而处于maxheap的顶部值的index不能在边界之外
+                # print('before', q)
                 heapq.heappop(q)
-                print('after', q)
+                # print('after', q)
             ret.append(-q[0][0])
         return ret
 
@@ -88,12 +87,14 @@ class Solution:
         window, res = [], []
         # 时间复杂度O(n) 空间复杂度O(k)
         for i, x in enumerate(nums):
+            # 强制要求滑动窗口左边界的index必须大于window的头index，保证window内部的index都是处于滑动窗口的可用范围
             if i >= k and window[0] <= i-k:
                 window.pop(0)
             while window and nums[window[-1]] <= x:
                 window.pop()
             window.append(i)
-            if i >= k-1:
+            if i >= k-1:  # 大于滑动窗口的size之后才append
+                # print(window[0])
                 res.append(nums[window[0]])
         return res
 
@@ -104,7 +105,7 @@ def main():
     l = [1, 3, -1, -3, 5, 3, 6, 7]  # [3,3,5,5,6,7]
     k = 3
     print('data stream:', l, k)
-    print('max sli:', s.maxSlidingWindow2(l, k))
+    print('max sli:', s.maxSlidingWindow3(l, k))
     print('\n')
     l = [1, -1]  # [1,-1]
     k = 1
