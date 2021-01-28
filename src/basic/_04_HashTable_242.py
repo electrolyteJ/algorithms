@@ -19,10 +19,25 @@
 
 
 class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        pass
+    def isAnagram1(self, s: str, t: str) -> bool:
+        # 时间复杂度O(nlogn)
+        return sorted(s) == sorted(t)
+
+    def isAnagram2(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        table = [0]*26
+        for e in s:
+            table[ord(e)-ord('a')] += 1
+        for e in t:
+            table[ord(e)-ord('a')] -= 1
+            if table[ord(e)-ord('a')] < 0:
+                return False
+
+        return True
 
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.isAnagram('anagram', 'nagaram'))
+    print(s.isAnagram1('anagram', 'nagaram'))
+    print(s.isAnagram2('anagram', 'nagaram'))
