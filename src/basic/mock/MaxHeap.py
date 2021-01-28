@@ -17,6 +17,7 @@ class MaxHeap():
 
 
 if __name__ == '__main__':
+    # O(log n)
     h = MaxHeap([1, 3, 4, 5, 5, 2, 4])
     print(h.peek())
     h.offer(7)

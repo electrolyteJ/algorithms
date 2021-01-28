@@ -7,7 +7,7 @@
 示例 1：
 
 输入：nums = [1,3,-1,-3, 5,3,6,7], k = 3
-输出：[3,3,5,5,6,7] 
+输出：[3,3,5,5,6,7]
 解释：
 滑动窗口的位置                最大值
 ---------------               -----
@@ -33,7 +33,7 @@
 
 输入：nums = [4,-2], k = 2
 输出：[4]
- 
+
 
 提示：
 
@@ -42,13 +42,17 @@
 1 <= k <= nums.length
 '''
 
+import heapq
+
+import time
+
 
 class Solution:
     def maxSlidingWindow1(self, nums, k: int):  # 暴力
-        num_size = len(nums)
-        window_size = num_size-k+1
+        n = len(nums)
+        window_size = n-k+1
         ret = []
-        # 时间复杂度为O((num_size-k+1)k)=O(num_sizek),超出时间会被停止
+        # 时间复杂度为O((n-k+1)k)=O(nk),由于数据流巨大，所以nk值会导致超出时间会被停止
         for i in range(0, window_size):
             window = nums[i:i+k]
             # print(window)
@@ -59,27 +63,59 @@ class Solution:
             ret.append(max)
         return ret
 
-    def maxSlidingWindow2(self, nums, k: int):  # 优化
-        num_size = len(nums)
-        window_size = num_size-k+1
+    def maxSlidingWindow2(self, nums, k: int):  # 大顶推
+        if not nums or k == 0:
+            return None
+        n = len(nums)
+        q = [(-nums[i], i) for i in range(0, k)]
+        heapq.heapify(q)
         ret = []
-        for i in range(0, window_size):
-            window = nums[i:i+k]
-            # print(window)
-            max = 0
-            for j in range(0, k):
-                if window[j] > max:
-                    max = window[j]
-            ret.append(max)
+        ret.append(-q[0][0])
+        # O(log n)
+        for i in range(k, n):
+            heapq.heappush(q, (-nums[i], i))
+            print(i-k, q)
+            while q[0][1] <= i-k:
+                print('before', q)
+                heapq.heappop(q)
+                print('after', q)
+            ret.append(-q[0][0])
         return ret
+
+    def maxSlidingWindow3(self, nums, k: int):  # 队列 dequeue
+        if not nums:
+            return []
+        window, res = [], []
+        # 时间复杂度O(n) 空间复杂度O(k)
+        for i, x in enumerate(nums):
+            if i >= k and window[0] <= i-k:
+                window.pop(0)
+            while window and nums[window[-1]] <= x:
+                window.pop()
+            window.append(i)
+            if i >= k-1:
+                res.append(nums[window[0]])
+        return res
 
 
 def main():
 
+    s = Solution()
     l = [1, 3, -1, -3, 5, 3, 6, 7]  # [3,3,5,5,6,7]
     k = 3
-    s = Solution()
-    # print(s.maxSlidingWindow1(l, k))
+    print('data stream:', l, k)
+    print('max sli:', s.maxSlidingWindow2(l, k))
+    print('\n')
+    l = [1, -1]  # [1,-1]
+    k = 1
+    print('data stream:', l, k)
+    print('max sli:', s.maxSlidingWindow2(l, k))
+    print('\n')
+    l = [7, 2, 4]  # [7,4]
+    k = 2
+    print('data stream:', l, k)
+    print('max sli:', s.maxSlidingWindow3(l, k))
+    print('\n')
 
 
 if __name__ == '__main__':

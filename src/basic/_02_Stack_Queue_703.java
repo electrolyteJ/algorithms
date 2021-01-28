@@ -88,5 +88,24 @@ class KthLargest {
         System.out.println(Arrays.toString(ks.q.toArray()));
         System.out.println(ks.add(6));
         System.out.println(Arrays.toString(ks.q.toArray()));
+
+        PriorityQueue<Integer> q =new PriorityQueue<Integer>(2);
+        q.offer(4);
+        System.out.println(
+                q.size()
+
+        );
+        q.offer(3);
+        q.offer(5);
+        q.offer(7);
+        q.add(0);
+        q.offer(1);
+        q.offer(1);
+        System.out.println(
+        q.size()
+
+        );
+        System.out.println(Arrays.toString(q.toArray()));
+
     }
 }
