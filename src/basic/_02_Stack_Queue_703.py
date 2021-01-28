@@ -33,6 +33,7 @@ kthLargest.add(4);   // return 8
 最多调用 add 方法 104 次
 题目数据保证，在查找第 k 大元素时，数组中至少有 k 个元素
 '''
+from queue import PriorityQueue
 import heapq
 
 
@@ -47,12 +48,12 @@ class KthLargest:
 
     def add(self, val: int) -> int:
         if len(self.nums) < self.k:
-            heapq.heappush(self.nums,val)
+            heapq.heappush(self.nums, val)
         elif self.nums[0] < val:
             heapq.heappushpop(self.nums, val)
         return self.nums[0]
 
-from queue import PriorityQueue
+
 class KthLargest2:
 
     def __init__(self, k: int, nums):
@@ -68,6 +69,7 @@ class KthLargest2:
             self.q.get()
             self.q.put(val)
         return self.q.queue[0]
+
 
 def main():
 

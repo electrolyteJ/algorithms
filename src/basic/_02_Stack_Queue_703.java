@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * 703. 数据流中的第 K 大元素
@@ -46,7 +43,15 @@ class KthLargest {
 
     public KthLargest(int k, int[] nums) {
         this.k = k;
-        this.q = new PriorityQueue<Integer>(k);
+        //小顶堆
+//        this.q = new PriorityQueue<Integer>(k);
+        //大顶堆
+        this.q = new PriorityQueue<>(k, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        });
         for (int n : nums) {
             add(n);
         }
@@ -54,11 +59,19 @@ class KthLargest {
 
     public int add(int val) {
         if (q.size() <k){
-            q .add(val);
+            q .offer(val);
         }else if (val >q.peek()){
             q.poll();
-            q.add(val);
+            q.offer(val);
         }
+//        q.peek();
+//        q.element();//抛异常
+//
+//        q.offer(1);
+//        q.add(2);//抛异常
+//        q.poll();
+//        q.remove();//抛异常
+
         return q.peek();
     }
 
