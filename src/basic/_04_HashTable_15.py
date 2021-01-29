@@ -28,7 +28,7 @@
 
 class Solution:
 
-    def threeSum(self, nums):
+    def threeSum(self, nums):#sort and find
         if not nums or len(nums) < 3:
             return []
         ret = []
@@ -51,36 +51,28 @@ class Solution:
                     ret.append([e1, e2, s_nums[third]])
         return ret
 
-    def threeSum2(self, nums):  # 导致时间超时
+    def threeSum2(self, nums): #set
         if not nums or len(nums) < 3:
             return []
-        ret = []
-        size = len(nums)
-        for i in range(0, size):
-            e1 = nums[i]
-            s = set()
-
-            for j in range(0, size):
-                e2 = nums[j]
-                if i == j:
-                    continue
+        nums.sort()
+        ret =set()
+        for i,e1 in enumerate(nums[:-2]):
+            if i>=1 and e1==nums[i-1]:
+                continue
+            d=dict()
+            for e2 in nums[i+1:]:
                 y = -(e1 + e2)
-                if y in s:
-                    a = min(e1, e2, y)
-                    b = max(e1, e2, y)
-                    l = [a, -(a+b), b]
-                    if l not in ret:
-                        ret.append(l)
-                        continue
-                s.add(e2)
-            s.clear()
-        return ret
+                if e2 not in d:
+                    d[y]=1
+                else:
+                    ret.add((e1,y,e2))
+        return map(list,ret)
 
 
 if __name__ == '__main__':
     s = Solution()
     nums = nums = [-1, 0, 1, 2, -1, -4]
-    print(s.threeSum(nums))
+    print(s.threeSum2(nums))
     # nums = [0, 0, 0]
     # print(s.threeSum(nums))
     nums = [
