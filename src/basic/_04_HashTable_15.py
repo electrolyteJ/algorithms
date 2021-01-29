@@ -32,6 +32,31 @@ class Solution:
         if not nums or len(nums) < 3:
             return []
         ret = []
+        nums.sort()
+        size = len(nums)
+        for i, e1 in enumerate(nums[:-2]):
+            if i > 0 and e1 == nums[i-1]:
+                continue
+            l,r = i+1,size-1
+            while l<r:
+                s = e1+nums[l]+nums[r]
+                if s <0:
+                    l +=1
+                elif s>0:
+                    r-=1
+                else:
+                    ret.append([e1,nums[l],nums[r]])
+                    while l<r and nums[l]==nums[l+1]:
+                        l+=1
+                    while l<r and nums[r] == nums[r-1]:
+                        r -=1
+                    l+=1;r-=1
+                
+        return ret
+    def threeSum1(self, nums):  # sort and find
+        if not nums or len(nums) < 3:
+            return []
+        ret = []
         s_nums = sorted(nums)
         size = len(s_nums)
         for first in range(0, size):
@@ -66,13 +91,13 @@ class Solution:
                     d[y]=1
                 else:
                     ret.add((e1,y,e2))
-        return map(list,ret)
+        return list(ret)
 
 
 if __name__ == '__main__':
     s = Solution()
     nums = nums = [-1, 0, 1, 2, -1, -4]
-    print(s.threeSum2(nums))
+    print(s.threeSum(nums))
     # nums = [0, 0, 0]
     # print(s.threeSum(nums))
     nums = [
