@@ -27,6 +27,7 @@ class Solution:
         if len(s) != len(t):
             return False
         table = [0]*26
+        # O(n)
         for e in s:
             table[ord(e)-ord('a')] += 1
         for e in t:
@@ -36,8 +37,24 @@ class Solution:
 
         return True
 
+    def isAnagram3(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        table = dict()
+        # 时间复杂度O(n) 空间复杂度O(S)
+
+        for e in s:
+            table[ord(e)] = table.get(ord(e), 0)+1
+        for e in t:
+            table[ord(e)] = table.get(ord(e), 0)-1
+            if table[ord(e)] < 0:
+                return False
+
+        return True
+
 
 if __name__ == '__main__':
     s = Solution()
     print(s.isAnagram1('anagram', 'nagaram'))
     print(s.isAnagram2('anagram', 'nagaram'))
+    print(s.isAnagram3('anagramU+263B', 'nagaramU+263B'))
