@@ -28,7 +28,7 @@
 解释：链表中没有环。
 '''
 
-from mock.ListNode import ListNode
+from mock import ListNode
 
 
 class Solution:

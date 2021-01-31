@@ -1,5 +1,8 @@
+
+import asyncio
 from queue import PriorityQueue, LifoQueue
 import heapq
+
 if __name__ == '__main__':
     q = PriorityQueue(4)
     q.put_nowait(4)

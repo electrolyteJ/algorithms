@@ -12,7 +12,7 @@
 
 '''
 
-from mock.ListNode import ListNode
+from mock import ListNode
 
 
 class Solution:  # linked list :1->2->3->4->5->None
