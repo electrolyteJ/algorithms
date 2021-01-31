@@ -28,7 +28,7 @@
 解释：链表中没有环。
 '''
 
-from mock import ListNode
+from mock import ListNode, create_listnode
 
 
 class Solution:
@@ -58,11 +58,11 @@ class Solution:
 
 def main():
     datas = [1, 2, 3, 4, 5]
-    listnode = ListNode.create(datas)
+    listnode = create_listnode(datas)
     print('{}'.format(listnode))
     s = Solution()
     print('{}'.format(s.detectCycle1(listnode)))
-    listnode2 = ListNode.create(datas)
+    listnode2 = create_listnode(datas)
     print('{}'.format(s.detectCycle2(listnode2)))
 
 

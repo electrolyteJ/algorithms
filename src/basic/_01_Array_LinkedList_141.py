@@ -29,7 +29,7 @@
 你能用 O(1)（即，常量）内存解决此问题吗？
 '''
 
-from mock import ListNode
+from mock import ListNode, create_listnode
 
 
 class Solution:
@@ -55,11 +55,11 @@ class Solution:
 
 def main():
     datas = [1, 2, 3, 4, 5]
-    listnode = ListNode.create(datas)
+    listnode = create_listnode(datas)
     print('{}'.format(listnode))
     s = Solution()
     print('{}'.format(s.hasCycle1(listnode)))
-    listnode2 = ListNode.create(datas)
+    listnode2 = create_listnode(datas)
     print('{}'.format(s.hasCycle2(listnode2)))
 
 

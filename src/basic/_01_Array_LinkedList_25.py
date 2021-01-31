@@ -20,7 +20,7 @@ k 是一个正整数，它的值小于或等于链表的长度。
 你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。
 '''
 
-from mock import ListNode
+from mock import ListNode, create_listnode
 
 
 class Solution:  # linked list :1->2->3->4->5->None
@@ -62,11 +62,11 @@ class Solution:  # linked list :1->2->3->4->5->None
 
 def main():
     datas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    listnode = ListNode.create(datas)
+    listnode = create_listnode(datas)
     print('raw datas: {}'.format(listnode))
     s = Solution()
     print('k =2 {}'.format(s.reverseKGroup(listnode, 4)))
-    listnode2 = ListNode.create(datas)
+    listnode2 = create_listnode(datas)
     print('k = 3 {}'.format(s.reverseKGroup(listnode2, 3)))
 
 

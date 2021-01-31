@@ -12,7 +12,7 @@
 
 '''
 
-from mock import ListNode
+from mock import ListNode, create_listnode
 
 
 class Solution:  # linked list :1->2->3->4->5->None
@@ -36,11 +36,11 @@ class Solution:  # linked list :1->2->3->4->5->None
 
 def main():
     datas = [1, 2, 3, 4, 5]
-    listnode = ListNode.create(datas)
+    listnode = create_listnode(datas)
     print('raw datas: {}'.format(listnode))
     s = Solution()
     print('迭代:{}'.format(s.reverseList0(listnode)))
-    listnode2 = ListNode.create(datas)
+    listnode2 = create_listnode(datas)
     print('递归:{}'.format(s.reverseList1(listnode2)))
 
 

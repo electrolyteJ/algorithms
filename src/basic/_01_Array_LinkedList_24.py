@@ -10,7 +10,7 @@
 给定 1->2->3->4->5, 你应该返回 2->1->4->3->5.
 '''
 
-from mock import ListNode
+from mock import ListNode, create_listnode
 
 
 class Solution:
@@ -41,11 +41,11 @@ class Solution:
 
 def main():
     datas = [1, 2, 3, 4, 5]
-    listnode = ListNode.create(datas)
+    listnode = create_listnode(datas)
     print('raw datas:{}'.format(listnode))
     s = Solution()
     print('迭代:{}'.format(s.swapPairs0(listnode)))
-    listnode2 = ListNode.create(datas)
+    listnode2 = create_listnode(datas)
     print('递归:{}'.format(s.swapPairs1(listnode2)))
 
 
