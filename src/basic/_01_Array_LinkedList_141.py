@@ -29,7 +29,7 @@
 你能用 O(1)（即，常量）内存解决此问题吗？
 '''
 
-from mock import ListNode, create_listnode
+from mock.list import ListNode, create_listnode
 
 
 class Solution:

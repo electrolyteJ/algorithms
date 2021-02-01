@@ -26,21 +26,26 @@
 解释: 输入为: [5,1,4,null,null,3,6]。
      根节点的值为 5 ，但是其右子节点值为 4 。
 '''
-from mock  import TreeNode
+from mock.tree import TreeNode
+
 
 class Solution:
-    def inorder(self,root):
-        #O(n)
+    def inorder(self, root):
+        # O(n)
         if root is None:
             return []
-        return self.inorder(root.left) +[root.value]+self.inorder(root.right)
+        return self.inorder(root.left) + [root.value]+self.inorder(root.right)
+
     def isValidBST1(self, root: TreeNode) -> bool:
-        inorder=self.inorder(root)
+        inorder = self.inorder(root)
         return inorder == list(sorted(set(inorder)))
+
     def isValidBST2(self, root: TreeNode) -> bool:
         pass
 
         pass
+
+
 if __name__ == "__main__":
     tree_node = TreeNode.create([2, 1, 3])
     s = Solution()

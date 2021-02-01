@@ -10,7 +10,7 @@
 给定 1->2->3->4->5, 你应该返回 2->1->4->3->5.
 '''
 
-from mock import ListNode, create_listnode
+from mock.list import ListNode, create_listnode
 
 
 class Solution:
