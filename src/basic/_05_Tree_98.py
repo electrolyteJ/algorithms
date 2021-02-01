@@ -26,7 +26,7 @@
 解释: 输入为: [5,1,4,null,null,3,6]。
      根节点的值为 5 ，但是其右子节点值为 4 。
 '''
-from mock.tree import TreeNode
+from mock.tree import create_treenode
 
 
 class Solution:
@@ -36,17 +36,31 @@ class Solution:
             return []
         return self.inorder(root.left) + [root.value]+self.inorder(root.right)
 
-    def isValidBST1(self, root: TreeNode) -> bool:
+    def isValidBST1(self, root) -> bool:
         inorder = self.inorder(root)
         return inorder == list(sorted(set(inorder)))
 
-    def isValidBST2(self, root: TreeNode) -> bool:
+    def isValidBST2(self, root) -> bool:
         pass
 
-        pass
+    def is_bst(self, root, min_value=float('-inf'), max_value=float('inf')):
+        if root is None:
+            return True
+        return (min_value < root.value < max_value
+                and self.is_bst(root.left, min_value, root.value)
+                and self.is_bst(root.right, root.value, max_value))
+
+    def isValidBST3(self, root) -> bool:
+        return self.is_bst(root, float('-inf'), float('inf'))
 
 
 if __name__ == "__main__":
-    tree_node = TreeNode.create([2, 1, 3])
+    tree_node = create_treenode([2, 1, 3])
     s = Solution()
-    print(s.isValidBST1(tree_node))
+    print('1', s.isValidBST1(tree_node))
+    print('2', s.isValidBST2(tree_node))
+    print('3', s.isValidBST3(tree_node))
+    tree_node = create_treenode([5, 1, 4, None, None, 3, 6])
+    print('1', s.isValidBST1(tree_node))
+    print('2', s.isValidBST2(tree_node))
+    print('3', s.isValidBST3(tree_node))
