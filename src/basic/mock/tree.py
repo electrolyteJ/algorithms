@@ -1,4 +1,4 @@
-'''
+"""
     [对各种树形结构的总结](https://warmgrid.github.io/2019/06/14/about-trees.html)
     树的种类：
         - 二叉树(binary tree)：一个节点最多只包含子节点
@@ -10,7 +10,14 @@
     存储形式:
         - 顺序存储结构
         - 链式存储结构
-'''
+    traversals
+        - 深度优先(dfs,Depth First Search)
+            - 前序遍历preorder
+            - 中序遍历inorder
+            - 后序遍历postorder
+        - 广度优先(bfs, Breadth First Search)
+            - 层次遍历levelorder
+"""
 
 
 class TreeNode:
@@ -52,21 +59,10 @@ def create_treenode(data):
     return tree_node
 
 
-'''
-    traversals
-    深度优先(dfs,Depth First Search)
-        - 前序遍历preorder
-        - 中序遍历inorder
-        - 后序遍历postorder
-    广度优先(bfs, Breadth First Search)
-        层次遍历levelorder
-'''
-
-
 def preorder(root):
     if root is None:
         return []
-    return [root.value] + preorder(root.left)+preorder(root.right)
+    return [root.value] + preorder(root.left) + preorder(root.right)
 
 
 def inorder(root):
@@ -86,7 +82,6 @@ def levelorder(root):
 
 
 if __name__ == '__main__':
-
     # datas = [1, 2, 5, 3,4]
     # treeNode = TreeNode.create(datas)
     # print('%s' % treeNode)

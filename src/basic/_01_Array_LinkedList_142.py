@@ -1,5 +1,4 @@
-
-'''
+"""
 142. Linked List Cycle II
 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
 
@@ -10,7 +9,7 @@
 进阶：
 
 你是否可以使用 O(1) 空间解决此题？
- 
+
 示例 1：
 
 输入：head = [3,2,0,-4], pos = 1
@@ -26,7 +25,7 @@
 输入：head = [1], pos = -1
 输出：返回 null
 解释：链表中没有环。
-'''
+"""
 
 from mock.list import ListNode, create_listnode
 
