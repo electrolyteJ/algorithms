@@ -26,12 +26,21 @@ from mock.tree import create_treenode
 
 
 class Solution:
-    def lowestCommonAncestor(self, root, p, q):
+    def lowestCommonAncestor1(self, root, p, q):
         if p.value < root.value > q.value:
-            root = self.lowestCommonAncestor(root.left, p, q)
+            root = self.lowestCommonAncestor1(root.left, p, q)
         if p.value > root.value < q.value:
-            root = self.lowestCommonAncestor(root.right, p, q)
+            root = self.lowestCommonAncestor1(root.right, p, q)
         return root
+
+    def lowestCommonAncestor2(self, root, p, q):
+        while root:
+            if p.value < root.value > q.value:
+                root = root.left
+            elif p.value > root.value < q.value:
+                root = root.right
+            else:
+                return root
 
 
 if __name__ == "__main__":
@@ -39,8 +48,10 @@ if __name__ == "__main__":
     tree_node = create_treenode([6, 2, 8, 0, 4, 7, 9, None, None, 3, 5])
     p = create_treenode([2, 8, 0, 4, 7, 9, None, None, 3, 5])
     q = create_treenode([8, 0, 4, 7, 9, None, None, 3, 5])
-    print(s.lowestCommonAncestor(tree_node, p, q).value)
+    print('1', s.lowestCommonAncestor1(tree_node, p, q).value)
+    print('2', s.lowestCommonAncestor2(tree_node, p, q).value)
     tree_node = create_treenode([6, 2, 8, 0, 4, 7, 9, None, None, 3, 5])
     p = create_treenode([2])
     q = create_treenode([4])
-    print(s.lowestCommonAncestor(tree_node, p, q).value)
+    print('1', s.lowestCommonAncestor1(tree_node, p, q).value)
+    print('2', s.lowestCommonAncestor2(tree_node, p, q).value)
