@@ -277,7 +277,26 @@ class Node:
     #     pass
 
     def __getitem__(self, index):
-        pass
+        current_level = [self]
+        current_index = 0
+        has_more_nodes = True
+        while has_more_nodes > 0:
+            has_more_nodes = False
+            next_level = []
+            for node in current_level:
+                if current_index == index:
+                    if node is None:
+                        break
+                    else:
+                        return node
+                current_index += 1
+                if node is None:
+                    next_level.extend([None, None])
+                    continue
+                next_level.extend([node.left, node.right])
+                if node.left or node.right:
+                    has_more_nodes = True
+            current_level = next_level
 
     def __setitem__(self, index, node):
         pass
@@ -355,3 +374,4 @@ if __name__ == '__main__':
     print('preorder:%s' % tree_node.preorder)
     print('postorder:%s' % tree_node.postorder)
     print('levelorder:%s' % tree_node.levelorder)
+    print(tree_node[2])
