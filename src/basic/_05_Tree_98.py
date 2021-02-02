@@ -40,8 +40,20 @@ class Solution:
         inorder = self.inorder(root)
         return inorder == list(sorted(set(inorder)))
 
-    def isValidBST2(self, root) -> bool:
-        pass
+    def helper(self, root):
+        if root is None:
+            return True
+        if not self.helper(root.left):
+            return False
+        if self.prev and self.prev.value >= root.value:
+            return False
+        self.prev = root
+        return self.helper(root.right)
+
+    def isValidBST2(self, root) -> bool:  # 递归中序遍历
+        self.prev = None
+        # O(n)
+        return self.helper(root)
 
     def is_bst(self, root, min_value=float('-inf'), max_value=float('inf')):
         if root is None:
@@ -50,8 +62,24 @@ class Solution:
                 and self.is_bst(root.left, min_value, root.value)
                 and self.is_bst(root.right, root.value, max_value))
 
-    def isValidBST3(self, root) -> bool:
+    def isValidBST3(self, root) -> bool:  # 递归
+        # O(n)
         return self.is_bst(root, float('-inf'), float('inf'))
+
+    def isValidBST4(self, root) -> bool:  # 迭代中序遍历
+        stack = []
+        node = root
+        inorder = float('-inf')
+        while stack or node:
+            while node:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            if node.value <= inorder:
+                return False
+            inorder = node.value
+            node = node.right
+        return True
 
 
 if __name__ == "__main__":
@@ -60,7 +88,9 @@ if __name__ == "__main__":
     print('1', s.isValidBST1(tree_node))
     print('2', s.isValidBST2(tree_node))
     print('3', s.isValidBST3(tree_node))
+    print('4', s.isValidBST4(tree_node))
     tree_node = create_treenode([5, 1, 4, None, None, 3, 6])
     print('1', s.isValidBST1(tree_node))
     print('2', s.isValidBST2(tree_node))
     print('3', s.isValidBST3(tree_node))
+    print('4', s.isValidBST4(tree_node))
