@@ -6,8 +6,6 @@
 
 注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
 
- 
-
 示例 1:
 
 输入: [7,1,5,3,6,4]
@@ -36,15 +34,29 @@
 
 
 class Solution:
-    def maxProfit(self, prices) -> int:
+    def maxProfit1(self, prices) -> int:
+         #dfs O(2^n)
         pass
+    def maxProfit2(self, prices) -> int:
+         #greedy O(n)
+          ret=0
+          for i in range(1,len(prices)):
+              ret +=max(0,prices[i]-prices[i-1])
+          return ret
+    def maxProfit3(self, prices) -> int:
+         #dp O(n)
+         pass
+     
 
 
 if __name__ == "__main__":
     s = Solution()
     l = [7, 1, 5, 3, 6, 4]
-    print('1', s.maxProfit(l))
+    print('1', s.maxProfit1(l))
+    print('2', s.maxProfit2(l))
     l = [1, 2, 3, 4, 5]
-    print('1', s.maxProfit(l))
+    print('1', s.maxProfit1(l))
+    print('2', s.maxProfit2(l))
     l = [7, 6, 4, 3, 1]
-    print('1', s.maxProfit(l))
+    print('1', s.maxProfit1(l))
+    print('2', s.maxProfit2(l))
