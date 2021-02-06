@@ -20,17 +20,48 @@
 
 
 from mock.tree import create_treenode
+from queue import Queue
 
 
 class Solution:
-    def levelOrder1(self, root):
-        pass
-    def levelOrder2(self, root):
-        pass
+    def levelOrder1(self, root):  # bfs
+        if not root:
+            return []
+        q, ret = Queue(), []
+        q.put(root)
+        #visited =set(root)
+        while q.qsize() > 0:
+            current_level = []
+            for _ in range(0, q.qsize()):
+                node = q.get()
+                current_level.append(node.value)
+                if node.left:
+                    q.put(node.left)
+                if node.right:
+                    q.put(node.right)
+            ret.append(current_level)
+        return ret
+
+    def dfs(self,node, level):
+        if not node:return
+        if len(self.ret) <level+1:
+            self.ret.append([])
+        self.ret[level].append(node.value)
+
+        self.dfs(node.left,level+1)
+        self.dfs(node.right,level+1)
+    def levelOrder2(self, root):  # dfs
+        
+        if not root :return[]
+        self.ret = []
+        self.dfs(root,0)
+        return   self.ret
 
 
 if __name__ == "__main__":
     s = Solution()
     l = [3, 9, 20, None, None, 15, 7]
-    print('1', s.levelOrder1(create_treenode(l)))
-    print('1', s.levelOrder2(create_treenode(l)))
+    t = create_treenode(l)
+    print(t)
+    print('1', s.levelOrder1(t))
+    print('2', s.levelOrder2(t))
