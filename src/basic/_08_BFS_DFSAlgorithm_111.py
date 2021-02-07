@@ -6,8 +6,6 @@
 
 说明：叶子节点是指没有子节点的节点。
 
- 
-
 示例 1：
 
 
@@ -20,14 +18,33 @@
 '''
 
 from mock.tree import create_treenode
+
+
 class Solution:
-    def minDepth(self, root) -> int:
+    def minDepth1(self, root) -> int:
+        if not root:
+            return 0
+        left_depth = self.minDepth1(root.left)
+        right_depth = self.minDepth1(root.right)
+        return left_depth+right_depth+1  if (left_depth == 0 or right_depth == 0) else min(left_depth, right_depth)+1
+    def minDepth2(self, root) -> int:
+         pass
+    def maxDepth1(self, root) -> int:
         pass
+    def maxDepth2(self, root) -> int:
+        if not root:return 0
+        return max(self.maxDepth2(root.left),self.maxDepth2(root.right))+1
 
 
 if __name__ == "__main__":
     s = Solution()
     l = [3, 9, 20, None, None, 15, 7]
-    print('1', s.minDepth(create_treenode(l)))
-    l = [2, None, 3, None, 4, None, 5, None 6]
-    print('1', s.minDepth(create_treenode(l)))
+    t = create_treenode(l)
+    print(t)
+    print('1', s.minDepth1(t))
+    print('2', s.maxDepth2(t))
+    # l = [2, None, 3, None, 4, None, 5, None, 6]
+    # t = create_treenode(l)
+    # print(t)
+    # print('1', s.minDepth1(t))
+    # print('2', s.minDepth2(t))
