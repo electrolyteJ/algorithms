@@ -28,7 +28,7 @@ class Solution:
         left, right = 0, x
         while left <= right:
             mid = (left+right)/2
-            if abs(x/mid-mid) < 1e-9:#10^-9
+            if abs(x/mid-mid) < 1e-9:  # 10^-9
                 return mid
             elif mid > x/mid:
                 right = mid
@@ -53,9 +53,9 @@ class Solution:
         return res
 
     def mySqrt2(self, x: int) -> int:  # 牛顿迭代法
-        r = x 
-        while r *r >x:
-            r =(r+x/r)/2
+        r = x
+        while r * r > x:
+            r = (r+x/r)/2
         return r
 
 
@@ -63,4 +63,4 @@ if __name__ == "__main__":
     s = Solution()
     print('1', s.mySqrt1(8))
     print('11', s.mySqrt11(8))
-    print('2', s.mySqrt2(4))
+    print('2', s.mySqrt2(8))
