@@ -277,6 +277,8 @@ class Node:
     #     pass
 
     def __getitem__(self, index):
+        if not isinstance(index,int) or index <0:
+            raise BaseException("index有问题")
         current_level = [self]
         current_index = 0
         has_more_nodes = True
@@ -297,9 +299,16 @@ class Node:
                 if node.left or node.right:
                     has_more_nodes = True
             current_level = next_level
-
+        raise BaseException("没找到")
     def __setitem__(self, index, node):
-        pass
+        if index ==0:
+            raise BaseException("index == 0 ")
+        parent_index = (index-1)//2
+        try:
+            parent = self.__getitem__(parent_index)
+        except BaseException:
+            raise BaseException('haha')
+        setattr(parent, 'left' if index % 2 else 'right', node)
 
     def __delitem__(self, index):
         pass
@@ -375,3 +384,5 @@ if __name__ == '__main__':
     print('postorder:%s' % tree_node.postorder)
     print('levelorder:%s' % tree_node.levelorder)
     print(tree_node[2])
+    tree_node[2]=create_treenode([5, 1])
+    print(tree_node)
