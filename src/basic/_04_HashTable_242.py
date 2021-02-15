@@ -57,4 +57,5 @@ if __name__ == '__main__':
     s = Solution()
     print(s.isAnagram1('anagram', 'nagaram'))
     print(s.isAnagram2('anagram', 'nagaram'))
+    print(s.isAnagram2('anagram', 'nagaram'))
     print(s.isAnagram3('anagramU+263B', 'nagaramU+263B'))
