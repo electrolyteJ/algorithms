@@ -21,8 +21,8 @@
 
 class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
-        pass
-if __name__=='__main__'
+        return n>0 and not (n & n-1)
+if __name__=='__main__':
     s = Solution()
     n=1
     print('1', s.isPowerOfTwo(n))

@@ -20,10 +20,15 @@
 
 class Solution:
     def countBits(self, num: int):
+        bits = [0]*(num+1)
+        for i in range(1, num+1):
+            bits[i] = bits[i & (i-1)]+1
+        return bits
+
 
 if __name__ == '__main__':
     s = Solution()
-    num=2
+    num = 2
     print('1', s.countBits(num))
-    num=5
+    num = 5
     print('1', s.countBits(num))
