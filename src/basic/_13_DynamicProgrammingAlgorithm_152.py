@@ -25,20 +25,27 @@ class Solution:
         dp[0][1], dp[0][0], res = nums[0], nums[0], nums[0]
         for i in range(1, len((nums))):
             x, y = i % 2, (i-1) % 2
-            dp[x][0] = max(dp[y][0] * nums[i], dp[y][1]*nums[i], nums[i])
+            dp[x][0] = max(dp[y][0]*nums[i], dp[y][1]*nums[i], nums[i])
             dp[x][1] = min(dp[y][0]*nums[i], dp[y][1]*nums[i], nums[i])
             res = max(res, dp[x][0])
         return res
 
     def maxProduct2(self, nums) -> int:
-        if not nums: return 0
-        res,cur_max ,cur_min=nums[0],nums[0],nums[0]
-        for i in range(1,len(nums)):
+        if not nums:
+            return 0
+        res, cur_max, cur_min = nums[0], nums[0], nums[0]
+        for i in range(1, len(nums)):
             num = nums[i]
-            cur_max,cur_min = cur_max*num,cur_min*num
-            cur_min,cur_max=min(cur_max,cur_min,num),max(cur_max,cur_min,num)
-            res = cur_max if cur_max >res else res
+            cur_max, cur_min = cur_max*num, cur_min*num
+            cur_min, cur_max = min(cur_max, cur_min, num), max(
+                cur_max, cur_min, num)
+            res = cur_max if cur_max > res else res
         return res
+
+    def maxProduct3(self, nums) -> int:  # 递归+记忆化
+        def recurs(nums, i, cur_v):
+            pass
+        pass
 
 
 if __name__ == '__main__':

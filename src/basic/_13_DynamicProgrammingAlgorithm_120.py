@@ -36,14 +36,36 @@ triangle[i].length == triangle[i - 1].length + 1
 
 
 class Solution:
-    def minimumTotal(self, triangle) -> int:
+    def minimumTotal1(self, triangle) -> int:  # dp
         if not triangle:
             return 0
-        res = triangle[-1]
+        res = triangle[-1].copy()
+        #时间复杂度为O(m*n)
         for i in range(len(triangle)-2, -1, -1):
             for j in range(len(triangle[i])):
                 res[j] = min(res[j], res[j+1])+triangle[i][j]
         return res[0]
+
+    def minimumTotal2(self, triangle) -> int:  # 递归+记忆化
+        def dfs(triangle, mem, row, col):
+            if row == len(triangle)-1:
+                return triangle[row][col]
+
+            if mem[row][col]:
+                return mem[row][col]
+
+            down = dfs(triangle, mem, row+1, col)
+            down_right = dfs(triangle, mem, row+1, col+1)
+            mem[row][col] = min(down, down_right) + triangle[row][col]
+            return mem[row][col]
+
+        if not triangle:
+            return 0
+        # mem = [[None]*len(triangle)] * (len(triangle)) 有问题数组内的数组是同一个对象
+        mem = [[None for _ in range(len(triangle))]
+               for _ in range(len(triangle)-1)]
+        r = dfs(triangle, mem, 0, 0)
+        return r
 
 
 if __name__ == '__main__':
@@ -54,6 +76,8 @@ if __name__ == '__main__':
         [6, 5, 7],
         [4, 1, 8, 3]
     ]
-    print('1', s.minimumTotal(triangle))
+    print('1', s.minimumTotal1(triangle))
+    print('2', s.minimumTotal2(triangle))
     triangle = [[-10]]
-    print('1', s.minimumTotal(triangle))
+    print('1', s.minimumTotal1(triangle))
+    print('2', s.minimumTotal2(triangle))
