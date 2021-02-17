@@ -11,7 +11,9 @@ if __name__ == "__main__":
     target = 4
     left ,right = 0,len(l)-1
     while left <= right:
-        mid = (left + right) // 2
+        #容易数组越界
+        #mid = (left + right) // 2
+        mid = left+(right- left) // 2
         if l[mid] == target:
             # break or return result
             pass
