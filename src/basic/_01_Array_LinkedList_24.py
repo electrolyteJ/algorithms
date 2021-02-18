@@ -22,9 +22,10 @@ class Solution:
             node1 = cur_node.next
             node2 = cur_node.next.next
 
-            cur_node.next = node2
-            node1.next = node2.next
-            node2.next = node1
+            # cur_node.next = node2
+            # node1.next = node2.next
+            # node2.next = node1
+            cur_node.next,node1.next,node2.next = node2,node2.next,node1
 
             cur_node = node1
         return dummyHead.next
@@ -32,11 +33,10 @@ class Solution:
     def swapPairs1(self, head: ListNode) -> ListNode:  # 递归
         if head is None or head.next is None:
             return head
-        first_node = head
-        sec_node = head.next
-        first_node.next = self.swapPairs1(sec_node.next)
-        sec_node.next = first_node
-        return sec_node
+        node1 = head
+        node2 = head.next
+        node1.next, node2.next = self.swapPairs1(node2.next), node1
+        return node2
 
 
 def main():
