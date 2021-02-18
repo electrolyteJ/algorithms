@@ -1,3 +1,11 @@
+'''
+  Linkedlist
+  - Singly linked list
+  - Doubly linked list
+  - Multiply linked list
+  - Circular linked list
+  - Hash linking
+'''
 
 class ListNode:
     # Definition for singly-linked list.
