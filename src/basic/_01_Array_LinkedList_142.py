@@ -35,11 +35,10 @@ class Solution:
         s = set()
         while head:
             if head in s:
-                return True
+                return head
             s.add(head)
             head = head.next
-        return False
-        pass
+        return None
 
     def detectCycle2(self, head: ListNode) -> bool:  # 快慢指针
         fast = slow = head
