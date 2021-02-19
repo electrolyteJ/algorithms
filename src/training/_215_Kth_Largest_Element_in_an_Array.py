@@ -35,6 +35,6 @@ class Solution:
         else:
             self.quick_select(nums,k-(l-start),r+1,end)
 
-    def findKthLargest(self, nums: List[int], k: int) -> int:
+    def findKthLargest(self, nums, k: int) -> int:
         self.quick_select(nums,k,0,len(nums)-1)
         return nums[k-1]

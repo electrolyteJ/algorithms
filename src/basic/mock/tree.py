@@ -1,7 +1,7 @@
 """
     [对各种树形结构的总结](https://warmgrid.github.io/2019/06/14/about-trees.html)
     树的种类：
-        - 二叉树(binary tree)：一个节点最多只包含子节点
+        - 二叉树(binary tree)：一个节点最多只包含两个子节点
         - 满二叉树(full binary tree)
         - 完全二叉树(complete binary tree)：堆一般都使用完全二叉树实现
         - 平衡二叉树：当树有 N 个节点时, 高度不超过 O(log N), 例如 AVL 树, 红黑树

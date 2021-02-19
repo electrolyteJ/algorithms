@@ -31,6 +31,6 @@ class Solution:
         self.swap(nums,start,r)
         self.quick_sort(nums,start,r-1)
         self.quick_sort(nums,r+1,end)
-    def sortArray(self, nums: List[int]) -> List[int]:
+    def sortArray(self, nums):
         self.quick_sort(nums,0,len(nums)-1)
         return nums
