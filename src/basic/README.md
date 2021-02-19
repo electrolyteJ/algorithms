@@ -1,10 +1,13 @@
   Data Structure
  ============
   Array
+  
   Stack
+
   Queue
   - priority queue
   - lifo queue
+
   Linkedlist
   - Singly linked list
   - Doubly linked list
@@ -12,6 +15,7 @@
   - Circular linked list
   - Hash linking
   - ...
+
   Tree
   - binary tree
     - 完全二叉树
