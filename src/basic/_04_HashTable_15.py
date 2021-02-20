@@ -34,6 +34,7 @@ class Solution:
         ret = []
         nums.sort()
         size = len(nums)
+        #时间复杂度为O(n*logn)
         for i, e1 in enumerate(nums[:-2]):
             if i > 0 and e1 == nums[i-1]:
                 continue
@@ -81,14 +82,18 @@ class Solution:
             return []
         nums.sort()
         ret =set()
+        #时间复杂度为O(n*n) 空间复杂度O(n)
         for i,e1 in enumerate(nums[:-2]):
             if i>=1 and e1==nums[i-1]:
                 continue
-            d=dict()
+            # d=dict()
+            s = set()
             for e2 in nums[i+1:]:
                 y = -(e1 + e2)
-                if e2 not in d:
-                    d[y]=1
+                # if e2 not in d:
+                if e2 not in s:
+                    # d[y]=1
+                    s.add(y)
                 else:
                     ret.add((e1,y,e2))
         return list(ret)
@@ -97,7 +102,7 @@ class Solution:
 if __name__ == '__main__':
     s = Solution()
     nums = nums = [-1, 0, 1, 2, -1, -4]
-    print(s.threeSum(nums))
+    print(s.threeSum2(nums))
     # nums = [0, 0, 0]
     # print(s.threeSum(nums))
     nums = [
@@ -3102,4 +3107,4 @@ if __name__ == '__main__':
         -7418,
         77916
     ]
-    # print(s.threeSum(nums))
+    print(s.threeSum2(nums))
