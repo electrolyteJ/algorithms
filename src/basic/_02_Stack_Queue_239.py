@@ -70,7 +70,7 @@ class Solution:
         heapq.heapify(q)
         ret = []
         ret.append(-q[0][0])
-        # O(nlog n)
+        # O(nlog k)
         for i in range(k, len(nums)):
             heapq.heappush(q, (-nums[i], i))
             print(i-k, (-nums[i], i), q)
