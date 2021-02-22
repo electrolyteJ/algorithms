@@ -36,10 +36,7 @@ class Solution:
         if not left_subtree:
             return right_subtree
         else:
-            if not right_subtree:
-                return left_subtree
-            else:
-                return root
+           return left_subtree  if not right_subtree else root
 
 
 if __name__ == "__main__":
@@ -51,4 +48,5 @@ if __name__ == "__main__":
     print(s.lowestCommonAncestor(tree_node, p, q).value)
     p = tree_node[1]
     q = tree_node[8]
+    print(q)
     print(s.lowestCommonAncestor(tree_node, p, q).value)

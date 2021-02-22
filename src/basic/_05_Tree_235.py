@@ -27,6 +27,7 @@ from mock.tree import create_treenode
 
 class Solution:
     def lowestCommonAncestor1(self, root, p, q):
+        #O(n)
         if p.value < root.value > q.value:
             root = self.lowestCommonAncestor1(root.left, p, q)
         if p.value > root.value < q.value:
@@ -34,6 +35,7 @@ class Solution:
         return root
 
     def lowestCommonAncestor2(self, root, p, q):
+        #O(n)
         while root:
             if p.value < root.value > q.value:
                 root = root.left

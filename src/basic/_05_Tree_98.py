@@ -70,6 +70,7 @@ class Solution:
         stack = []
         node = root
         inorder = float('-inf')
+        #O(n*n)
         while stack or node:
             while node:
                 stack.append(node)

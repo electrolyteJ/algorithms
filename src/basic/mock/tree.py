@@ -299,7 +299,7 @@ class Node:
                 if node.left or node.right:
                     has_more_nodes = True
             current_level = next_level
-        raise BaseException("没找到")
+        # raise BaseException("没找到")
     def __setitem__(self, index, node):
         if index ==0:
             raise BaseException("index == 0 ")
