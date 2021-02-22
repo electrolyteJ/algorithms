@@ -40,11 +40,11 @@ class Solution:  # linked list :1->2->3->4->5->None
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
         dummy_head = ListNode(0)
         dummy_head.next = head
-        cur = dummy_head
+        pre = dummy_head
 
         while head:
-            dummy_tail = cur
-            for i in range(k):
+            dummy_tail = pre
+            for _ in range(k):
                 dummy_tail = dummy_tail.next
                 if not dummy_tail:
                     return dummy_head.next
@@ -53,10 +53,8 @@ class Solution:  # linked list :1->2->3->4->5->None
             head, dummy_tail = self.reverse(head, tail)
             # print('after', head, dummy_tail)
             # 把子链表重新接回原链表
-            cur.next = head
-            head = tail
-            dummy_tail.next = tail
-            cur = dummy_tail
+            pre.next,head,pre = head,tail,dummy_tail
+            # pre.next,head,dummy_tail.next,pre = head,tail,tail,dummy_tail
         return dummy_head.next
 
 
