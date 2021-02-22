@@ -29,11 +29,7 @@ class Solution:  # linked list :1->2->3->4->5->None
         cur_node = head
         ret_node = tail
         while cur_node != tail:
-
-            tmp = cur_node.next
-            cur_node.next = ret_node
-            ret_node = cur_node
-            cur_node = tmp
+            cur_node.next,ret_node,cur_node = ret_node,cur_node,cur_node.next
 
         return ret_node, head
 
@@ -63,7 +59,7 @@ def main():
     listnode = create_listnode(datas)
     print('raw datas: {}'.format(listnode))
     s = Solution()
-    print('k =2 {}'.format(s.reverseKGroup(listnode, 4)))
+    print('k =2 {}'.format(s.reverseKGroup(listnode, 2)))
     listnode2 = create_listnode(datas)
     print('k = 3 {}'.format(s.reverseKGroup(listnode2, 3)))
 
