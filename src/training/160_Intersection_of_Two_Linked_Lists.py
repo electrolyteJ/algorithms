@@ -39,17 +39,13 @@ from src.mock.list import create_listnode
 
 class Solution:
     def getIntersectionNode(self, headA, headB):
-        if not headA or not headB: return None
-        #O(n*n)
-        a = headA
-        b = headB
-        while a:
-            while b:
-                if b.value == a.value:
-                    b = b.next
-                break
-            a = a.next
-        return None
+        if not headA or not headB:return None
+        #时间复杂度O(n+m),空间复杂度O(1)
+        a,b = headA, headB
+        while a !=b:
+            a= a.next if a else headB
+            b= b.next if b else headA
+        return a
 
 
 
