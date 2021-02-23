@@ -19,7 +19,7 @@
 '''
 
 
-from mock.tree import create_treenode
+from src.common.tree import create_treenode
 from queue import Queue
 
 
@@ -51,7 +51,7 @@ class Solution:
         self.dfs(node.left,level+1)
         self.dfs(node.right,level+1)
     def levelOrder2(self, root):  # dfs
-        
+
         if not root :return[]
         self.ret = []
         self.dfs(root,0)

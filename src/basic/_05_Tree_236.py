@@ -24,7 +24,7 @@
 p、q 为不同节点且均存在于给定的二叉树中。
 '''
 
-from mock.tree import create_treenode
+from src.common.tree import create_treenode
 
 
 class Solution:
@@ -36,7 +36,7 @@ class Solution:
         if not left_subtree:
             return right_subtree
         else:
-           return left_subtree  if not right_subtree else root
+            return left_subtree  if not right_subtree else root
 
 
 if __name__ == "__main__":

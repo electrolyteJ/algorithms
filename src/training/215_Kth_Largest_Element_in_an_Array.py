@@ -38,3 +38,11 @@ class Solution:
     def findKthLargest(self, nums, k: int) -> int:
         self.quick_select(nums,k,0,len(nums)-1)
         return nums[k-1]
+if __name__ == '__main__':
+    s = Solution()
+    n = [3, 2, 1, 5, 6, 4]
+    k= 2
+    print('1',s.findKthLargest(n,k))
+    n = [3, 2, 3, 1, 2, 4, 5, 5, 6]
+    k = 4
+    print('1',s.findKthLargest(n,k))

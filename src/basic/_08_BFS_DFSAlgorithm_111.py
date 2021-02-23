@@ -17,7 +17,7 @@
 输出：5
 '''
 
-from mock.tree import create_treenode
+from src.common.tree import create_treenode
 
 
 class Solution:
@@ -28,7 +28,7 @@ class Solution:
         right_depth = self.minDepth1(root.right)
         return left_depth+right_depth+1  if (left_depth == 0 or right_depth == 0) else min(left_depth, right_depth)+1
     def minDepth2(self, root) -> int:
-         pass
+        pass
     def maxDepth1(self, root) -> int:
         pass
     def maxDepth2(self, root) -> int:

@@ -22,7 +22,7 @@
 所有节点的值都是唯一的。
 p、q 为不同节点且均存在于给定的二叉搜索树中。
 '''
-from mock.tree import create_treenode
+from src.common.tree import create_treenode
 
 
 class Solution:

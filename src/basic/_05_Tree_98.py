@@ -26,7 +26,7 @@
 解释: 输入为: [5,1,4,null,null,3,6]。
      根节点的值为 5 ，但是其右子节点值为 4 。
 '''
-from mock.tree import create_treenode
+from src.common.tree import create_treenode
 
 
 class Solution:

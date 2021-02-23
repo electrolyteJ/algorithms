@@ -1,0 +1,112 @@
+def insertion_sort(nums):
+    '''
+    平均时间复杂度O(n^2)
+    '''
+    pass
+def shell_sort(nums):
+    '''
+    策略选择：希尔排序是插入排序的一种高效率的实现
+    平均时间复杂度O(n^1.3)
+    '''
+    pass
+def selection_sort(nums):
+    '''
+    优化了冒泡排序，是其改良版。
+    平均时间复杂度O(n^2)
+    '''
+    pass
+def heap_sort(nums):
+    '''
+    策略选择：借助堆来实现，思想同简单的选择排序
+    平均时间复杂度O(nlogn)
+    '''
+    pass
+def bubble_sort(nums):
+    '''
+    - 比较相邻的元素。如果第一个比第二个大，就交换它们两个；
+    - 对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，这样在最后的元素应该会是最大的数；
+    - 针对所有的元素重复以上的步骤，除了最后一个；
+    - 重复步骤1~3，直到排序完成。
+    平均时间复杂度O(n^2)
+    '''
+    for i in range(len(nums)):
+        for j in range(len(nums) - i-1):
+            if nums[j] > nums[j+1]:
+                nums[j],nums[j+1] = nums[j+1], nums[j]
+
+
+def quick_sort(nums):
+    '''
+    总结快速排序的思想：冒泡+二分+递归分治
+    - 从数列中挑出一个元素，称为 “基准”（pivot）；
+    - 重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该 基准就处于数列的中间位置。这个称为分区（partition）操作；
+    - 递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。
+    平均时间复杂度O(nlogn)
+    '''
+    def swap(nums,i,j):
+        nums[i],nums[j]=nums[j],nums[i]
+    def partition(nums,lo,hi):
+        l,r,pivot = lo+1 ,hi,nums[lo]
+        while l <= r:
+            if nums[l] > pivot:
+                l +=1
+                continue
+            if nums[r] <=pivot:
+                r -=1
+                continue
+            swap(nums,l,r)
+        swap(nums,lo,hi)
+        return r 
+    def sort(nums,lo,hi):
+        if lo >= hi: return
+        partition_i = partition(nums,lo,hi)
+        sort(nums, lo, partition_i-1)
+        sort(nums, partition_i+1,hi)
+
+
+    sort(nums,0,len(nums)-1)
+def merge_sort(nums):
+    '''
+    divide-conquer
+    平均时间复杂度O(nlogn)
+    '''
+    pass
+def counting_sort(nums):
+    '''
+    平均时间复杂度O(n+k)
+    '''
+    pass
+def bucket_sort(nums):
+    '''
+    平均时间复杂度O(n+k)
+    '''
+    pass
+def radix_sort(nums):
+    '''
+    平均时间复杂度O(n*k)
+    '''
+    pass
+
+
+if __name__ =='__main__':
+    nums=[12,3,7,8,4,2,7,4,29]
+    insertion_sort(nums)
+    print('1 insertion_sort',nums)
+    shell_sort(nums)
+    print('2 shell_sort',nums)
+    selection_sort(nums)
+    print('3 selection_sort', nums)
+    heap_sort(nums)
+    print('4 heap_sort', nums)
+    bubble_sort(nums)
+    print('5 bubble_sort', nums)
+    quick_sort(nums)
+    print('6 quick_sort', nums)
+    merge_sort(nums)
+    print('7 merge_sort', nums)
+    counting_sort(nums)
+    print('8 counting_sort',nums)
+    bucket_sort(nums)
+    print('9 bucket_sort',nums)
+    radix_sort(nums)
+    print('10 radix_sort', nums)
