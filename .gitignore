@@ -76,3 +76,5 @@ src/basic/mock/__pycache__/
 .vscode/settings.json
 .vscode/launch.json
 .vscode/settings.json
+src/mock/__pycache__
+.DS_Store
