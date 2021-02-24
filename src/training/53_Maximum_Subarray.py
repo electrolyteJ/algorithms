@@ -36,7 +36,7 @@
 
 
 class Solution:
-    def maxSubArray(self, nums) -> int:
+    def maxSubArray1(self, nums) -> int:
         if not nums: return 0
         dp = [0] * 2
         dp[0], ret = nums[0],nums[0]
@@ -45,14 +45,21 @@ class Solution:
             dp[a] = max(dp[b] + nums[i], nums[i])
             ret = max(ret,dp[a])
         return ret
+    def maxSubArray2(self, nums) -> int:#分治法
+        pass
+
 
 if __name__ == '__main__':
     s = Solution()
     nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
-    print('1', s.maxSubArray(nums))
+    print('1', s.maxSubArray1(nums))
+    print('2', s.maxSubArray2(nums))
     nums = [1]
-    print('1', s.maxSubArray(nums))
+    print('1', s.maxSubArray1(nums))
+    print('2', s.maxSubArray2(nums))
     nums = [0]
-    print('1', s.maxSubArray(nums))
+    print('1', s.maxSubArray1(nums))
+    print('2', s.maxSubArray2(nums))
     nums = [-1]
-    print('1', s.maxSubArray(nums))
+    print('1', s.maxSubArray1(nums))
+    print('2', s.maxSubArray2(nums))

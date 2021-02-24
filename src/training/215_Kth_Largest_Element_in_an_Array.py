@@ -50,15 +50,18 @@ class Solution:
             i +=1
             nums[i],nums[r] = nums[r],nums[i]
             return i
-        def quick_select(nums,k_index,l,r):
-            p_index = partition(nums,l,r)
-            if p_index == k_index:
-                return nums[k_index]
-            else:
-                return quick_select(nums,k_index,l,p_index-1) if p_index > k_index  else quick_select(nums,k_index,p_index+1,r)
 
+        def quick_select(nums, k_i, l, r):
+            pivot_i = partition(nums, l, r)
+            if pivot_i == k_i:
+                return nums[k_i]
+            else:
+                return quick_select(nums, k_i, l, pivot_i -
+                                    1) if pivot_i > k_i else quick_select(
+                                        nums, k_i, pivot_i + 1, r)
+        #平均时间复杂度为O(nlogn) 空间复杂度O(nlogn)
         return quick_select(nums,len(nums)-k,0,len(nums)-1)
-         
+
 if __name__ == '__main__':
     s = Solution()
     n = [3, 2, 1, 5, 6, 4]

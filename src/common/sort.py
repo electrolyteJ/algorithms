@@ -55,9 +55,9 @@ def quick_sort(nums):
         return i
     def quick_sort_inner(nums,l,r):
         if l >= r: return
-        partition_i = partition(nums,l,r)
-        quick_sort_inner(nums, l, partition_i-1)
-        quick_sort_inner(nums, partition_i+1,r)
+        pivot_i = partition(nums, l, r)
+        quick_sort_inner(nums, l, pivot_i - 1)
+        quick_sort_inner(nums, pivot_i + 1, r)
 
     quick_sort_inner(nums,0,len(nums)-1)
 def merge_sort(nums):
@@ -66,7 +66,7 @@ def merge_sort(nums):
     平均时间复杂度O(nlogn) 空间复杂度O(n)
     '''
     if not nums:return
-   
+
     def merge(nums,l,mid,r):
         p1,p2=l,mid+1
         for i in range(l,r+1):
@@ -84,7 +84,7 @@ def merge_sort(nums):
             else:
                 nums[i] = b[p1]
                 p1 +=1
-        
+
     def merge_sort_inner(nums,l,r):
         if l >=r:return
         mid = l+(r-l)//2#(r+l)//2
