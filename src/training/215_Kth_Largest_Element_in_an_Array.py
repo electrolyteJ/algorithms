@@ -38,11 +38,36 @@ class Solution:
     def findKthLargest(self, nums, k: int) -> int:
         self.quick_select(nums,k,0,len(nums)-1)
         return nums[k-1]
+    def findKthLargest2(self, nums, k: int) -> int:
+        if not nums:return 0
+        def partition(nums,l,r):
+            pivot = nums[r]
+            i = l-1
+            for j in range(l,r):
+                if nums[j] < pivot:
+                    i +=1
+                    nums[i],nums[j] = nums[j],nums[i]
+            i +=1
+            nums[i],nums[r] = nums[r],nums[i]
+            return i
+        def quick_select(nums,k_index,l,r):
+            p_index = partition(nums,l,r)
+            if p_index == k_index:
+                return nums[k_index]
+            else:
+                return quick_select(nums,k_index,l,p_index-1) if p_index > k_index  else quick_select(nums,k_index,p_index+1,r)
+
+        return quick_select(nums,len(nums)-k,0,len(nums)-1)
+         
 if __name__ == '__main__':
     s = Solution()
     n = [3, 2, 1, 5, 6, 4]
     k= 2
     print('1',s.findKthLargest(n,k))
+    n = [3, 2, 1, 5, 6, 4]
+    print('2',s.findKthLargest2(n,k))
     n = [3, 2, 3, 1, 2, 4, 5, 5, 6]
     k = 4
     print('1',s.findKthLargest(n,k))
+    n = [3, 2, 3, 1, 2, 4, 5, 5, 6]
+    print('2',s.findKthLargest2(n,k))
