@@ -9,7 +9,7 @@ if __name__ == "__main__":
     target = 4
     left, right = 0, len(l) - 1
     while left <= right:
-        #容易数组越界
+        #如果left和right代表的是一个整数，就有必要使用后面一种写法防止整数越界
         #mid = (left + right) // 2
         mid = left + (right - left) // 2
         if l[mid] == target:

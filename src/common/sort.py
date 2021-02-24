@@ -43,34 +43,57 @@ def quick_sort(nums):
     - 递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。
     平均时间复杂度O(nlogn)
     '''
-    def swap(nums,i,j):
-        nums[i],nums[j]=nums[j],nums[i]
-    def partition(nums,lo,hi):
-        l,r,pivot = lo+1 ,hi,nums[lo]
-        while l <= r:
-            if nums[l] > pivot:
-                l +=1
-                continue
-            if nums[r] <=pivot:
-                r -=1
-                continue
-            swap(nums,l,r)
-        swap(nums,lo,hi)
-        return r 
-    def sort(nums,lo,hi):
-        if lo >= hi: return
-        partition_i = partition(nums,lo,hi)
-        sort(nums, lo, partition_i-1)
-        sort(nums, partition_i+1,hi)
+    def partition(nums,l,r):
+        pivot = nums[r]
+        i = l-1
+        for j in range(l,r):
+            if nums[j]<pivot:#比pivot小的数多排到左边
+                i +=1
+                nums[i] = nums[j]
+        i +=1
+        nums[i],nums[r]=nums[r],nums[i]
+        return l
+    def quick_sort_inner(nums,l,r):
+        if l >= r: return
+        partition_i = partition(nums,l,r)
+        quick_sort_inner(nums, l, partition_i-1)
+        quick_sort_inner(nums, partition_i+1,r)
 
-
-    sort(nums,0,len(nums)-1)
+    quick_sort_inner(nums,0,len(nums)-1)
 def merge_sort(nums):
     '''
     divide-conquer
-    平均时间复杂度O(nlogn)
+    平均时间复杂度O(nlogn) 空间复杂度O(n)
     '''
-    pass
+    if not nums:return
+   
+    def merge(nums,l,mid,r):
+        p1,p2=l,mid+1
+        for i in range(l,r+1):
+            b[i] = nums[i]
+        for i in range(l,r+1):
+            if p1 > mid:#左边的数据已经compare完，就直接把右边数据copy到数组
+                nums[i] = b[p2]
+                p2 +=1
+            elif p2 > r:#直接把左边数据copy到数组
+                nums[i] = b[p1]
+                p1 +=1
+            elif b[p2] < b[p1]:#比较左边数据和右边数组头一个
+                nums[i] =b[p2]
+                p2 +=1
+            else:
+                nums[i] = b[p1]
+                p1 +=1
+        
+    def merge_sort_inner(nums,l,r):
+        if l >=r:return
+        mid = l+(r-l)//2#(r+l)//2
+        merge_sort_inner(nums,l,mid)
+        merge_sort_inner(nums,mid+1,r)
+        merge(nums,l,mid,r)
+
+    b = [0]*len(nums)
+    merge_sort_inner(nums,0,len(nums)-1)
 def counting_sort(nums):
     '''
     平均时间复杂度O(n+k)
@@ -90,23 +113,23 @@ def radix_sort(nums):
 
 if __name__ =='__main__':
     nums=[12,3,7,8,4,2,7,4,29]
-    insertion_sort(nums)
-    print('1 insertion_sort',nums)
-    shell_sort(nums)
-    print('2 shell_sort',nums)
-    selection_sort(nums)
-    print('3 selection_sort', nums)
-    heap_sort(nums)
-    print('4 heap_sort', nums)
+    # insertion_sort(nums)
+    # print('1 insertion_sort',nums)
+    # shell_sort(nums)
+    # print('2 shell_sort',nums)
+    # selection_sort(nums)
+    # print('3 selection_sort', nums)
+    # heap_sort(nums)
+    # print('4 heap_sort', nums)
     bubble_sort(nums)
     print('5 bubble_sort', nums)
     quick_sort(nums)
     print('6 quick_sort', nums)
     merge_sort(nums)
     print('7 merge_sort', nums)
-    counting_sort(nums)
-    print('8 counting_sort',nums)
-    bucket_sort(nums)
-    print('9 bucket_sort',nums)
-    radix_sort(nums)
-    print('10 radix_sort', nums)
+    # counting_sort(nums)
+    # print('8 counting_sort',nums)
+    # bucket_sort(nums)
+    # print('9 bucket_sort',nums)
+    # radix_sort(nums)
+    # print('10 radix_sort', nums)
