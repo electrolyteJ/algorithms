@@ -32,21 +32,44 @@ s 由英文字母、数字、符号和空格组成
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
+        #时间复杂度O(n) 空间复杂度O(n)
         if not s: return 0
-        dp = ['' for _ in range(len(s))]
-        dp[0] = s[0]
-        for i in range(1, len(s)):
-            if s[i] not in dp[i - 1]:
-                dp[i] = dp[i - 1] + s[i]
-        ret = max(dp, key=len)
-        print(dp,ret)
-        return len(ret)
+        cur_len,max_len = 0,0
+        lookup = []
+        for i in range(len(s)):
+            while s[i] in lookup:
+                lookup.pop(0)
+                cur_len -=1
+            cur_len +=1
+            lookup.append(s[i])
+            max_len = max(max_len,cur_len)
+        return max_len
 
+    def lengthOfLongestSubstring1(self, s: str) -> int:
+        if not s:return 0
+        #滑动窗口模板
+        import collections
+        left,right=0,0
+        counter,max_len=0,0
+        lookup = collections.defaultdict(int)
+        while right < len(s):
+            if lookup[s[right]] > 0 :
+                counter +=1
+            lookup[s[right]] +=1
+            right +=1
+            while counter > 0:
+                if lookup[s[left]] > 1:
+                    counter -=1
+                lookup[s[left]] -=1
+                left +=1
+            max_len = max(max_len,right - left)
+        return max_len
 
 if __name__ == '__main__':
     s1 = Solution()
     s = "abcabcbb"
     print('1', s1.lengthOfLongestSubstring(s))
+    print('1', s1.lengthOfLongestSubstring1(s))
     s = "bbbbb"
     print('1', s1.lengthOfLongestSubstring(s))
     s = "pwwkew"

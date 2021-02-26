@@ -67,7 +67,7 @@ class LRUCache:
             if key in self.dic:
                 self.dic.pop(key)
             else:
-                if self.remain >0:
+                if self.remain > 0:
                     self.remain -=1
                 else:
                     self.dic.popitem(last=False)
