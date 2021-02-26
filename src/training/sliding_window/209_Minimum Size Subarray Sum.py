@@ -4,8 +4,6 @@
 
 找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 [numsl, numsl+1, ..., numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。
 
- 
-
 示例 1：
 
 输入：target = 7, nums = [2,3,1,2,4,3]
@@ -19,7 +17,6 @@
 
 输入：target = 11, nums = [1,1,1,1,1,1,1,1]
 输出：0
- 
 
 提示：
 
@@ -32,12 +29,52 @@
 
 如果你已经实现 O(n) 时间复杂度的解法, 请尝试设计一个 O(n log(n)) 时间复杂度的解法。
 '''
+
+
 class Solution:
-    def minSubArrayLen(self, target: int, nums) -> int:
-        pass
-if __name__ =='__main__':
+    def minSubArrayLen1(self, target: int, nums) -> int:
+        if not nums: return 0
+        s, min_len = 0, float('inf')
+        left, right = 0, 0
+        window = []
+        #O(n)
+        while right < len((nums)):
+            s += nums[right]
+            right += 1
+            while s >= target:
+                min_len = min(min_len, right - left)
+                s -= nums[left]
+                left += 1
+        return min_len if min_len != float('inf') else 0
+
+    def minSubArrayLen2(self, target: int, nums) -> int:
+        #O(n log(n))二分查找  空间复杂度O(n)
+        if not nums: return 0
+        import bisect
+        min_len=float('inf')
+        sums = [0]
+        for e in nums:
+            sums.append(sums[-1]+e)
+        for i in range(1,len(nums)+1):
+            t = target+sums[i-1]
+            bound = bisect.bisect_left(sums,t)
+            if bound !=len(sums):
+                min_len = min(min_len,bound -(i-1))
+
+        return min_len if min_len != float('inf') else 0
+
+
+if __name__ == '__main__':
     s = Solution()
-    target = 7, nums = [2,3,1,2,4,3]
-    print('1',s.minSubArrayLen(target,nums))
-    target = 4, nums = [1,4,4]
-    print('1',s.minSubArrayLen(target,nums))
+    target = 7
+    nums = [2, 3, 1, 2, 4, 3]
+    print('1', s.minSubArrayLen1(target, nums))
+    print('2', s.minSubArrayLen2(target, nums))
+    target = 4
+    nums = [1, 4, 4]
+    print('1', s.minSubArrayLen1(target, nums))
+    print('2', s.minSubArrayLen2(target, nums))
+    target = 11
+    nums = [1, 1, 1, 1, 1, 1, 1, 1]
+    print('1', s.minSubArrayLen1(target, nums))
+    print('2', s.minSubArrayLen2(target, nums))
