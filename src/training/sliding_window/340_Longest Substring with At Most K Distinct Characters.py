@@ -13,3 +13,17 @@
 输出: 2
 解释: 子字符串 "aa" 长度为 2.
 '''
+class Solution:
+	def lengthOfLongestSubstringKDistinct(s, k):
+        pass
+
+
+if __name__ =='__main__':
+    #参考leetcode 159
+    s1 = Solution()
+    s = "eceba"
+    k = 2
+    print('1',s1.lengthOfLongestSubstringKDistinct(s,k))
+    s = "aa"
+    k = 1
+    print('1',s1.lengthOfLongestSubstringKDistinct(s,k))
