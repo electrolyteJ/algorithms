@@ -2,6 +2,7 @@
   Queue
   - priority queue
   - lifo queue
+  - deque 头部尾部的append/pop都是O(1)，list 头部pop会消耗O(n)
 '''
 
 import collections
@@ -19,10 +20,9 @@ if __name__=='__main__':
     print('头部pop', dp)
     q = queue.LifoQueue(5)
     for i in range(5):
-      q.put(i)
+        q.put(i)
     print(q)
     pq = queue.PriorityQueue(5)
     for i in range(5):
-      pq.put(i)
+        pq.put(i)
     print(pq)
-

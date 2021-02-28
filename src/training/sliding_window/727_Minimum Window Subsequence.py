@@ -19,3 +19,43 @@ S = "abcdebdde", T = "bde"
 S 长度的范围为 [1, 20000]。
 T 长度的范围为 [1, 100]。
 '''
+class Solution:
+    def minWindow(self,s, t):#（滑动窗口）
+        left,right =0,0
+        min_len,counter=float('inf'),len(t)
+        ret =''
+        import collections
+        lookup = collections.defaultdict(int)
+        for e in t:
+            lookup[e] += 1
+        #O(n*n)
+        while right < len(s):
+            if lookup[s[right]] >0:
+                counter -=1
+            # lookup[s[right]] -= 1
+            right +=1
+            tmp = left
+            t_i = 0
+            while counter == 0:
+                if s[left] == t[t_i]:
+                    if t_i ==0:
+                        tmp = left
+                    t_i +=1
+                # lookup[s[left]] +=1
+                left +=1
+                if left > right:
+                    counter = -1
+                elif t_i == len(t):
+                    counter = -2
+            if counter == -2 and right - tmp < min_len:
+                min_len = right - tmp
+                ret = s[tmp:right]
+            elif counter ==-1:
+                counter = len(t)
+        return ret
+
+if __name__=='__main__':
+    s1 = Solution()
+    s ='abcdebdde'
+    t ='bde'
+    print('1',s1.minWindow(s,t))

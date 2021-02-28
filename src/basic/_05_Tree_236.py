@@ -29,6 +29,7 @@ from src.common.tree import create_treenode
 
 class Solution:
     def lowestCommonAncestor(self, root, p, q):
+        #时间复杂度O(n) 空间复杂度O(n)
         if root is None or p == root or q == root:
             return root
         left_subtree = self.lowestCommonAncestor(root.left, p, q)
