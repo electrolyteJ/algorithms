@@ -26,29 +26,31 @@ board[i][j] 是一个小写英文字母
 words[i] 由小写英文字母组成
 words 中的所有字符串互不相同
 '''
-# 左右上下
-dx = [-1, 1, 0, 0]
-dy = [0, 0, -1, 1]
-dx_y = [
-    [-1, 0],
-    [1, 0],
-    [0, -1],
-    [0, 1],
-]
-end_of_word = '#'
+
 
 
 class Solution:
+
+    # 左右上下
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
+    dx_y = [
+        [-1, 0],
+        [1, 0],
+        [0, -1],
+        [0, 1],
+    ]
+    end_of_word = '#'
     def dfs(self, board, row, col, cur_word, cur_dict):
         cur_word += board[row][col]
         cur_dict = cur_dict[board[row][col]]
 
-        if end_of_word in cur_dict:
+        if self.end_of_word in cur_dict:
             self.result.add(cur_word)
 
         tmp, board[row][col] = board[row][col], '@'
         for i in range(4):
-            x, y = dx[i]+row, dy[i]+col
+            x, y = self.dx[i]+row, self.dy[i]+col
             if 0 <= x < self.row_lines and 0 <= y < self.col_lines\
                     and board[x][y] != '@' and board[x][y] in cur_dict:
                 self.dfs(board, x, y, cur_word, cur_dict)
@@ -65,7 +67,7 @@ class Solution:
             node = root
             for c in word:
                 node = node.setdefault(c, {})
-            node[end_of_word] = end_of_word
+            node[self.end_of_word] = self.end_of_word
 
         self.col_lines, self.row_lines = len(board[0]), len(board)
 
