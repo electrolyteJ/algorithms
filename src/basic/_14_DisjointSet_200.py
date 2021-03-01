@@ -40,52 +40,57 @@ class Solution:
     dx = [-1, 1, 0, 0]
     dy = [0, 0, -1, 1]
 
-    def is_valid(self, x, y):
-        if x < 0 or x >= self.max_x or y < 0 or y >= self.max_y:
-            return False
-        if self.grid[x][y] == '0' or ((x, y) in self.visited):
-            return False
-        return True
-
     def numIslands1(self, grid) -> int:  # bfs
         if not grid or not grid[0]:
             return 0
         import collections
 
         def floadfill_bfs(x, y):
-            if not self.is_valid(x, y):
+            if not (
+               0 <= x < len(grid)
+               and 0 <= y < len(grid[0])
+               and grid[x][y] == '1'
+               and ((x, y) not in visited)
+            ):
                 return 0
-            self.visited.add((x, y))
+            visited.add((x, y))
             q = collections.deque([(x, y)])
             while q:
                 cur_x, cur_y = q.popleft()
                 for i in range(4):
                     new_x, new_y = cur_x+self.dx[i], cur_y+self.dy[i]
                     tp = (new_x, new_y)
-                    if self.is_valid(new_x, new_y):
-                        self.visited.add(tp)
+                    if (0 <= new_x < len(grid)
+                            and 0 <= new_y < len(grid[0])
+                            and grid[new_x][new_y] == '1'
+                            and (tp not in visited)
+                    ):
+                        visited.add(tp)
                         q.append(tp)
             return 1
 
-        self.max_x, self.max_y, self.grid = len(grid), len(grid[0]), grid
-        self.visited = set()
-        return sum([floadfill_bfs(i, j) for i in range(self.max_x) for j in range(self.max_y)])
+        visited = set()
+        return sum([floadfill_bfs(i, j) for i in range(len(grid)) for j in range(len(grid[0]))])
 
     def numIslands2(self, grid) -> int:  # dfs
         if not grid or not grid[0]:
             return 0
 
         def floadfill_dfs(x, y):
-            if not self.is_valid(x, y):
+            if not (
+                0 <= x < len(grid) 
+                and 0 <= y < len(grid[0]) 
+                and grid[x][y] == '1' 
+                and ((x, y) not in visited)
+            ):
                 return 0
-            self.visited.add((x, y))
+            visited.add((x, y))
             for k in range(4):
                 floadfill_dfs(x+self.dx[k], y+self.dy[k])
             return 1
 
-        self.max_x, self.max_y, self.grid = len(grid), len(grid[0]), grid
-        self.visited = set()
-        return sum([floadfill_dfs(i, j) for i in range(self.max_x) for j in range(self.max_y)])
+        visited = set()
+        return sum([floadfill_dfs(i, j) for i in range(len(grid)) for j in range(len(grid[0]))])
 
     def numIslands3(self, grid) -> int:  # disjoinset
         if not grid or not grid[0]:
