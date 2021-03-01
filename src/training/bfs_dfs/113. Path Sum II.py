@@ -26,6 +26,7 @@ from src.common.tree import create_treenode
 
 class Solution:
     def pathSum_bfs(self, root, targetSum: int):
+        if not root:return []
         ret = list()
         import collections
         parent = collections.defaultdict(lambda: None)
@@ -33,19 +34,17 @@ class Solution:
         def getPath(node):
             tmp = list()
             while node:
-                tmp.append(node.val)
+                tmp.append(node.value)
                 node = parent[node]
             ret.append(tmp[::-1])
 
-        if not root:
-            return ret
 
         que_node = collections.deque([root])
         que_total = collections.deque([0])
 
         while que_node:
             node = que_node.popleft()
-            rec = que_total.popleft() + node.val
+            rec = que_total.popleft() + node.value
 
             if not node.left and not node.right:
                 if rec == targetSum:
