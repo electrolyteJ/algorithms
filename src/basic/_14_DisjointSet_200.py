@@ -50,12 +50,14 @@ class UnionFind():
     def find(self, i):
         if self.parent[i] != i:
             self.parent[i] = self.find(self.parent[i])
+        #todo 路径压缩,O(lgn)
         return self.parent[i]
 
     def union(self, x, y):
         rootx = self.find(x)
         rooty = self.find(y)
-        if rootx != rooty:
+        #用rank实现优化合并，矮树并入高数,O(lgn)
+        if rootx != rooty: 
             if self.rank[rootx] > self.rank[rooty]:
                 self.parent[rooty] = rootx
             elif self.rank[rootx] < self.rank[rooty]:
@@ -106,7 +108,7 @@ class Solution:
     def numIslands2(self, grid) -> int:  # dfs
         if not grid or not grid[0]:
             return 0
-
+        #时间复杂度O(m*n) 空间复杂度O(m*n)
         def floadfill_dfs(x, y):
             if not (
                 0 <= x < len(grid) 
@@ -124,8 +126,8 @@ class Solution:
         return sum([floadfill_dfs(i, j) for i in range(len(grid)) for j in range(len(grid[0]))])
 
     def numIslands3(self, grid) -> int:  # disjoinset
-        if not grid or not grid[0]:
-            return 0
+       
+        if not grid or not grid[0]:return 0
         uf = UnionFind(grid)
         directions = [
             [0, 1],
@@ -146,7 +148,7 @@ class Solution:
 
 
 if __name__ == '__main__':
-    s = Solution()
+    s = Solution() #0,1 
     grid = [
         ["1", "1", "1", "1", "0"],
         ["1", "1", "0", "1", "0"],

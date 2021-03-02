@@ -44,23 +44,23 @@ class KthLargest {
     public KthLargest(int k, int[] nums) {
         this.k = k;
         //小顶堆
-//        this.q = new PriorityQueue<Integer>(k);
+       this.q = new PriorityQueue<Integer>(k);
         //大顶堆
-        this.q = new PriorityQueue<>(k, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o2 - o1;
-            }
-        });
+        // this.q = new PriorityQueue<>(k, new Comparator<Integer>() {
+        //     @Override
+        //     public int compare(Integer o1, Integer o2) {
+        //         return o2 - o1;
+        //     }
+        // });
         for (int n : nums) {
             add(n);
         }
     }
 
-    public int add(int val) {
-        if (q.size() <k){
-            q .offer(val);
-        }else if (val >q.peek()){
+    public int add(int val) {    
+        if (q.size() < k){
+            q.offer(val);
+        }else if(q.peek() < val){
             q.poll();
             q.offer(val);
         }
