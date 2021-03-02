@@ -31,10 +31,91 @@ isConnected[i][j] == isConnected[j][i]
 
 '''
 
+class UnionFind():
+    def __init__(self, isConnected):
+        m, n = len(isConnected), len(isConnected[0])
+        self.counter = 0
+        self.parent = [-1]*m*n
+        self.rank = [0]*m*n
+        for i in range(m):
+            for j in range(n):
+                if isConnected[i][j] == 1:
+                    self.parent[i*n+j] = i*n+j
+                    self.counter += 1
+
+    def find(self, i):
+        if self.parent[i] != i:
+            self.parent[i] = self.find(self.parent[i])
+        return self.parent[i]
+
+    def union(self, x, y):
+        rootx = self.find(x)
+        rooty = self.find(y)
+        if rootx != rooty:
+            if self.rank[rootx] > self.rank[rooty]:
+                self.parent[rooty] = rootx
+            elif self.rank[rootx] < self.rank[rooty]:
+                self.parent[rootx] = rooty
+            else:
+                self.parent[rooty] = rootx
+                self.rank[rootx] += 1
+            self.counter -= 1
+
 
 class Solution:
-    def findCircleNum(self, isConnected) -> int:
-        pass
+    def findCircleNum1(self, isConnected) -> int:#bfs
+        provinces = len(isConnected)
+        visited = set()
+        circles = 0
+        import collections
+        for i in range(provinces):
+            if i not in visited:
+                Q = collections.deque([i])
+                while Q:
+                    j = Q.popleft()
+                    visited.add(j)
+                    for k in range(provinces):
+                        if isConnected[j][k] == 1 and k not in visited:
+                            Q.append(k)
+                circles += 1
+        
+        return circles
+
+    def findCircleNum2(self, isConnected) -> int:#dfs
+        if not isConnected or not isConnected[0]:
+            return 0
+        #O(n^2)
+        def dfs(i):
+            for j in range(n):
+                if isConnected[i][j] == 1 and j not in visited:
+                    visited.add(j)
+                    dfs(j)
+        n = len(isConnected)
+        visited = set()
+        ret =0
+        for i in range(n):
+            if i not in visited:
+                dfs(i)
+                ret +=1
+        return ret
+
+    def findCircleNum3(self, isConnected) -> int:
+        if not isConnected or not isConnected[0]:
+            return 0
+        m, n = len(isConnected), len(isConnected[0])
+        uf = UnionFind(isConnected)
+        dx = [-1, 1, 0, 0]
+        dy = [0, 0, -1, 1]
+        for i in range(m):
+            for j in range(n):
+                if isConnected[i][j] == 0:
+                    continue
+                for k in range(4):
+                    x, y = i+dx[k], j+dy[k]
+                    if 0 <= x < m and 0 <= y < n and isConnected[x][y] == 1:
+                        uf.union(i*n+j, x*n+y)
+
+        return uf.counter
 
 
 if __name__ == '__main__':
@@ -44,10 +125,23 @@ if __name__ == '__main__':
         [1, 1, 0],
         [0, 0, 1]
     ]
-    print('1', s.findCircleNum(isConnected))
+    print('1', s.findCircleNum1(isConnected))
+    print('2', s.findCircleNum2(isConnected))
+    print('3', s.findCircleNum3(isConnected))
     isConnected = [
         [1, 0, 0],
         [0, 1, 0],
         [0, 0, 1]
     ]
-    print('1', s.findCircleNum(isConnected))
+    print('1', s.findCircleNum1(isConnected))
+    print('2', s.findCircleNum2(isConnected))
+    print('3', s.findCircleNum3(isConnected))
+    isConnected = [
+        [1, 0, 0, 1],
+        [0, 1, 1, 0],
+        [0, 1, 1, 1],
+        [1, 0, 1, 1]
+    ]
+    print('1', s.findCircleNum1(isConnected))
+    print('2', s.findCircleNum2(isConnected))
+    print('3', s.findCircleNum3(isConnected))
