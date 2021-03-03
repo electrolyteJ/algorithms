@@ -21,6 +21,8 @@
 class Solution:
     def countBits(self, num: int):
         bits = [0]*(num+1)
+        #0 1 2  3  4  5
+        #0 1 10 11 100 101
         for i in range(1, num+1):
             bits[i] = bits[i & (i-1)]+1
         return bits
