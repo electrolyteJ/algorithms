@@ -4,7 +4,7 @@ plugins {
 }
 
 def sourceDirs = [
-        'basic',
+        'basic','common','training'
 ]
 group 'com.hawksjamesf.algorithm'
 version '1.0-SNAPSHOT'
