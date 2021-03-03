@@ -33,15 +33,14 @@ isConnected[i][j] == isConnected[j][i]
 
 class UnionFind():
     def __init__(self, isConnected):
-        m, n = len(isConnected), len(isConnected[0])
-        self.counter = 0
-        self.parent = [-1]*m*n
-        self.rank = [0]*m*n
-        for i in range(m):
-            for j in range(n):
-                if isConnected[i][j] == 1:
-                    self.parent[i*n+j] = i*n+j
-                    self.counter += 1
+        n = len(isConnected)
+        # self.parent =list(range(n))#存入将被union的数据
+        self.count = 0
+        self.parent=[0]*n
+        for i in range(n):
+            self.parent[i] = i
+            self.count +=1
+        self.rank = [0]*n
 
     def find(self, i):
         if self.parent[i] != i:
@@ -58,8 +57,7 @@ class UnionFind():
                 self.parent[rootx] = rooty
             else:
                 self.parent[rooty] = rootx
-                self.rank[rootx] += 1
-            self.counter -= 1
+                self.count -= 1
 
 
 class Solution:
@@ -102,20 +100,15 @@ class Solution:
     def findCircleNum3(self, isConnected) -> int:
         if not isConnected or not isConnected[0]:
             return 0
-        m, n = len(isConnected), len(isConnected[0])
+        n = len(isConnected)
         uf = UnionFind(isConnected)
-        dx = [-1, 1, 0, 0]
-        dy = [0, 0, -1, 1]
-        for i in range(m):
+        #时间复杂度O(n^2logn)
+        for i in range(n):
             for j in range(n):
-                if isConnected[i][j] == 0:
-                    continue
-                for k in range(4):
-                    x, y = i+dx[k], j+dy[k]
-                    if 0 <= x < m and 0 <= y < n and isConnected[x][y] == 1:
-                        uf.union(i*n+j, x*n+y)
+                if isConnected[i][j] == 1:
+                    uf.union(i, j)
 
-        return uf.counter
+        return uf.count
 
 
 if __name__ == '__main__':
