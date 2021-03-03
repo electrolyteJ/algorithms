@@ -48,8 +48,6 @@ class Solution:
         return a
 
 
-
-
 if __name__ == '__main__':
     s = Solution()
     headA = create_listnode([4, 1, 8, 4, 5])

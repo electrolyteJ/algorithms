@@ -26,7 +26,7 @@ nums 是一个非递减数组
 -109 <= target <= 109
 '''
 class Solution:
-    def searchRange1(self, nums, target: int):
+    def searchRange(self, nums, target: int):
         def search(nums,target,high):
             left,right =0,len(nums)-1
             while left <= right:
@@ -42,29 +42,22 @@ class Solution:
         if left_i <= right_i and right_i < len(nums) and nums[left_i] ==target and nums[right_i] ==target:
             return [left_i,right_i]
         return [-1,-1]
-    def searchRange2(self, nums, target: int):
-        pass
                     
                 
 if __name__ =='__main__':
     s = Solution()
     nums = [5,7,7,8,8,10]
     target = 8
-    print('1',s.searchRange1(nums,target))
-    print('2',s.searchRange2(nums,target))
+    print('1',s.searchRange(nums,target))
     nums = [5,7,7,8,8,10]
     target = 6
-    print('1',s.searchRange1(nums,target))
-    print('2',s.searchRange2(nums,target))
+    print('1',s.searchRange(nums,target))
     nums = [] 
     target = 0
-    print('1',s.searchRange1(nums,target))
-    print('2',s.searchRange2(nums,target))
+    print('1',s.searchRange(nums,target))
     nums = [1]
     target =1
-    print('1',s.searchRange1(nums,target))
-    print('2',s.searchRange2(nums,target))
+    print('1',s.searchRange(nums,target))
     nums =[1,2,2]
     target = 2
-    print('1',s.searchRange1(nums,target))
-    print('2',s.searchRange2(nums,target))
+    print('1',s.searchRange(nums,target))

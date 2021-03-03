@@ -62,22 +62,24 @@ class UnionFind():
 
 class Solution:
     def findCircleNum1(self, isConnected) -> int:#bfs
-        provinces = len(isConnected)
+        def bfs(i):
+            q= collections.deque([i])
+            while q:
+                i = q.popleft()
+                visited.add(i)
+                for j in range(n):
+                    if isConnected[i][j] == 1 and j not in  visited:
+                        q.append(j)
+
+        n = len(isConnected)
         visited = set()
-        circles = 0
         import collections
-        for i in range(provinces):
+        ret = 0
+        for i in range(n):
             if i not in visited:
-                Q = collections.deque([i])
-                while Q:
-                    j = Q.popleft()
-                    visited.add(j)
-                    for k in range(provinces):
-                        if isConnected[j][k] == 1 and k not in visited:
-                            Q.append(k)
-                circles += 1
-        
-        return circles
+                bfs(i)
+                ret +=1
+        return ret
 
     def findCircleNum2(self, isConnected) -> int:#dfs
         if not isConnected or not isConnected[0]:
