@@ -31,7 +31,7 @@ from src.common.list import ListNode, create_listnode
 
 
 class Solution:
-    def detectCycle1(self, head: ListNode) -> bool:  # hash
+    def detectCycle1(self, head: ListNode) -> ListNode:  # hash
         s = set()
         while head:
             if head in s:
@@ -40,7 +40,7 @@ class Solution:
             head = head.next
         return None
 
-    def detectCycle2(self, head: ListNode) -> bool:  # 快慢指针
+    def detectCycle2(self, head: ListNode) -> ListNode:  # 快慢指针
         fast = slow = head
         while slow and fast and fast.next:
             slow = slow.next
