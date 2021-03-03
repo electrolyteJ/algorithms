@@ -30,17 +30,56 @@
 
 
 class Solution:
-    def decodeString(self, s: str) -> str:
-        if not s:  return ''
-        # k = s[0]
-        # s.index()
+    def decodeString1(self, s: str) -> str:
+        stack, k = [], 0
+        ret = ''
+        # 时间复杂度O(n) 空间复杂度O(n)
+        for c in s:
+            if c == '[':
+                stack.append([k, ret])
+                ret, k = '', 0
+            elif c == ']':
+                cur_k, last_ret = stack.pop()
+                ret = last_ret + cur_k*ret
+            elif '0' <= c <= '9':
+                k = k*10 + int(c)
+            else:
+                ret += c
+        return ret
+
+    def decodeString2(self, s: str) -> str:
+        def dfs(s, i):
+            ret, k = '', 0
+            while i < len(s):
+                if '0' <= s[i] <= '9':
+                    k = k * 10+int(s[i])
+                elif s[i] == '[':
+                    last_ret, i = dfs(s, i+1)
+                    ret += k*last_ret
+                    k = 0
+                elif s[i] == ']':
+                    return ret, i
+                else:
+                    ret += s[i]
+                i += 1
+            return ret
+        return dfs(s, 0)
+
+
 if __name__ == '__main__':
     ss = Solution()
     s = "3[a]2[bc]"
-    print('1',ss.decodeString(s))
+    print('1', ss.decodeString1(s))
+    print('2', ss.decodeString2(s))
     s = "3[a2[c]]"
-    print('1',ss.decodeString(s))
+    print('1', ss.decodeString1(s))
+    print('2', ss.decodeString2(s))
     s = "2[abc]3[cd]ef"
-    print('1',ss.decodeString(s))
+    print('1', ss.decodeString1(s))
+    print('2', ss.decodeString2(s))
     s = "abc3[cd]xyz"
-    print('1',ss.decodeString(s))
+    print('1', ss.decodeString1(s))
+    print('2', ss.decodeString2(s))
+    s = ''
+    print('1', ss.decodeString1(s))
+    print('2', ss.decodeString2(s))
