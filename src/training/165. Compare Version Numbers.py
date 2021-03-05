@@ -49,7 +49,25 @@ version1 和 version2 的所有修订号都可以存储在 32 位整数 中
 
 class Solution:
     def compareVersion(self, version1: str, version2: str) -> int:
-            pass
+        def chunk(version, p, size):
+            if p > size-1:
+                return 0,p
+            end = p
+            num =0
+            while end < size and version[end] != '.':
+                end +=1
+            num=int(version[p:end]) if end !=size-1 else int(version[p:size])
+            end +=1
+            return num,end
+        p1,p2 =0,0
+        #时间复杂度O(max(n,m))
+        size1, size2 = len(version1), len(version2)
+        while p1<size1 or p2<size2:
+            num1,p1 = chunk(version1, p1, size1)
+            num2,p2 = chunk(version2, p2, size2)
+            if num1 !=num2:
+                return 1 if num1 > num2 else -1
+        return 0
 
 
 if __name__ == '__main__':
