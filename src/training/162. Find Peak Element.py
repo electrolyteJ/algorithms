@@ -36,7 +36,7 @@ class Solution:
             if nums[i] > nums[i+1]:
                 return i
         return len(nums)-1
-    def findPeakElement2(self, nums) -> int:#divide-conquer
+    def findPeakElement2(self, nums) -> int:
         def dc(lo,hi):
             if lo == hi:
                 return lo
@@ -46,14 +46,24 @@ class Solution:
             return dc(mid+1,hi)
 
         return dc(0, len(nums)-1)
-        # return dc(0, len(nums)-1)
 
+    def findPeakElement3(self, nums) -> int:
+        left,right=0,len(nums)-1
+        while left < right:
+            mid = left+(right-left)//2
+            if nums[mid] > nums[mid+1]:
+                right =mid
+            else:
+                left = mid+1
+        return left
 
 if __name__ =='__main__':
     s =Solution()
     nums = [1, 2, 3, 1]
     print('1',s.findPeakElement1(nums))
     print('2',s.findPeakElement2(nums))
+    print('3',s.findPeakElement3(nums))
     nums = [1, 2, 1, 3, 5, 6, 4]
     print('1',s.findPeakElement1(nums))
     print('2',s.findPeakElement2(nums))
+    print('3',s.findPeakElement3(nums))
