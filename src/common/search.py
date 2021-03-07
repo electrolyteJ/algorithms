@@ -22,7 +22,7 @@ if __name__ == "__main__":
             
 def bisect_left(a, x, lo=0, hi=None):
     '''
-    如果目标值 等于 mid值，则取左边的区域
+    如果目标值 等于 mid值，则取左边的区域,并且最后如果找到和目标值一样的值，则最insert到其left side
     '''
     if lo < 0:
         raise ValueError('lo must be non-negative')
@@ -39,7 +39,7 @@ def bisect_left(a, x, lo=0, hi=None):
 
 def bisect_right(a, x, lo=0, hi=None):
     '''
-    如果目标值 等于 mid值，则取右边的区域
+    如果目标值 等于 mid值，则取右边的区域，并且最后如果找到和目标值一样的值，则最insert到其right side
     '''
     if lo < 0:
         raise ValueError('lo must be non-negative')
