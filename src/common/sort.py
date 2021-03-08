@@ -3,24 +3,32 @@ def insertion_sort(nums):
     平均时间复杂度O(n^2)
     '''
     pass
+
+
 def shell_sort(nums):
     '''
     策略选择：希尔排序是插入排序的一种高效率的实现
     平均时间复杂度O(n^1.3)
     '''
     pass
+
+
 def selection_sort(nums):
     '''
     优化了冒泡排序，是其改良版。
     平均时间复杂度O(n^2)
     '''
     pass
+
+
 def heap_sort(nums):
     '''
     策略选择：借助堆来实现，思想同简单的选择排序
     平均时间复杂度O(nlogn)
     '''
     pass
+
+
 def bubble_sort(nums):
     '''
     - 比较相邻的元素。如果第一个比第二个大，就交换它们两个；
@@ -32,7 +40,7 @@ def bubble_sort(nums):
     for i in range(len(nums)):
         for j in range(len(nums) - i-1):
             if nums[j] > nums[j+1]:
-                nums[j],nums[j+1] = nums[j+1], nums[j]
+                nums[j], nums[j+1] = nums[j+1], nums[j]
 
 
 def quick_sort(nums):
@@ -43,67 +51,91 @@ def quick_sort(nums):
     - 递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。
     平均时间复杂度O(nlogn) 空间复杂度O(nlogn)
     '''
-    def partition(nums,l,r):
-        pivot = nums[r]
-        i = l-1
-        for j in range(l,r):
-            if nums[j]<pivot:#比pivot小的数多排到左边
-                i +=1
-                nums[i],nums[j] = nums[j],nums[i]
-        i +=1
-        nums[i],nums[r]=nums[r],nums[i]
+    def partition(nums, l, r):
+        # pivot = nums[r]
+        # i = l-1
+        # for j in range(l,r):
+        #     if nums[j]<pivot:#比pivot小的数多排到左边
+        #         i +=1
+        #         nums[i],nums[j] = nums[j],nums[i]
+        # i +=1
+        # nums[i],nums[r]=nums[r],nums[i]
+        pivot = nums[l]
+        i, j = l, r
+        while i < j:
+            '''
+            通过双指针，一个找出大于pivot的数，一个找出小于pivot的数，然后通过交换把大的放在右边，小的放在左边
+            '''
+            while i < j and nums[j] >= pivot:#找出比pivot小的数，然后把大的数都放在右边
+                j -= 1
+            while i < j and nums[i] <= pivot:#找出比pivot大的数，然后通过交换，把大的数放在右边
+                i += 1
+            nums[i], nums[j] = nums[j], nums[i]
+        nums[i], nums[l] = nums[l], nums[i]
         return i
-    def quick_sort_inner(nums,l,r):
-        if l >= r: return
+
+    def quick_sort_inner(nums, l, r):
+        if l >= r:
+            return
         pivot_i = partition(nums, l, r)
         quick_sort_inner(nums, l, pivot_i - 1)
         quick_sort_inner(nums, pivot_i + 1, r)
 
-    quick_sort_inner(nums,0,len(nums)-1)
+    quick_sort_inner(nums, 0, len(nums)-1)
+
+
 def merge_sort(nums):
     '''
     divide-conquer
     平均时间复杂度O(nlogn) 空间复杂度O(n)
     '''
-    if not nums:return
+    if not nums:
+        return
 
-    def merge(nums,l,mid,r):
-        p1,p2=l,mid+1
-        for i in range(l,r+1):
+    def merge(nums, l, mid, r):
+        p1, p2 = l, mid+1
+        for i in range(l, r+1):
             b[i] = nums[i]
-        for i in range(l,r+1):
-            if p1 > mid:#左边的数据已经compare完，就直接把右边数据copy到数组
+        for i in range(l, r+1):
+            if p1 > mid:  # 左边的数据已经compare完，就直接把右边数据copy到数组
                 nums[i] = b[p2]
-                p2 +=1
-            elif p2 > r:#直接把左边数据copy到数组
+                p2 += 1
+            elif p2 > r:  # 直接把左边数据copy到数组
                 nums[i] = b[p1]
-                p1 +=1
-            elif b[p2] < b[p1]:#比较左边数据和右边数组头一个
-                nums[i] =b[p2]
-                p2 +=1
+                p1 += 1
+            elif b[p2] < b[p1]:  # 比较左边数据和右边数组头一个
+                nums[i] = b[p2]
+                p2 += 1
             else:
                 nums[i] = b[p1]
-                p1 +=1
+                p1 += 1
 
-    def merge_sort_inner(nums,l,r):
-        if l >=r:return
-        mid = l+(r-l)//2#(r+l)//2
-        merge_sort_inner(nums,l,mid)
-        merge_sort_inner(nums,mid+1,r)
-        merge(nums,l,mid,r)
+    def merge_sort_inner(nums, l, r):
+        if l >= r:
+            return
+        mid = l+(r-l)//2  # (r+l)//2
+        merge_sort_inner(nums, l, mid)
+        merge_sort_inner(nums, mid+1, r)
+        merge(nums, l, mid, r)
 
     b = [0]*len(nums)
-    merge_sort_inner(nums,0,len(nums)-1)
+    merge_sort_inner(nums, 0, len(nums)-1)
+
+
 def counting_sort(nums):
     '''
     平均时间复杂度O(n+k)
     '''
     pass
+
+
 def bucket_sort(nums):
     '''
     平均时间复杂度O(n+k)
     '''
     pass
+
+
 def radix_sort(nums):
     '''
     平均时间复杂度O(n*k)
@@ -111,8 +143,8 @@ def radix_sort(nums):
     pass
 
 
-if __name__ =='__main__':
-    nums=[12,3,7,8,4,2,7,4,29]
+if __name__ == '__main__':
+    nums = [12, 3, 7, 8, 4, 2, 7, 4, 29]
     # insertion_sort(nums)
     # print('1 insertion_sort',nums)
     # shell_sort(nums)
@@ -123,10 +155,10 @@ if __name__ =='__main__':
     # print('4 heap_sort', nums)
     bubble_sort(nums)
     print('5 bubble_sort', nums)
-    nums=[12,3,7,8,4,2,7,4,29]
+    nums = [12, 3, 7, 8, 4, 2, 7, 4, 29]
     quick_sort(nums)
     print('6 quick_sort', nums)
-    nums=[12,3,7,8,4,2,7,4,29]
+    nums = [12, 3, 7, 8, 4, 2, 7, 4, 29]
     merge_sort(nums)
     print('7 merge_sort', nums)
     # counting_sort(nums)
