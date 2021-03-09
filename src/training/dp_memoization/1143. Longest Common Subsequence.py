@@ -34,7 +34,7 @@
 
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
-         if not text1 or not text2: return 0
+        if not text1 or not text2: return 0
         size1,size2=len(text1),len(text2)
         dp = [[0]*(size2+1) for _ in range(size1+1)]
         for i in range(1,size1+1):
