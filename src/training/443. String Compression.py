@@ -54,33 +54,26 @@
 
 class Solution:
     def compress(self, chars) -> int:
-        if not chars:return 0
-        n = len(chars)
-        if n==1:return 1
-        left,right =0,0
-        counter =0
-        while right <len(chars):
-            right +=1
-            if  right == n or chars[right-1] != chars[right]:
-                d = right-left
-                counter +=d
-                left += 1
-                while left<right:
-                    chars[left] = '#'
-                    left += 1
-                chars[left-1] = d
-        i =0
-        while i <n:
-            if chars[i]=='#':
-                chars.remove(i)
-        return counter
-        
+        #时间复杂度O(n)
+        anchor, read, write = 0, 0, 0
+        while read < len(chars):
+            if read+1 == len(chars) or chars[read+1] != chars[read]:
+                chars[write] = chars[anchor]
+                write += 1
+                if read > anchor:
+                    for digit in str(read-anchor+1):
+                        chars[write] = digit
+                        write += 1
+                anchor = read+1
+            read += 1
+        return write
 
-if __name__ =='__main__':
+
+if __name__ == '__main__':
     s = Solution()
     chars = ["a", "a", "b", "b", "c", "c", "c"]
     print('1', s.compress(chars), chars)
     chars = ["a"]
-    print('1',s.compress(chars))
+    print('1', s.compress(chars), chars)
     chars = ["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"]
     print('1', s.compress(chars), chars)
