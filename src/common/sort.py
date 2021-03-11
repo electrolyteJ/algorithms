@@ -181,6 +181,23 @@ def radix_sort(nums):
     - arr为原始数组，从最低位开始取每个位组成radix数组；
     - 对radix进行计数排序（利用计数排序适用于小范围数的特点）；
     平均时间复杂度O(n*k) 空间复杂度O(n+k)
+            while (maxVal >= exp) {
+            int[] cnt = new int[10];
+            for (int i = 0; i < n; i++) {
+                int digit = (nums[i] / (int) exp) % 10;
+                cnt[digit]++;
+            }
+            for (int i = 1; i < 10; i++) {
+                cnt[i] += cnt[i - 1];
+            }
+            for (int i = n - 1; i >= 0; i--) {
+                int digit = (nums[i] / (int) exp) % 10;
+                buf[cnt[digit] - 1] = nums[i];
+                cnt[digit]--;
+            }
+            System.arraycopy(buf, 0, nums, 0, n);
+            exp *= 10;
+        }
     '''
     n = len(str(max(nums)))
     
