@@ -20,8 +20,6 @@ intervals[i].length == 2
 0 <= starti <= endi <= 104
 
 '''
-
-
 class Solution:
     def merge(self, intervals):
         #时间复杂度O(n logn) 空间复杂度O(logn)
@@ -47,3 +45,4 @@ if __name__ == '__main__':
         [4, 5]
     ]
     print('1', s.merge(intervals))  # [[1,5]]
+    ret =[]

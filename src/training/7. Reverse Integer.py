@@ -33,7 +33,7 @@
 
 class Solution:
     def reverse(self, x: int) -> int:
-        max_int = pow(2, 31)-1
+        max_int = 2**31-1
         min_int = -pow(2, 31)
         recv = 0
         absx =abs(x)

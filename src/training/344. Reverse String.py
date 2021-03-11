@@ -24,13 +24,17 @@ class Solution:
         """
         #时间复杂度O(n)
         if not s:return None
-        n = len(s)
-        for i in range(n//2):
-            j = -1-i
-            s[i], s[j] = s[j],s[i]
+        # n = len(s)
+        # for i in range(n//2):
+        #     j = -1-i
+        #     s[i], s[j] = s[j],s[i]
+        # return s
+        left,right = 0,len(s)-1
+        while left < right:
+            s[left],s[right]=s[right],s[left]
+            left +=1
+            right -=1
         return s
-        # return s[::-1]
-
 if __name__ == '__main__':
     s1 = Solution()
     s = ["h", "e", "l", "l", "o"]
