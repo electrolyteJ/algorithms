@@ -66,9 +66,9 @@ def quick_sort(nums):
             '''
             通过双指针，一个找出大于pivot的数，一个找出小于pivot的数，然后通过交换把大的放在右边，小的放在左边
             '''
-            while i < j and nums[j] >= pivot:#找出比pivot小的数，然后把大的数都放在右边
+            while i < j and nums[j] >= pivot:#右指针找出比pivot小的数
                 j -= 1
-            while i < j and nums[i] <= pivot:#找出比pivot大的数，然后通过交换，把大的数放在右边
+            while i < j and nums[i] <= pivot:#左指针找出比pivot大的数
                 i += 1
             nums[i], nums[j] = nums[j], nums[i]
         nums[i], nums[l] = nums[l], nums[i]

@@ -39,38 +39,35 @@ class Solution:
         self.quick_select(nums,k,0,len(nums)-1)
         return nums[k-1]
     def findKthLargest2(self, nums, k: int) -> int:
-        if not nums:return 0
-        def partition(nums,l,r):
-            pivot = nums[r]
-            i = l-1
-            for j in range(l,r):
-                if nums[j] < pivot:
+        def quick_select(k_i,left,right):
+            if left >= right:
+                return nums[left]
+            pivot =nums[left]
+            i,j=left,right
+            while i < j:
+                while i <j and nums[j] >= pivot:
+                    j -=1
+                while i < j and nums[i] <= pivot:
                     i +=1
-                    nums[i],nums[j] = nums[j],nums[i]
-            i +=1
-            nums[i],nums[r] = nums[r],nums[i]
-            return i
-
-        def quick_select(nums, k_i, l, r):
-            pivot_i = partition(nums, l, r)
-            if pivot_i == k_i:
-                return nums[k_i]
+                nums[i],nums[j] = nums[j],nums[i]
+            nums[i],nums[left] = nums[left],nums[i]
+            if i == k_i:
+                return nums[i]
             else:
-                return quick_select(nums, k_i, l, pivot_i -
-                                    1) if pivot_i > k_i else quick_select(
-                                        nums, k_i, pivot_i + 1, r)
+                return quick_select(k_i, i+1, right) if i < k_i else quick_select(k_i,left, i-1)
         #平均时间复杂度为O(nlogn) 空间复杂度O(nlogn)
-        return quick_select(nums,len(nums)-k,0,len(nums)-1)
+        return quick_select(len(nums)-k,0,len(nums)-1)
 
 if __name__ == '__main__':
     s = Solution()
     n = [3, 2, 1, 5, 6, 4]
     k= 2
-    print('1',s.findKthLargest(n,k))
+    print('1',s.findKthLargest(n,k),n)
     n = [3, 2, 1, 5, 6, 4]
-    print('2',s.findKthLargest2(n,k))
+    print('2',s.findKthLargest2(n,k),n)
     n = [3, 2, 3, 1, 2, 4, 5, 5, 6]
     k = 4
-    print('1',s.findKthLargest(n,k))
+    print('1',s.findKthLargest(n,k),n)
     n = [3, 2, 3, 1, 2, 4, 5, 5, 6]
-    print('2',s.findKthLargest2(n,k))
+    print('2',s.findKthLargest2(n,k),n)
+
