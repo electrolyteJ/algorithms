@@ -21,12 +21,15 @@
 from src.common.tree import create_treenode
 class Solution:
     def diameterOfBinaryTree(self, root) -> int:
+        '''
+        树的路径为经过的节点数-1
+        '''
         def dfs(root):
             if not root:return 0
-            l_depth = dfs(root.left)
-            r_depth = dfs(root.right)
-            self.max_ret = max(self.max_ret,r_depth+l_depth+1)
-            return max(l_depth,r_depth)+1
+            l_height = dfs(root.left)
+            r_height = dfs(root.right)
+            self.max_ret = max(self.max_ret,r_height+l_height+1)
+            return max(l_height,r_height)+1
 
         self.max_ret = 1#最大节点数
         dfs(root)
