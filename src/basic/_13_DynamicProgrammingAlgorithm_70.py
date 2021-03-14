@@ -25,7 +25,15 @@
 
 
 class Solution:
-    def climbStairs1(self, n: int) -> int:
+    def climbStairs0(self, n: int) -> int:
+        if n <= 2:
+            return n
+        dp=[0]*n
+        dp[0],dp[1]=1,2
+        for i in range(2, n):
+            dp[i] = dp[i-2]+dp[i-1]
+        return dp[-1]
+    def climbStairs1(self, n: int) -> int:#dp 优化空间
         if n <=2:
             return n
         o,p,q=1,2,3
@@ -36,7 +44,8 @@ class Solution:
             p,o=q,p
             q = p+o
         return q
-    def climbStairs2(self, n: int) -> int:
+
+    def climbStairs2(self, n: int) -> int:  # dp 优化空间
         x, y =1,2
         for _ in range(2, n):
             x,y = y,x+y
@@ -46,8 +55,10 @@ class Solution:
 if __name__=='__main__':
     s = Solution()
     n =2
+    print("0", s.climbStairs0(n))
     print("1",s.climbStairs1(n))
     print("2",s.climbStairs2(n))
     n =3
+    print("0", s.climbStairs0(n))
     print("1",s.climbStairs1(n))
     print("2",s.climbStairs2(n))
