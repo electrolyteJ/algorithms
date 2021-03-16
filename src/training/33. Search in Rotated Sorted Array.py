@@ -6,8 +6,6 @@
 
 给你 旋转后 的数组 nums 和一个整数 target ，如果 nums 中存在这个目标值 target ，则返回它的索引，否则返回 -1 。
 
- 
-
 示例 1：
 
 输入：nums = [4,5,6,7,0,1,2], target = 0
@@ -37,7 +35,25 @@ nums 肯定会在某个点上旋转
 
 class Solution:
     def search(self, nums, target: int) -> int:
-        pass
+        if not nums:return -1
+        n = len(nums)
+        left,right =0,n-1
+        while left <= right:
+            mid = left + (right-left)//2
+            if nums[mid] == target:
+                return mid
+            #找单调性
+            if nums[0] <= nums[mid]:
+                if nums[0] <=target<=nums[mid]:
+                    right = mid-1
+                else:
+                    left = mid+1
+            else:
+                if nums[mid]<=target<=nums[n-1]:
+                    left = mid+1
+                else:
+                    right = mid-1
+        return -1
 
 
 if __name__ == '__main__':
@@ -51,3 +67,10 @@ if __name__ == '__main__':
     nums = [1]
     target = 0
     print('1', s.search(nums, target))
+    nums = [1, 3]
+    target= 3
+    print('1', s.search(nums, target))
+    nums = [5, 1, 3]
+    target= 3
+    print('1', s.search(nums, target))
+
