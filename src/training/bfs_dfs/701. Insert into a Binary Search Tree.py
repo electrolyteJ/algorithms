@@ -27,13 +27,30 @@
 新值和原始二叉搜索树中的任意节点值都不同
 '''
 
+from src.common.tree import create_treenode,Node
 class Solution:
     def insertIntoBST(self, root, val: int):
+        if not root:
+            return Node(val)
+        node = root
+        while node:
+            if node.value > val:#左节点
+                if not node.left:
+                    node.left = Node(val)
+                    break
+                else:
+                    node = node.left
+            else:
+                if not node.right:
+                    node.right = Node(val)
+                    break
+                else:
+                    node = node.right
+        return root
 
-            pass
+            
 if __name__ == '__main__':
     s =Solution()
-    from src.common.tree import create_treenode
     root = create_treenode([4, 2, 7, 1, 3])
     val = 5
     print(root)
