@@ -19,8 +19,44 @@
 
 class Solution:
     def productExceptSelf(self, nums):
-        pass
+        n = len(nums)
+        ret=[]
+        #时间复杂度(n*n)
+        for i in range(n):
+            multipy_ret=1
+            for j in range(n):
+                if i !=j:
+                    multipy_ret *= nums[j]
+            ret.append(multipy_ret)
+        return ret
+    def productExceptSelf2(self, nums):
+        ret = []
+        n = len(nums)
+        l = [1]*n
+        for i in range(1,n):
+            l[i] = l[i-1]*nums[i-1]
+        r=[1]*n
+        for i in range(n-2,-1,-1):
+            r[i] =r[i+1]*nums[i+1]
+        ret=[]
+        for i in range(n):
+            ret.append(l[i]*r[i])
+        return ret
+
+    def productExceptSelf3(self, nums):
+        n = len(nums)
+        ret = [1]*n
+        for i  in range(1,n):
+            ret[i] = ret[i-1]*nums[i-1]
+        r=1
+        for i in range(n-2,-1,-1):
+            r *=nums[i+1]
+            ret[i]=ret[i] * r
+        return ret
+
 if __name__ =='__main__':
     s = Solution()
     nums = [1, 2, 3, 4]
     print('1',s.productExceptSelf(nums))
+    print('1', s.productExceptSelf2(nums))
+    print('1', s.productExceptSelf3(nums))

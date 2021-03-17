@@ -19,21 +19,44 @@
 '''
 class Solution:
     def countSmaller(self, nums):
+        #时间复杂度O(nlogn)  空间复杂度O(n)
+        def merge_sort(left,right):
+            if left>=right:
+                return
+            mid= left+(right-left)//2
+            merge_sort(left,mid)
+            merge_sort(mid+1,right)
+
+            i,j=left,mid+1
+            tmp[left:right+1] = indexes[left:right+1]
+            for k in range(left,right+1):
+                if i == mid+1:
+                    indexes[k] = tmp[j]
+                    j+=1
+                elif j == right+1:
+                    indexes[k] = tmp[i]
+                    i +=1
+                    res[indexes[k]] += right - mid
+                elif nums[tmp[i]] <= nums[tmp[j]]:
+                    indexes[k] = tmp[i]
+                    i +=1
+                    res[indexes[k]] += j -1- mid
+                else:#左边的数据大于右边
+                    indexes[k] = tmp[j]
+                    j+=1
+
         n = len(nums)
-        ret =[]
-        #时间复杂度O(n*logn)快排
-        def quick(left,right):
-            pivot=nums[left]
-            i,j=left,right
-            while i < j:
-                while i<j and nums[i] <pivot:
-                    left+=1
-                while i<j and nums[j] <pivot:
-                    right-=1
-        quick(0,n-1)
-        return ret
+        tmp = [0]*n
+        indexes = [i for i in range(n)]
+        res = [0]*n
+        merge_sort(0,n-1)
+        return res
 
 if __name__ == '__main__':
     s = Solution()
     nums = [5, 2, 6, 1]
+    print('1',s.countSmaller(nums))
+    nums = [-1, -1]
+    print('1',s.countSmaller(nums))
+    nums = [0, 2, 1]
     print('1',s.countSmaller(nums))
