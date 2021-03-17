@@ -27,28 +27,46 @@
 与真实值误差在 10 ^ -5 以内的答案将被视作正确答案。
 '''
 
+import heapq
+class MedianFinder:
+
+    def __init__(self,k):
+        """
+        initialize your data structure here.
+        """
+        self.minheap = []
+        self.maxheap = []
+        self.k=k
+
+    #时间复杂度O(logn)
+    def addNum(self, num: int) -> None:
+        heapq.heappush(self.minheap, num)
+        heapq.heappush(self.maxheap, -heapq.heappop(self.minheap))
+        if len(self.minheap) < len(self.maxheap):
+            n = -heapq.heappop(self.maxheap)
+            heapq.heappush(self.minheap, n)
+
+    def findMedian(self) -> float:
+        return (self.minheap[0]-self.maxheap[0])/2 if len(self.minheap) == len(self.maxheap) else self.minheap[0]
+    def popNum(self,num):
+        # heapq.heappop()
+        pass
 
 class Solution:
     def medianSlidingWindow(self, nums, k: int):
         if not nums:return
-        windows=[]
+        m = MedianFinder(k)
         ret=[]
-        n = len(nums)
-        for i in range(k):
-            windows.append(i)
-        for i in range(k,n):
-            if k &1:
-                m = i-k//2
-                ret.append(nums[m])
-            else:
-                m = i-k//2
-                ret.append((nums[m]+nums[m+1])//2)
-            windows.pop(0)
-            windows.append(i)
-
-
+        for i in range(k-1):
+            m.addNum(nums[i])
+        #时间复杂度O(n*logn)
+        for i in range(k-1,len(nums)):
+            m.addNum(nums[i])
+            ret.append(m.findMedian())
+            # m.popleft()
         return ret
+        
 if __name__ =='__main__':
     s = Solution()
     nums = [1, 3, -1, -3, 5, 3, 6, 7]; k = 3
-    print('1',s.medianSlidingWindow(nums,k))
+    print('1', s.medianSlidingWindow(nums, k))  # [1,-1,-1,3,5,6]

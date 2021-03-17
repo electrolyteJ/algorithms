@@ -24,10 +24,31 @@ findMedian() -> 2
 如果数据流中所有整数都在 0 到 100 范围内，你将如何优化你的算法？
 如果数据流中 99% 的整数都在 0 到 100 范围内，你将如何优化你的算法？
 '''
-
-
 import bisect
+import heapq
 class MedianFinder:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.minheap = []
+        self.maxheap = []
+        # heapq.heapify(self.minheap)
+        # heapq.heapify(self.maxheap)
+
+    #时间复杂度O(logn)
+    def addNum(self, num: int) -> None:
+        heapq.heappush(self.minheap, num)
+        heapq.heappush(self.maxheap, -heapq.heappop(self.minheap))
+        if len(self.minheap) < len(self.maxheap):
+            n = -heapq.heappop(self.maxheap)
+            heapq.heappush(self.minheap,n)
+
+    def findMedian(self) -> float:
+        return (self.minheap[0]-self.maxheap[0])/2 if len(self.minheap) == len(self.maxheap) else self.minheap[0]
+
+class MedianFinder2:
 
     def __init__(self):
         """
