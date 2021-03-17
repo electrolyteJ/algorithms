@@ -1,11 +1,19 @@
 '''
 [排序](https://www.cnblogs.com/onepixel/articles/7674659.html#:~:text=%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E6%98%AF%E4%B8%80,%E6%B5%AE%E2%80%9D%E5%88%B0%E6%95%B0%E5%88%97%E7%9A%84%E9%A1%B6%E7%AB%AF%E3%80%82)
 '''
+
+
 def insertion_sort(nums):
     '''
     平均时间复杂度O(n^2)
     '''
-    pass
+    for i in range(1, len(nums)):
+        pre_i = i-1
+        cur = nums[i]
+        while pre_i >= 0 and nums[pre_i] > cur:
+            nums[pre_i+1] = nums[pre_i]
+            pre_i -= 1
+        nums[pre_i+1] = cur
 
 
 def shell_sort(nums):
@@ -69,9 +77,9 @@ def quick_sort(nums):
             '''
             通过双指针，一个找出大于pivot的数，一个找出小于pivot的数，然后通过交换把大的放在右边，小的放在左边
             '''
-            while i < j and nums[j] >= pivot:#右指针找出比pivot小的数
+            while i < j and nums[j] >= pivot:  # 右指针找出比pivot小的数
                 j -= 1
-            while i < j and nums[i] <= pivot:#左指针找出比pivot大的数
+            while i < j and nums[i] <= pivot:  # 左指针找出比pivot大的数
                 i += 1
             nums[i], nums[j] = nums[j], nums[i]
         nums[i], nums[l] = nums[l], nums[i]
@@ -96,22 +104,21 @@ def merge_sort(nums):
         return
 
     def merge(nums, l, mid, r):
-        p1, p2 = l, mid+1
-        for i in range(l, r+1):
-            b[i] = nums[i]
-        for i in range(l, r+1):
-            if p1 > mid:  # 左边的数据已经compare完，就直接把右边数据copy到数组
-                nums[i] = b[p2]
-                p2 += 1
-            elif p2 > r:  # 直接把左边数据copy到数组
-                nums[i] = b[p1]
-                p1 += 1
-            elif b[p2] < b[p1]:  # 比较左边数据和右边数组头一个
-                nums[i] = b[p2]
-                p2 += 1
-            else:
-                nums[i] = b[p1]
-                p1 += 1
+        i, j = l, mid+1
+        tmp[l:r+1] = nums[l:r+1]
+        for k in range(l, r+1):
+            if i == mid+1:  # 左边的数据已经compare完，就直接把右边数据copy到数组
+                nums[k] = tmp[j]
+                j += 1
+            elif j == r+1:  # 直接把左边数据copy到数组
+                nums[k] = tmp[i]
+                i += 1
+            elif tmp[i] <= tmp[j]:
+                nums[k] = tmp[i]
+                i += 1
+            else:  # 比较左边数据和右边数组头一个
+                nums[k] = tmp[j]
+                j += 1
 
     def merge_sort_inner(nums, l, r):
         if l >= r:
@@ -121,7 +128,7 @@ def merge_sort(nums):
         merge_sort_inner(nums, mid+1, r)
         merge(nums, l, mid, r)
 
-    b = [0]*len(nums)
+    tmp = [0]*len(nums)
     merge_sort_inner(nums, 0, len(nums)-1)
 
 
@@ -134,20 +141,21 @@ def counting_sort(nums):
     - 反向填充目标数组：将每个元素i放在新数组的第C(i)项，每放一个元素就将C(i)减去1。
     平均时间复杂度O(n+k) 空间复杂度O(n+K)
     '''
-    max_num,min_num=float('-inf'),float('inf')
+    max_num, min_num = float('-inf'), float('inf')
     for num in nums:
-        max_num = max(max_num,num)
-        min_num = min(min_num,num)
+        max_num = max(max_num, num)
+        min_num = min(min_num, num)
     k = max_num-min_num+1
     count = [0]*(k)
-    for num in nums:#通过和最小值比较，然后依次按照大小顺序存到count各个位置，迭代取出的时候就会按照从小到大
-        count[num-min_num] +=1 
+    for num in nums:  # 通过和最小值比较，然后依次按照大小顺序存到count各个位置，迭代取出的时候就会按照从小到大
+        count[num-min_num] += 1
     index = 0
-    print(count)
+    # print(count)
     for i in range(k):
         for _ in range(count[i]):
-            nums[index] =i+min_num
-            index +=1
+            nums[index] = i+min_num
+            index += 1
+
 
 def bucket_sort(nums):
     '''
@@ -159,20 +167,21 @@ def bucket_sort(nums):
     平均时间复杂度O(n+k) 空间复杂度O(n+k)
     '''
     n = len(nums)
-    if n ==0:return
-    max_num,min_num = max(nums),min(nums)
-    bucket_size=max(1,(max_num - min_num)//(n-1))
-    
-    buckets =[[] for _ in range((max_num-min_num)//bucket_size+1)]
+    if n == 0:
+        return
+    max_num, min_num = max(nums), min(nums)
+    bucket_size = max(1, (max_num - min_num)//(n-1))
+
+    buckets = [[] for _ in range((max_num-min_num)//bucket_size+1)]
     # print(len(buckets))
     for num in nums:
         buckets[(num-min_num)//bucket_size].append(num)
-    index =0
+    index = 0
     # print(count)
     for i in range(len(buckets)):
         for num in sorted(buckets[i]):
             nums[index] = num
-            index +=1
+            index += 1
 
 
 def radix_sort(nums):
@@ -200,22 +209,22 @@ def radix_sort(nums):
         }
     '''
     n = len(str(max(nums)))
-    
+
     for i in range(n):
-        buckets= [[] for _ in range(10)]
+        buckets = [[] for _ in range(10)]
         for num in nums:
-            buckets[num//(10**i)%10].append(num)   
+            buckets[num//(10**i) % 10].append(num)
         index = 0
         for bucket in buckets:
             for num in bucket:
                 nums[index] = num
-                index +=1
+                index += 1
 
 
 if __name__ == '__main__':
     nums = [12, 3, 7, 8, 4, 2, 7, 4, 29]
-    # insertion_sort(nums)
-    # print('1 insertion_sort',nums)
+    insertion_sort(nums)
+    print('1 insertion_sort', nums)
     # shell_sort(nums)
     # print('2 shell_sort',nums)
     # selection_sort(nums)
@@ -232,10 +241,10 @@ if __name__ == '__main__':
     print('7 merge_sort', nums)
     nums = [12, 3, 7, 8, 4, 2, 7, 4, 29]
     counting_sort(nums)
-    print('8 counting_sort',nums)
+    print('8 counting_sort', nums)
     nums = [12, 3, 7, 8, 4, 2, 7, 4, 29]
     bucket_sort(nums)
-    print('9 bucket_sort',nums)
+    print('9 bucket_sort', nums)
     nums = [12, 3, 7, 8, 4, 2, 7, 4, 29]
     radix_sort(nums)
     print('10 radix_sort', nums)
