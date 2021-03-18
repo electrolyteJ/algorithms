@@ -60,6 +60,7 @@ class Solution:
         self.m = len(board)
         self.n = len(board[0])
         # self.visited =set()
+        #时间复杂度O(m*n*3^l)
         for i in range(self.m):
             for j in range(self.n):
                 if self.check(board, i, j, 0, word):
