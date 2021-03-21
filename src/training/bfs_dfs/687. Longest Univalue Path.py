@@ -39,22 +39,17 @@ class Solution:
                 return 0
             left_height = dfs(node.left)
             right_height = dfs(node.right)
-            
-            if node.left and node.right and node.value == node.right.value and node.value == node.left.value:
-                self.max_nodes = max(self.max_nodes, left_height+right_height+1)
-                return max(left_height,right_height) +1
-            elif node.left and node.value == node.left.value:
-                self.max_nodes = max(self.max_nodes, left_height+1)
-                return left_height+1
-            elif node.right and node.value == node.right.value:
-                self.max_nodes = max(self.max_nodes, right_height+1)
-                return right_height+1
-            else:
-                return 1
+            a,b=0,0
+            if node.left and node.value == node.left.value:
+                    a=left_height+1
+            if node.right and node.value == node.right.value:
+                    b=right_height+1
+            self.max_path = max(self.max_path, a+b)
+            return max(a,b)
 
-        self.max_nodes=1
+        self.max_path=0
         dfs(root)
-        return self.max_nodes-1
+        return self.max_path
 if __name__ == '__main__':
     s = Solution()
     root = create_treenode([5, 4, 5, 1, 1, None,5])

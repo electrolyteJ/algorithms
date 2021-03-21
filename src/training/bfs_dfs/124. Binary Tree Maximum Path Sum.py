@@ -34,6 +34,7 @@ class Solution:
             price_new_path=node.value+righ_gain+left_gain
             self.max_gain = max(self.max_gain, price_new_path)
             return node.value +max(left_gain,righ_gain)
+        #时间复杂度O(n) 空间复杂度O(n)
         self.max_gain=float('-inf')
         maxGain(root)
         return self.max_gain
