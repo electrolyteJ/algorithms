@@ -15,7 +15,7 @@
 示例 1：
 
 输入：
-["a","a","b","b","c","c","c"]
+["a","a","b","b","b","b","c"]
 
 输出：
 返回 6 ，输入数组的前 6 个字符应该是：["a","2","b","2","c","3"]
@@ -54,18 +54,20 @@
 
 class Solution:
     def compress(self, chars) -> int:
+        if not chars:return 0
         #时间复杂度O(n)
-        anchor, read, write = 0, 0, 0
-        while read < len(chars):
-            if read+1 == len(chars) or chars[read+1] != chars[read]:
-                chars[write] = chars[anchor]
-                write += 1
-                if read > anchor:
-                    for digit in str(read-anchor+1):
-                        chars[write] = digit
-                        write += 1
-                anchor = read+1
-            read += 1
+        left,right,write=0,0,0
+        while right < len(chars):
+            while right+1 < len(chars) and chars[right] == chars[right+1]:
+                right +=1
+            chars[write] = chars[left]
+            write += 1
+            if right != left:
+                for c in str(right-left+1):
+                    chars[write] =c
+                    write +=1
+            left = right+1
+            right+=1
         return write
 
 
@@ -77,3 +79,5 @@ if __name__ == '__main__':
     print('1', s.compress(chars), chars)
     chars = ["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"]
     print('1', s.compress(chars), chars)
+    chars = ["a", "a", "a", "b", "b", "a", "a"]
+    print('1', s.compress(chars), chars)  # ["a","3","b","2","a","2"]
