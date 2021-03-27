@@ -36,7 +36,6 @@ class Solution:
         if not nums: return 0
         s, min_len = 0, float('inf')
         left, right = 0, 0
-        window = []
         #O(n)
         while right < len((nums)):
             s += nums[right]
@@ -52,13 +51,14 @@ class Solution:
         if not nums: return 0
         import bisect
         min_len=float('inf')
-        sums = [0]
-        for e in nums:
-            sums.append(sums[-1]+e)
-        for i in range(1,len(nums)+1):
+        n = len(nums)
+        sums = [0]*(n+1)
+        for i in range(n):
+            sums[i+1] = sums[i]+nums[i]
+        for i in range(1,n+1):
             t = target+sums[i-1]
             bound = bisect.bisect_left(sums,t)
-            if bound !=len(sums):
+            if bound !=n+1:
                 min_len = min(min_len,bound -(i-1))
 
         return min_len if min_len != float('inf') else 0
@@ -76,5 +76,9 @@ if __name__ == '__main__':
     print('2', s.minSubArrayLen2(target, nums))
     target = 11
     nums = [1, 1, 1, 1, 1, 1, 1, 1]
+    print('1', s.minSubArrayLen1(target, nums))
+    print('2', s.minSubArrayLen2(target, nums))
+    nums = [1, 2, 3, 4, 5]
+    target = 15
     print('1', s.minSubArrayLen1(target, nums))
     print('2', s.minSubArrayLen2(target, nums))
