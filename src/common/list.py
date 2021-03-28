@@ -33,6 +33,8 @@ class ListNode:
         else:
             return str(formatStr+str('->None'))
 
+    # def __lt__(self, other):
+    #     return self.value < other.value
 
 def create_listnode(data):
     size=len(data)
