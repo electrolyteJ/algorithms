@@ -13,13 +13,35 @@
 0 <= num < 231
 
 '''
-
-
 class Solution:
     def translateNum(self, num: int) -> int:
+        nums = [c for c in str(num)]
+        n = len(nums)
+        dp = [0]*(n+1)
+        dp[0]=dp[1]=1
+        #时间复杂度O(n) 空间复杂度O(n)
+        for i in range(2, n+1):
+            nums_i = i-1
+            if nums[nums_i-1] + nums[nums_i] > '25' or nums[nums_i-1] == '0':
+                dp[i] = dp[i-1]
+            else:
+                dp[i] = dp[i-1] + dp[i-2]
+        return dp[-1]
+    def translateNum2(self, num: int) -> int:#dp空间优化
+        nums = [c for c in str(num)]
+        n = len(nums)
+        o, p, q = 0, 1, 1
+        for i in range(2, n+1):
+            nums_i = i-1
+            o, p = p, q
+            if nums[nums_i-1]+nums[nums_i] > '25' or nums[nums_i-1] == '0':
+                q = p
+            else:
+                q = p+o
+        return q
 
-        pass
-if __name__ =='__main__':
+if __name__ == '__main__':
     s = Solution()
     num = 12258
-    print('1',s.translateNum(num))
+    print('1', s.translateNum(num))
+    print('2', s.translateNum2(num))

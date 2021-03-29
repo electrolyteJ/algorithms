@@ -28,10 +28,54 @@ obstacleGrid[i][j] 为 0 或 1
 '''
 
 from typing import List
+
+
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        pass
-if __name__=='__main__':
+        if not obstacleGrid or not obstacleGrid[0]:
+            return 0
+        m, n = len(obstacleGrid), len(obstacleGrid[0])
+        dp = [[0]*n for _ in range(m)]
+        dp[0][0] = 1 if obstacleGrid[0][0] == 0 else 0
+        #时间复杂度O(mn) 空间复杂度O(mn)
+        for i in range(m):
+            for j in range(n):
+                if obstacleGrid[i][j] == 0:
+                    if i > 0:
+                        dp[i][j] = dp[i-1][j]
+                    if j > 0:
+                        dp[i][j] += dp[i][j-1]
+                else:
+                    dp[i][j] = 0
+
+        return dp[-1][-1]
+
+    # dp优化滚动数组
+    def uniquePathsWithObstacles2(self, obstacleGrid: List[List[int]]) -> int:
+        if not obstacleGrid or not obstacleGrid[0]:
+            return 0
+        m, n = len(obstacleGrid), len(obstacleGrid[0])
+        dp =[0]*n
+        #时间复杂度O(mn) 空间复杂度O(n)
+        dp[0] = 1 if obstacleGrid[0][0]==0 else 0
+        for i in range(m):
+            for j in range(n):
+                if obstacleGrid[i][j]==0:
+                    if j-1 >=0 and obstacleGrid[i][j-1] ==0:
+                        dp[j] +=dp[j-1]
+                else:
+                    dp[j]=0
+        return dp[-1]
+if __name__ == '__main__':
     s = Solution()
-    obstacleGrid = [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
+    obstacleGrid = [
+        [0, 0, 0],
+        [0, 1, 0],
+        [0, 0, 0]]
     print('1', s.uniquePathsWithObstacles(obstacleGrid))
+    print('2', s.uniquePathsWithObstacles2(obstacleGrid))
+    obstacleGrid = [
+        [1, 0]
+    ]
+    print('1', s.uniquePathsWithObstacles(obstacleGrid))
+    print('2', s.uniquePathsWithObstacles2(obstacleGrid))
