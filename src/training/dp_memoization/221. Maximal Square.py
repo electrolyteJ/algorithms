@@ -25,7 +25,21 @@ matrix[i][j] 为 '0' 或 '1'
 from typing import List
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
-        pass
+        if not matrix or not matrix[0]:return 0
+        m,n=len(matrix),len(matrix[0])
+        dp = [[0]*n for _ in range(m)]
+        #dp[i][j] (i,j)为右下角的，边长为最大值
+        maxSlide=0
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] =='1':
+                    if i==0 or j ==0:
+                        dp[i][j]=1
+                    else:
+                        dp[i][j] =min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1])+1
+                    maxSlide = max(maxSlide,dp[i][j])
+        return maxSlide*maxSlide
+
 
 if __name__ == '__main__':
     s = Solution()
@@ -39,3 +53,4 @@ if __name__ == '__main__':
     matrix = [["0", "1"], ["1", "0"]]
     print('1', s.maximalSquare(matrix))
     matrix = [["0"]]
+    print('1', s.maximalSquare(matrix))
