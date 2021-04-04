@@ -126,7 +126,7 @@ class Automaton:
 
 
 class Solution:
-    def myAtoi(self, s: str) -> int:
+    def myAtoi(self, s: str) -> int:#ac自动机
         automaton = Automaton()
         for c in s:
             automaton.get(c)

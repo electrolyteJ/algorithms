@@ -36,6 +36,8 @@ class MedianFinder:
         """
         self.minheap = []
         self.maxheap = []
+        import collections
+        self.delayed = collections.Counter()
         self.k=k
 
     #时间复杂度O(logn)
