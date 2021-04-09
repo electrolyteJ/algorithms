@@ -58,6 +58,33 @@ class Solution:
         backtrace(0)
         return ret
 
+    def restoreIpAddresses2(self, s: str):#
+        if not s:
+            return []
+
+        def backtrack(i):
+            if len(visited) == 4:
+                if i == n:
+                    ret.append('.'.join(visited))
+                #剪枝
+                return
+            for j in range(i, n):
+                sub = s[i:j+1]
+                if 0 <= int(sub) <= 255:
+                    if len(sub) > 1 and sub[0] == '0':
+                        break
+                    visited.append(sub)
+                    backtrack(j+1)
+                    visited.pop()
+                else:
+                    break
+        visited = []
+        ret = []
+        n = len(s)
+        backtrack(0)
+        return ret
+
+
 if __name__ =='__main__':
     ss = Solution()
     s = "25525511135"

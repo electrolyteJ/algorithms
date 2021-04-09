@@ -48,15 +48,13 @@ class Solution:
             q.append(b.left)
         return True
     def isSymmetric2(self, root) -> bool:
-        def helper(left, right) -> bool:
-            if not left  and not right:
-                return True
-            if not left or not right or (left.value != right.value):
-                return False
-            return helper(left.left, right.right) and helper(
-                left.right, right.left)
-
-        return helper(root, root)
+        if not root:return False
+        def dfs(lnode,rnode):
+            if not lnode and rnode:return False
+            if not rnode and lnode:return False
+            if not lnode and not rnode:return True
+            return (lnode.val == rnode.val)and dfs(lnode.left,rnode.right) and dfs(lnode.right,rnode.left)
+        return dfs(root.left,root.right)
 
 
 if __name__ =='__main__':
