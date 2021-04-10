@@ -25,26 +25,31 @@
 
 
 class Solution:
+
     def distanceK(self, root, target, K: int):
+        if not root:return []
         #时间复杂度O(n) 空间复杂度O(n)
-        def dfs(node,par=None):
-            if not node:return
-            node.par = par
-            dfs(node.left,node)
-            dfs(node.right,node)
-        dfs(root)
+        def dfs(node, parent):
+            if not node:
+                return
+            node.par = parent
+            dfs(node.left, node)
+            dfs(node.right, node)
+        dfs(root, None)
         import collections
         q = collections.deque([(target, 0)])
-        seen = {target}
+        ret = []
+        visited = {target}
         while q:
-            if q[0][1]==K:
-                return [node.value for node,d in q]
-            node,d = q.popleft()
-            for nei in (node.left,node.right,node.par):
-                if nei and nei not in seen:
-                    seen.add(nei)
-                    q.append((nei,d+1))
-        return []
+            if q[0][1] == K:
+                return [n.val for n, _ in q]
+            for _ in range(len(q)):
+                node, depth = q.popleft()
+                for sub_node in (node.left, node.right, node.par):
+                    if sub_node and sub_node not in visited:
+                        visited.add(node)
+                        q.append((sub_node, depth+1))
+        return ret
 
     def distanceK2(self, root, target, K: int):
         ret = []

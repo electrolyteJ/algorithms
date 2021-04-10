@@ -31,15 +31,16 @@ class Solution:
         while i < len(nodes):
             node, v = nodes[i]
             i += 1
-            if node:
+            if node.left:
                 nodes.append((node.left, 2 * v))
+            if node.right:
                 nodes.append((node.right, 2 * v + 1))
         return nodes[-1][1] == len(nodes)
 
 
 if __name__ =='__main__':
     s = Solution()
-    root = create_treenode([1, 2, 3, 4, 5, 6])
+    root = create_treenode([1, 2, 3])
     print(root)
     print('1',s.isCompleteTree(root))
     root = create_treenode([1, 2, 3, 4, 5, None, 7])

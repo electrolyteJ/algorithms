@@ -19,6 +19,7 @@ from typing import List
 
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
+        #时间复杂度O() 空间复杂度O(n)
         def backtrack(pos,k,n):
             #剪枝
             if (len(visited) + n-pos+1)<k:
@@ -26,8 +27,6 @@ class Solution:
             if len(visited) ==k:
                 ret.append(visited[:])
                 return
-            if pos == n+1:
-                return 
             visited.append(pos)
             backtrack(pos+1,k,n)
             visited.pop()            

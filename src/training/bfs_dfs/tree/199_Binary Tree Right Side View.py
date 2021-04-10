@@ -19,23 +19,17 @@ class Solution:
     def rightSideView_bfs(self, root):
         if not root:return []
         #bfs 时间复杂度O(n) 空间复杂度O(n)
+        ret = []
         import collections
-        q,ret = collections.deque([root]),[]
+        q = collections.deque([root])
         while q:
-            # current_level =[]
-            right_e=0
-            l = len(q)
-            for i in range(l):
+            ret.append(q[-1].val)
+            for _ in range(len(q)):
                 node = q.popleft()
-                # current_level.append(node.value)
-                if i == l-1:
-                    right_e = node.value
                 if node.left:
                     q.append(node.left)
                 if node.right:
                     q.append(node.right)
-            # ret.append(current_level[-1])
-            ret.append(right_e)
         return ret
 
 

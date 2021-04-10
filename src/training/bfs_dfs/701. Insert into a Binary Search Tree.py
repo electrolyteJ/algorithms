@@ -30,8 +30,7 @@
 from src.common.tree import create_treenode,Node
 class Solution:
     def insertIntoBST(self, root, val: int):
-        if not root:
-            return Node(val)
+        if not root:return Node(val)
         node = root
         while node:
             if node.value > val:#左节点
@@ -48,6 +47,16 @@ class Solution:
                     node = node.right
         return root
 
+    def insertIntoBST2(self, root, val: int):#递归
+        #世间法复杂度O(n) 空间复杂度O(n)
+        if not root:return Node(val)
+        if root.value < val:
+            root.right = self.insertIntoBST2(root.right,val)
+        else:
+            root.left = self.insertIntoBST2(root.left,val)
+        return root
+
+
             
 if __name__ == '__main__':
     s =Solution()
@@ -55,7 +64,11 @@ if __name__ == '__main__':
     val = 5
     print(root)
     print('1',s.insertIntoBST(root,val))
+    root = create_treenode([4, 2, 7, 1, 3])
+    print('2', s.insertIntoBST2(root, val))
     root = create_treenode([40, 20, 60, 10, 30, 50, 70])
     val = 25
     print(root)
     print('1',s.insertIntoBST(root,val))
+    root = create_treenode([40, 20, 60, 10, 30, 50, 70])
+    print('2', s.insertIntoBST2(root, val))

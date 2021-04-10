@@ -39,21 +39,26 @@ class Solution:
 
     def buildTree1(self, preorder, inorder):#递归
         #时间复杂度O(n) 空间复杂度O(n)
-        def recur(preorder_left, preorder_right, inorder_left, inorder_right):
-            if preorder_left > preorder_right:
-                return None
-            preorder_root_i = preorder_left
-            inoder_root_i = index[preorder[preorder_root_i]]
-            node = Node(preorder[preorder_root_i])
-            left_subtree_len = inoder_root_i - inorder_left
-            node.left = recur(preorder_root_i+1, preorder_root_i +
-                              left_subtree_len, inorder_left, inoder_root_i-1)
-            node.right = recur(preorder_root_i+left_subtree_len+1,
-                               preorder_right, inoder_root_i+1, inorder_right)
-            return node
+        def recur(preorder_s, preorder_e, inorder_s, inorder_e):
+            if preorder_s > preorder_e:return
+            num = preorder[preorder_s]
+            inorder_m = indexs[num]
+            l_len = inorder_m-inorder_s
+            l_preorder_s, l_preorder_e = preorder_s+1, preorder_s+l_len
+            l_inorder_s, l_inorder_e = inorder_s, inorder_m-1
 
-        index = {e: i for i, e in enumerate(inorder)}
-        return recur(0, len(preorder)-1, 0, len(preorder)-1)
+            r_preorder_s, r_preorder_e = preorder_s+l_len+1, preorder_e
+            r_inorder_s, r_inorder_e = inorder_m+1, inorder_e
+
+            root = Node(num)
+            root.left = recur(l_preorder_s, l_preorder_e,
+                              l_inorder_s, l_inorder_e)
+            root.right = recur(r_preorder_s, r_preorder_e,
+                               r_inorder_s, r_inorder_e)
+            return root
+        m, n = len(preorder), len(inorder)
+        indexs = {num: i for i, num in enumerate(inorder)}
+        return recur(0, m-1, 0, n-1)
 
         
 

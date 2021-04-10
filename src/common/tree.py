@@ -6,7 +6,6 @@
         - 完全二叉树(complete binary tree)：堆一般都使用完全二叉树实现
         - 平衡二叉树：当树有 N 个节点时, 高度不超过 O(log N), 例如 AVL 树, 红黑树
         - 二叉搜索树(BST)：当前节点的左子树只包含小于该节点的节点；当前节点的右子树只包含大于该节点的节点
-        - Huffman tree:要么没有子节点要么有两个子节点
     存储形式:
         - 顺序存储结构
         - 链式存储结构
@@ -17,6 +16,10 @@
             - 后序遍历postorder
         - 广度优先(bfs, Breadth First Search)
             - 层次遍历levelorder
+
+    树的直径：任意两个节点的路径最大值
+    树的叶子节点 高度为0
+    树的根节点 深度为0，层级为0
 """
 
 import numbers
@@ -32,8 +35,8 @@ def _get_tree_properties(root):
     """
     is_descending = True
     is_ascending = True
-    min_node_value = root.val
-    max_node_value = root.val
+    min_node_value = root.value
+    max_node_value = root.value
     size = 0
     leaf_count = 0
     min_leaf_depth = 0
@@ -49,7 +52,7 @@ def _get_tree_properties(root):
 
         for node in current_level:
             size += 1
-            val = node.val
+            val = node.value
             min_node_value = min(val, min_node_value)
             max_node_value = max(val, max_node_value)
 
@@ -60,7 +63,7 @@ def _get_tree_properties(root):
                 leaf_count += 1
 
             if node.left is not None:
-                if node.left.val > val:
+                if node.left.value > val:
                     is_descending = False
                 elif node.left.val < val:
                     is_ascending = False
@@ -70,7 +73,7 @@ def _get_tree_properties(root):
                 non_full_node_seen = True
 
             if node.right is not None:
-                if node.right.val > val:
+                if node.right.value > val:
                     is_descending = False
                 elif node.right.val < val:
                     is_ascending = False
@@ -230,7 +233,12 @@ class Node:
     @property
     def height(self):
         return _get_tree_properties(self)['height']
-
+    @property
+    def max_leaf_depth(self) -> int:
+        return _get_tree_properties(self)['max_leaf_depth']
+    @property
+    def min_leaf_depth(self) -> int:
+        return _get_tree_properties(self)['min_leaf_depth']
     def __hash__(self):
         return super().__hash__()
 

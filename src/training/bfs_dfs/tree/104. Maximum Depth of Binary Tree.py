@@ -25,8 +25,7 @@ class Solution:
         max_depth=0
         #时间复杂度O(n)
         while q:
-            n = len(q)
-            for i in range(n):
+            for _ in range(len(q)):
                 node = q.popleft()
                 if node.left:
                     q.append(node.left)

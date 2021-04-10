@@ -33,14 +33,15 @@ class Solution:
     def isBalanced(self, root) -> bool:
         def height(root):
             if not root:return 0
+            nonlocal ret
             left_subtree_height = height(root.left)
             right_subtree_height = height(root.right)
             if abs(left_subtree_height-right_subtree_height) > 1:
-                self.ret = False
+                ret = False
             return max(left_subtree_height, right_subtree_height)+1
-        self.ret = True
+        ret = True
         height(root)
-        return self.ret
+        return ret
         
 if __name__ == '__main__':
     s  = Solution()

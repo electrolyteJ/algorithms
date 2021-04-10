@@ -1,9 +1,6 @@
 '''
 101. 对称二叉树
 给定一个二叉树，检查它是否是镜像对称的。
-
- 
-
 例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
 
     1
@@ -11,7 +8,6 @@
   2   2
  / \ / \
 3  4 4  3
- 
 
 但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:
 
@@ -20,7 +16,6 @@
   2   2
    \   \
    3    3
- 
 
 进阶：
 
@@ -53,10 +48,8 @@ class Solution:
             if not lnode and rnode:return False
             if not rnode and lnode:return False
             if not lnode and not rnode:return True
-            return (lnode.val == rnode.val)and dfs(lnode.left,rnode.right) and dfs(lnode.right,rnode.left)
+            return (lnode.value == rnode.value) and dfs(lnode.left, rnode.right) and dfs(lnode.right, rnode.left)
         return dfs(root.left,root.right)
-
-
 if __name__ =='__main__':
     s =Solution()
     root = create_treenode([1, 2, 2, 3, 4, 4, 3])

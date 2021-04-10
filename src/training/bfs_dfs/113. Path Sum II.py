@@ -27,43 +27,22 @@ from src.common.tree import create_treenode
 class Solution:
     def pathSum_bfs(self, root, targetSum: int):
         if not root:return []
-        ret = list()
+        ret = []
         import collections
-        parent = collections.defaultdict(lambda: None)
-
-        def getPath(node):
-            tmp = list()
-            while node:
-                tmp.append(node.value)
-                node = parent[node]
-            ret.append(tmp[::-1])
-
-
-        que_node = collections.deque([root])
-        que_total = collections.deque([0])
-
-        while que_node:
-            node = que_node.popleft()
-            rec = que_total.popleft() + node.value
-
-            if not node.left and not node.right:
-                if rec == targetSum:
-                    getPath(node)
-            else:
-                if node.left:
-                    parent[node.left] = node
-                    que_node.append(node.left)
-                    que_total.append(rec)
-                if node.right:
-                    parent[node.right] = node
-                    que_node.append(node.right)
-                    que_total.append(rec)
-
+        q = collections.deque([(root, root.value, [root.value])])
+        while q:
+            node, v, ls = q.popleft()
+            if not node.left and not node.right and v == targetSum:
+                ret.append(ls)
+            if node.left:
+                q.append((node.left, v+node.left.value, ls+[node.left.value]))
+            if node.right:
+                q.append((node.right, v+node.right.value, ls+[node.right.value]))
         return ret
 
     def pathSum_dfs(self, root, targetSum: int):
-        if not root: return []
-        #时间复杂度O(n^2) 空间复杂度O(n)
+        if not root:return []
+        # 时间复杂度O(n) 空间复杂度O(n)
         def dfs(root, targetSum):
             if not root:
                 return

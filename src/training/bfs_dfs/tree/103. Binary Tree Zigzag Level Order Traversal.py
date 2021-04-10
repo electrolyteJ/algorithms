@@ -23,26 +23,25 @@ from src.common.tree import create_treenode
 class Solution:
     def zigzagLevelOrder(self, root):
         if not root:return []
-        #时间复杂度O(n) 空间复杂度O(n
+        #时间复杂度O(n) 空间复杂度O(n)
         import collections
-        q  = collections.deque([root])
-        ret=[]
-        level = 0
+        q = collections.deque([root])
+        ret = []
+        level = 1
         while q:
-            current_level=collections.deque()
-            for i in range(len(q)):
+            current_level = collections.deque()
+            for _ in range(len(q)):
                 node = q.popleft()
-                if level % 2==0:#偶数
+                if level & 1:
                     current_level.append(node.value)
                 else:
                     current_level.appendleft(node.value)
-
-                if node.left :
+                if node.left:
                     q.append(node.left)
                 if node.right:
                     q.append(node.right)
+            level += 1
             ret.append(list(current_level))
-            level +=1
         return ret
 
 if __name__ =='__main__':

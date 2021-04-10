@@ -55,17 +55,15 @@
 解释: 最大值出现在树的第 4 层，宽度为 8 (6,null,null,null,null,null,null,7)。
 注意: 答案在32位有符号整数的表示范围内。
 '''
-
-
 class Solution:
     def widthOfBinaryTree(self, root) -> int:
         import collections
         q = collections.deque([(root,0,0)])
         cur_depth = left = ans = 0
         while q:
-            for i in range(len(q)):
+            for _ in range(len(q)):
                 node,depth,pos = q.popleft()
-                if node.left:
+                if node:
                     q.append((node.left,depth+1,pos*2))
                     q.append((node.right, depth+1, pos*2+1))
                     if cur_depth !=depth:
@@ -73,6 +71,23 @@ class Solution:
                         left=pos
                     ans = max(ans,pos-left+1)
         return ans
+    def widthOfBinaryTree2(self, root) -> int:
+        if not root: return 0
+        max_width =1
+        import collections
+        q = collections.deque([(root,0)])
+        while q:
+            _, start = q[0]
+            _, end = q[-1]
+            for _ in range(len(q)):
+                node,v = q.popleft()
+                if node.left:
+                    q.append((node.left,2*v))
+                if node.right:
+                    q.append((node.right,2*v+1))
+            print(q)
+            max_width = max(max_width,end-start+1)
+        return max_width
                 
             
 if __name__ =='__main__':
@@ -81,13 +96,17 @@ if __name__ =='__main__':
     root = create_treenode([1,3,2,5,3,None,9])
     print(root)
     print('1', s.widthOfBinaryTree(root))
+    print('2', s.widthOfBinaryTree2(root))
     root = create_treenode([1,3,None,5,3])
     print(root)
     print('1', s.widthOfBinaryTree(root))
+    print('2', s.widthOfBinaryTree2(root))
     root = create_treenode([1,3,2,5,None])
     print(root)
     print('1', s.widthOfBinaryTree(root))
+    print('2', s.widthOfBinaryTree2(root))
     root = create_treenode(
         [1, 3, 2, 5, None, None, 9, 6, None, None, None, None, None,None, 7])
     print(root)
     print('1', s.widthOfBinaryTree(root))
+    print('2', s.widthOfBinaryTree2(root))

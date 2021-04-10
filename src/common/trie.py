@@ -2,6 +2,9 @@
 前缀树
 哈希树的变种
 常用语文本词频统计
+
+
+        - Huffman tree(霍夫曼编码)
 '''
 class Trie:
 
