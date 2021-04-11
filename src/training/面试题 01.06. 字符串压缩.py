@@ -15,8 +15,6 @@
 
 字符串长度在[0, 50000]范围内。
 '''
-
-
 class Solution:
     def compressString(self, S: str) -> str:
         if not S:

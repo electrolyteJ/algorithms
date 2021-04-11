@@ -9,15 +9,11 @@
 
 输入：nums = [9,1,7,9,7,9,7]
 输出：1
- 
-
 限制：
 
 1 <= nums.length <= 10000
 1 <= nums[i] < 2^31
 '''
-
-
 class Solution:
     def singleNumber(self, nums) -> int:
         #时间复杂度O(n) 空间复杂度O(n)
@@ -38,7 +34,9 @@ class Solution:
 
 if __name__ =='__main__':
     s =Solution()
-    nums = [3, 4, 3, 3]
+    nums = [3,  3, 3]
     print('1', s.singleNumber(nums))
+    print('2', s.singleNumber2(nums))
     nums = [9, 1, 7, 9, 7, 9, 7]
     print('1', s.singleNumber(nums))
+    print('2', s.singleNumber2(nums))

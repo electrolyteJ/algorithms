@@ -26,14 +26,15 @@
 
 class Solution:
     def reverseBits(self, n: int):
+        #时间复杂度O(long n)
         b =0
         for i in range(31,-1,-1):
-
             a = n & 1
             n >>= 1
             b |= (a<<i)
         return b
     def reverseBits2(self, n: int):
+        #时间复杂度O(1)
         n = (n >> 16) | (n << 16)
         n = ((n & 0xff00ff00) >> 8) | ((n & 0x00ff00ff) << 8)
         n = ((n & 0xf0f0f0f0) >> 4) | ((n & 0x0f0f0f0f) << 4)

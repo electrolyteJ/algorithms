@@ -27,7 +27,7 @@ class Solution:
         import functools
         ret = functools.reduce(lambda x,y:x^y,nums)
         div =1
-        while (div & ret) ==0:
+        while (div & ret) == 0:  # 找到不同的那一位
             div <<=1
         #div=0的为一组，不为0的为一组
         a,b=0,0
