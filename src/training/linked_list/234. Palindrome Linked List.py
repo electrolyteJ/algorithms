@@ -19,33 +19,20 @@ class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
         if not head:return True
         def reverse(h):
-            cur = h
             ret = None
+            cur = h
             while cur:
-                cur.next, cur, ret = ret, cur.next, cur
+                cur.next,cur,ret = ret,cur.next,cur
             return ret
-        def end_of_first_half(h):
-            slow,fast=h,h
-            while fast.next and fast.next.next:
-                slow = slow.next
-                fast = fast.next.next
-            return slow
-        first =  head
-        first_half_end = end_of_first_half(head)
-        second = reverse(first_half_end.next)
-        print(first,second)
-        ret =True
-        while ret and second:
-            if first.value != second.value:
-                ret = False
-            first = first.next
-            second = second.next
-        first_half_end.next = reverse(second)
-        return ret
-
-
-
-
+        frist_of_end,fast=head,head
+        while fast.next and fast.next.next:
+            frist_of_end,fast=frist_of_end.next,fast.next.next
+        frist,sec = head,reverse(frist_of_end.next)
+        while sec:
+            if frist.value !=sec.value:
+                return False
+            frist,sec=frist.next,sec.next
+        return True
 
 if __name__ == '__main__':
     s = Solution()
