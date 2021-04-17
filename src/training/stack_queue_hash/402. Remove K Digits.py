@@ -26,15 +26,16 @@ num 不会包含任何前导零。
 
 class Solution:
     def removeKdigits(self, num: str, k: int) -> str:
-        dq = []
-        dq.append(num[0])
+        if not num:return ''
+        stack = [num[0]]
         for i in range(1,len(num)):
-            while k and dq and num[i] < dq[-1]:
-                dq.pop()
+            while k and stack and num[i] < stack[-1]:
+                stack.pop()
                 k-=1
-            dq.append(num[i])
-        dq = (dq[:-k] if k else dq)
-        return ''.join(dq).lstrip('0') or '0'
+            stack.append(num[i])
+        if k:
+            stack = stack[:-k]
+        return ''.join(stack).lstrip('0') or '0'
 
 
 if __name__ =='__main__':

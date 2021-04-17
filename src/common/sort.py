@@ -63,14 +63,6 @@ def quick_sort(nums):
     平均时间复杂度O(nlogn) 空间复杂度O(nlogn)
     '''
     def partition(nums, l, r):
-        # pivot = nums[r]
-        # i = l-1
-        # for j in range(l,r):
-        #     if nums[j]<pivot:#比pivot小的数多排到左边
-        #         i +=1
-        #         nums[i],nums[j] = nums[j],nums[i]
-        # i +=1
-        # nums[i],nums[r]=nums[r],nums[i]
         pivot = nums[l]
         i, j = l, r
         while i < j:

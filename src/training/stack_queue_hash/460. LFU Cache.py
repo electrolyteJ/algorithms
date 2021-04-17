@@ -42,18 +42,12 @@ lFUCache.get(3);      // 返回 3
 lFUCache.get(4);      // 返回 4
                       // cache=[3,4], cnt(4)=2, cnt(3)=3
  
-
 提示：
-
 0 <= capacity, key, value <= 104
 最多调用 105 次 get 和 put 方法
- 
-
 进阶：你可以为这两种操作设计时间复杂度为 O(1) 的实现吗？
-
 '''
-
-
+#depre
 class LFUCache:
 
     def __init__(self, capacity: int):
@@ -74,7 +68,7 @@ class LFUCache:
         if self.b:
             return
         if key in self.d:
-            v, counter = self.d.pop(key)
+            _, counter = self.d.pop(key)
             counter +=1
             self.d[key] = (value, counter)
         else:
@@ -83,14 +77,12 @@ class LFUCache:
             else:
                 min_c, min_key = float('inf'), 0
                 for kk,vv in self.d.items():
-                    v,couter = vv
+                    _,couter = vv
                     if min_c >couter:
                         min_c =couter
                         min_key = kk
                 self.d.pop(min_key)
             self.d[key] = (value,1)
-        
-            
 
 if __name__ == '__main__':
     lFUCache = LFUCache(2)

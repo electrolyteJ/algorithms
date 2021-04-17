@@ -46,12 +46,12 @@ class Solution:
     def productExceptSelf3(self, nums):
         n = len(nums)
         ret = [1]*n
-        for i  in range(1,n):
+        for i in range(1, n):
             ret[i] = ret[i-1]*nums[i-1]
-        r=1
-        for i in range(n-2,-1,-1):
-            r *=nums[i+1]
-            ret[i]=ret[i] * r
+        last_product = 1
+        for i in range(n-2, -1, -1):
+            last_product = last_product*nums[i+1]
+            ret[i] = ret[i]*last_product
         return ret
 
 if __name__ =='__main__':
