@@ -53,7 +53,7 @@ class MyQueue:
         """
         self.in_stack = []
         self.out_stack = []
-        self.top_value=0
+        self.top_value=-1
 
     def push(self, x: int) -> None:
         """

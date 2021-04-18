@@ -27,8 +27,8 @@ num 不会包含任何前导零。
 class Solution:
     def removeKdigits(self, num: str, k: int) -> str:
         if not num:return ''
-        stack = [num[0]]
-        for i in range(1,len(num)):
+        stack = []
+        for i in range(len(num)):
             while k and stack and num[i] < stack[-1]:
                 stack.pop()
                 k-=1

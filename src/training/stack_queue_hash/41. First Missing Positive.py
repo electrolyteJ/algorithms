@@ -16,35 +16,56 @@
 
 输入：nums = [7,8,9,11,12]
 输出：1
- 
-
 提示：
 
 0 <= nums.length <= 300
 -231 <= nums[i] <= 231 - 1
 '''
+
+
 class Solution:
     def firstMissingPositive(self, nums) -> int:
-        #哈希表 时间复杂度O(n)  空降复杂度O(1),打标记
+        # 哈希表 时间复杂度O(n)  空降复杂度O(1),打标记
         n = len(nums)
-        for i in range(n) :
-            if nums[i] <=0:
+        for i in range(n):
+            if nums[i] <= 0:
                 nums[i] = n+1
         for i in range(n):
-            num=abs(nums[i])
+            num = abs(nums[i])
             if num <= n:
                 nums[num-1] = -abs(nums[num-1])
 
         for i in range(n):
             if nums[i] > 0:
                 return i+1
-        return n+1            
+        return n+1
 
-if __name__ =='__main__':
+    def firstMissingPositive2(self, nums) -> int:
+        if not nums:return []
+        n = len(nums)
+        for i in range(n):
+            if nums[i] <= 0:
+                nums[i] = n+1
+        s = set(nums)
+        for i in range(1, n+1):
+            if i not in s:
+                return i
+        return n+1
+
+
+if __name__ == '__main__':
     s = Solution()
-    nums =  [1,2,0]
-    print('1',s.firstMissingPositive(nums))
-    nums = [3,4,-1,1]
-    print('1',s.firstMissingPositive(nums))
-    nums = [7,8,9,11,12]
-    print('1',s.firstMissingPositive(nums))
+    nums = [1, 2, 0]
+    print('1', s.firstMissingPositive(nums))
+    nums = [1, 2, 0]
+    print('2', s.firstMissingPositive2(nums))
+    nums = [3, 4, -1, 1]
+    print('1', s.firstMissingPositive(nums))
+    nums = [3, 4, -1, 1]
+    print('2', s.firstMissingPositive2(nums))
+    nums = [7, 8, 9, 11, 12]
+    print('1', s.firstMissingPositive(nums))
+    nums = [7, 8, 9, 11, 12]
+    print('2', s.firstMissingPositive2(nums))
+    nums = [3, 4, -1, 1, 9, -5]
+    print('1', s.firstMissingPositive(nums))

@@ -113,7 +113,7 @@ def merge_sort(nums):
                 j += 1
 
     def merge_sort_inner(nums, l, r):
-        if l >= r:
+        if l == r:
             return
         mid = l+(r-l)//2  # (r+l)//2
         merge_sort_inner(nums, l, mid)

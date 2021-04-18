@@ -19,16 +19,16 @@ class Solution:
         return ans
     def dailyTemperatures2(self, T):
         #时间复杂度O(n) 空间复杂度O(n)
-        length = len(T)
-        ans = [0] * length
+        if not T: return []
+        n = len(T)
+        ret = [0]*n
         stack = []
-        for i in range(length):
-            temperature = T[i]
-            while stack and temperature > T[stack[-1]]:
-                prev_index = stack.pop()
-                ans[prev_index] = i - prev_index
+        for i in range(n):
+            while stack and T[stack[-1]] < T[i]:
+                last_i = stack.pop()
+                ret[last_i] = i-last_i
             stack.append(i)
-        return ans
+        return ret
 
 if __name__ == '__main__':
     s = Solution()

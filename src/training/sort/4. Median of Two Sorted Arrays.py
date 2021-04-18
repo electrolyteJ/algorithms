@@ -35,10 +35,38 @@ nums2.length == n
 
 进阶：你能设计一个时间复杂度为 O(log (m+n)) 的算法解决此问题吗？
 '''
-
-
 class Solution:
     def findMedianSortedArrays(self, nums1, nums2) -> float:
+        if not nums1 and not nums2: return 0
+        #时间复杂度O(m+n)
+        def getElement(pos):
+            nonlocal total_len,m,n
+            i,j=0,0
+            for k in range(total_len):
+                if i == m:
+                    if k ==pos:
+                        return nums2[j]
+                    j+=1
+                elif j ==n:
+                    if k == pos:
+                        return nums1[i]
+                    i+=1
+                elif nums1[i] < nums2[j]:
+                    if k == pos:
+                        return nums1[i]
+                    i+=1
+                else:
+                    if k == pos:
+                        return nums2[j]
+                    j+=1
+            return 0 
+        m,n=len(nums1),len(nums2)
+        total_len = m+n
+        if total_len &1:
+            return getElement(total_len//2)
+        else:
+            return (getElement(total_len//2-1) + getElement(total_len//2))/2
+    def findMedianSortedArrays1(self, nums1, nums2) -> float:
         if not nums1 and not nums2:return 0
  
         def getKthElement(k):
@@ -72,7 +100,7 @@ class Solution:
 
     def findMedianSortedArrays2(self, nums1, nums2) -> float:
         if len(nums1) > len(nums2):
-            return self.findMedianSortedArrays(nums2, nums1)
+            return self.findMedianSortedArrays2(nums2, nums1)
 
         infinty = 2**40
         m, n = len(nums1), len(nums2)
@@ -105,21 +133,26 @@ if __name__ == '__main__':
     s = Solution()
     nums1 = [1, 3]
     nums2 = [2]
-    print('1', s.findMedianSortedArrays(nums1, nums2))
+    print('0', s.findMedianSortedArrays(nums1, nums2))
+    print('1', s.findMedianSortedArrays1(nums1, nums2))
     print('2', s.findMedianSortedArrays2(nums1, nums2))
     nums1 = [1, 2]
     nums2 = [3, 4]
-    print('1', s.findMedianSortedArrays(nums1, nums2))
+    print('0', s.findMedianSortedArrays(nums1, nums2))
+    print('1', s.findMedianSortedArrays1(nums1, nums2))
     print('2', s.findMedianSortedArrays2(nums1, nums2))
     nums1 = [0, 0]
     nums2 = [0, 0]
-    print('1', s.findMedianSortedArrays(nums1, nums2))
+    print('0', s.findMedianSortedArrays(nums1, nums2))
+    print('1', s.findMedianSortedArrays1(nums1, nums2))
     print('2', s.findMedianSortedArrays2(nums1, nums2))
     nums1 = []
     nums2 = [1]
-    print('1', s.findMedianSortedArrays(nums1, nums2))
+    print('0', s.findMedianSortedArrays(nums1, nums2))
+    print('1', s.findMedianSortedArrays1(nums1, nums2))
     print('2', s.findMedianSortedArrays2(nums1, nums2))
     nums1 = [2]
     nums2 = []
-    print('1', s.findMedianSortedArrays(nums1, nums2))
+    print('0', s.findMedianSortedArrays(nums1, nums2))
+    print('1', s.findMedianSortedArrays1(nums1, nums2))
     print('2', s.findMedianSortedArrays2(nums1, nums2))
