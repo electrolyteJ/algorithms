@@ -39,28 +39,26 @@ from src.common.list import ListNode, create_listnode
 
 class Solution:
     def merge(self, l1, l2):
-        if not l1 or not l2:
-            return l1 if l1 else l2
         dummy_head = ListNode(-1)
-        l = dummy_head
+        cur = dummy_head
         while l1 and l2:
             if l1.value < l2.value:
-                l.next, l, l1 = l1, l1, l1.next
+                cur.next = l1
+                l1 = l1.next
             else:
-                l.next = l2
-                l = l2
+                cur.next = l2
                 l2 = l2.next
-        l.next = l1 if l1 else l2
+            cur = cur.next
+        cur.next = l1 if l1 else l2
         return dummy_head.next
 
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
-        if not lists:
-            return None
-        ans = lists[0]
-        # 时间复杂度O(k^2 * n)
-        for i in range(1, len(lists)):
-            ans = self.merge(ans, lists[i])
-        return ans
+        if not lists:return None
+        ans = None
+        # 时间复杂度O(k*k*n)
+        for l in lists:
+            ans = self.merge(ans, l)
+        return ans 
 
     def mergeKLists2(self, lists: List[ListNode]) -> ListNode:
         # 时间复杂度O(kn * logk) 空间复杂度O(logk)
@@ -69,28 +67,37 @@ class Solution:
                 return lists[l]
             if l > r:
                 return None
-            mid = l+(r-l)//2
+            # mid = l+(r-l)//2
+            mid = (l + r) >> 1
             return self.merge(merge_list(l, mid), merge_list(mid+1, r))
         return merge_list(0, len(lists)-1)
 
     def mergeKLists3(self, lists: List[ListNode]) -> ListNode:
-        if not lists:
-            return None
-        import heapq,queue
-        #时间复杂度O(kn * logk) 空间复杂度O(k)
-        q= []
+        # 时间复杂度O(kn * logk) 空间复杂度O(k)
+        if not lists:return None
+        import heapq
+        import queue
+        q = []
         for l in lists:
-            heapq.heappush(q,(l.value,l))
+            if l:
+                heapq.heappush(q, S(l.value, l))
         dummy_head = ListNode(-1)
-        tail= dummy_head
+        tail = dummy_head
         while q:
-            v,node = heapq.heappop(q)
-            tail.next,tail = node,node
-            if node.next:
-                heapq.heappush(q,(node.next.value,node.next))
+            s = heapq.heappop(q)
+            tail.next, tail = s.node, s.node
+            if s.node.next:
+                heapq.heappush(q, S(s.node.next.value, s.node.next))
         return dummy_head.next
 
 
+class S:
+    def __init__(self, val, node):
+        self.val = val
+        self.node = node
+
+    def __lt__(self, other):
+        return self.val < other.val
 if __name__ == '__main__':
     s = Solution()
     lists = []

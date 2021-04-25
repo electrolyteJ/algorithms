@@ -92,9 +92,6 @@ def merge_sort(nums):
     divide-conquer
     平均时间复杂度O(nlogn) 空间复杂度O(n)
     '''
-    if not nums:
-        return
-
     def merge(nums, l, mid, r):
         i, j = l, mid+1
         tmp[l:r+1] = nums[l:r+1]
@@ -113,7 +110,7 @@ def merge_sort(nums):
                 j += 1
 
     def merge_sort_inner(nums, l, r):
-        if l == r:
+        if l >= r:
             return
         mid = l+(r-l)//2  # (r+l)//2
         merge_sort_inner(nums, l, mid)
