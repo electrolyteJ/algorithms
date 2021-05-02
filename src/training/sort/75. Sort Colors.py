@@ -20,21 +20,14 @@
 
 输入：nums = [1]
 输出：[1]
-
 提示：
-
 n == nums.length
 1 <= n <= 300
 nums[i] 为 0、1 或 2
- 
-
 进阶：
-
 你可以不使用代码库中的排序函数来解决这道题吗？
 你能想出一个仅使用常数空间的一趟扫描算法吗？
 '''
-
-
 class Solution:
     def sortColors(self, nums) -> None:
         """

@@ -25,23 +25,24 @@
 nums 是一个非递减数组
 -109 <= target <= 109
 '''
+import bisect
 class Solution:
     def searchRange(self, nums, target: int):
-        def search(nums,target,high):
-            left,right =0,len(nums)-1
+        n = len(nums)
+        def search(low):
+            left, right = 0, n-1
             while left <= right:
-                # mid = (right +left)//2
-                mid = left +(right-left)//2
-                if nums[mid] < target or (high and nums[mid] <= target):
-                    left = mid+1
-                else:
+                mid = (left+right)//2
+                if nums[mid] > target or (low and nums[mid] == target):
                     right = mid-1
+                else:
+                    left = mid+1
             return left
-        left_i = search(nums,target,False)
-        right_i = search(nums,target,True)-1
-        if left_i <= right_i and right_i < len(nums) and nums[left_i] ==target and nums[right_i] ==target:
-            return [left_i,right_i]
-        return [-1,-1]
+        first = search(True)
+        last = search(False)-1
+        if 0 <= first < n and first <= last < n:
+            return [first, last]
+        return [-1, -1]
                     
                 
 if __name__ =='__main__':

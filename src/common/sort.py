@@ -123,7 +123,6 @@ def merge_sort(nums):
 
 def counting_sort(nums):
     '''
-
     - 找出待排序的数组中最大和最小的元素；
     - 统计数组中每个值为i的元素出现的次数，存入数组C的第i项；
     - 对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）；
@@ -135,11 +134,10 @@ def counting_sort(nums):
         max_num = max(max_num, num)
         min_num = min(min_num, num)
     k = max_num-min_num+1
-    count = [0]*(k)
+    count = [0]*(k) #最小值和最大值的差值构建的count太大了，浪费空间
     for num in nums:  # 通过和最小值比较，然后依次按照大小顺序存到count各个位置，迭代取出的时候就会按照从小到大
         count[num-min_num] += 1
     index = 0
-    # print(count)
     for i in range(k):
         for _ in range(count[i]):
             nums[index] = i+min_num
@@ -155,19 +153,17 @@ def bucket_sort(nums):
     - 从不是空的桶里把排好序的数据拼接起来。 
     平均时间复杂度O(n+k) 空间复杂度O(n+k)
     '''
+    if not nums or len(nums) == 1:return 
     n = len(nums)
-    if n == 0:
-        return
     max_num, min_num = max(nums), min(nums)
     bucket_size = max(1, (max_num - min_num)//(n-1))
-
-    buckets = [[] for _ in range((max_num-min_num)//bucket_size+1)]
-    # print(len(buckets))
+    bucket_nums = (max_num-min_num)//bucket_size+1
+    buckets = [[] for _ in range(bucket_nums)]  # 空桶数量
     for num in nums:
+        #(num-min_num)//bucket_size 计算桶编号
         buckets[(num-min_num)//bucket_size].append(num)
     index = 0
-    # print(count)
-    for i in range(len(buckets)):
+    for i in range(bucket_nums):
         for num in sorted(buckets[i]):
             nums[index] = num
             index += 1
