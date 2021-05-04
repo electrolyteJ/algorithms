@@ -12,25 +12,31 @@
 '''
 
 class Solution:
-    def swap(self,nums,a,b):
-        nums[a],nums[b] = nums[b],nums[a]
     def quick_sort(self,nums,start,end):
-        if start >=end:
-            return
-        pivot = nums[start]
-        l = start+1
-        r = end
-        while l <=r:
-            if nums[l] < pivot:
-                l+=1
-                continue
-            if nums[r] >=pivot:
-                r -=1
-                continue
-            self.swap(nums,l,r)
-        self.swap(nums,start,r)
-        self.quick_sort(nums,start,r-1)
-        self.quick_sort(nums,r+1,end)
-    def sortArray(self, nums):
-        self.quick_sort(nums,0,len(nums)-1)
+        def merge_sort(l, r):
+            if l >= r:
+                return
+            mid = (l+r) >> 1
+            merge_sort(l, mid)
+            merge_sort(mid+1, r)
+
+            i, j = l, mid+1
+            tmp[l:r+1] = nums[l:r+1]
+            for k in range(l, r+1):
+                if i == mid+1:
+                    nums[k] = tmp[j]
+                    j += 1
+                elif j == r+1:
+                    nums[k] = tmp[i]
+                    i += 1
+                elif tmp[i] >= tmp[j]:
+                    nums[k] = tmp[j]
+                    j += 1
+                else:
+                    nums[k] = tmp[i]
+                    i += 1
+
+        n = len(nums)
+        tmp = [0]*n
+        merge_sort(0, n-1)
         return nums

@@ -11,34 +11,7 @@
 输出: 4
 '''
 class Solution:
-    def swap(self,nums,a,b):
-        nums[a],nums[b]=nums[b],nums[a]
-    def quick_select(self,nums,k,start,end):
-        if start>=end:
-            return
-        pivot = nums[start]
-        l = start+1
-        r = end
-        while(l <= r):
-            if nums[l] >pivot:
-                l +=1
-                continue
-            if nums[r] <=pivot:
-                r -=1
-                continue
-            self.swap(nums,l,r)
-        self.swap(nums,start,r)
-        if r-start+1 ==k :
-            return
-        if r-start+1>k:
-            self.quick_select(nums,k,start,r-1)
-        else:
-            self.quick_select(nums,k-(l-start),r+1,end)
-
     def findKthLargest(self, nums, k: int) -> int:
-        self.quick_select(nums,k,0,len(nums)-1)
-        return nums[k-1]
-    def findKthLargest2(self, nums, k: int) -> int:
         def quick_select(k_i,left,right):
             if left >= right:
                 return nums[left]
@@ -63,11 +36,6 @@ if __name__ == '__main__':
     n = [3, 2, 1, 5, 6, 4]
     k= 2
     print('1',s.findKthLargest(n,k),n)
-    n = [3, 2, 1, 5, 6, 4]
-    print('2',s.findKthLargest2(n,k),n)
     n = [3, 2, 3, 1, 2, 4, 5, 5, 6]
     k = 4
     print('1',s.findKthLargest(n,k),n)
-    n = [3, 2, 3, 1, 2, 4, 5, 5, 6]
-    print('2',s.findKthLargest2(n,k),n)
-
