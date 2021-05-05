@@ -24,11 +24,6 @@ class Solution:
         """
         #时间复杂度O(n)
         if not s:return None
-        # n = len(s)
-        # for i in range(n//2):
-        #     j = -1-i
-        #     s[i], s[j] = s[j],s[i]
-        # return s
         left,right = 0,len(s)-1
         while left < right:
             s[left],s[right]=s[right],s[left]
