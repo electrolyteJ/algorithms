@@ -87,9 +87,6 @@ class Solution:
 
         return divide(0, len(nums)-1).msum
          
-
-
-
 if __name__ == '__main__':
     s=Solution()
     nums=[-2, 1, -3, 4, -1, 2, 1, -5, 4]

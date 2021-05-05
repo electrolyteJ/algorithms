@@ -25,8 +25,6 @@
 
 输入：folder = ["/a/b/c","/a/b/d","/a/b/ca"]
 输出：["/a/b/c","/a/b/ca","/a/b/d"]
- 
-
 提示：
 
 1 <= folder.length <= 4 * 10^4
@@ -36,9 +34,35 @@ folder[i] 总是以字符 / 起始
 每个文件夹名都是唯一的
 
 '''
+# class Trie:
+#     def __init__(self):
+#         self.sub = collections.defaultdict(Trie)
+#         self.index = -1
+
+
+# class Solution:
+#     def removeSubfolders(self, folder: List[str]) -> List[str]:
+#         self.root = Trie()
+#         for i in range(len(folder)):
+#             cur = self.root
+#             for c in folder[i]:
+#                 cur = cur.sub[c]
+#             cur.index = i
+#         return self.bfs(self.root, folder)
+
+#     def bfs(self, trie: Trie, folder: List[str]) -> List[str]:
+#         q, ans = [trie], []
+#         for t in q:
+#             if t.index >= 0:
+#                 ans.append(folder[t.index])
+#             for c in t.sub.keys():
+#                 if '/' != c or t.index < 0:
+#                     q.append(t.sub.get(c))
+#         return ans
 class Solution:
     def removeSubfolders(self, folder):
         if not folder:return []
+        #时间复杂度O(nlogn)
         folder.sort()
         pre=set()
         #时间复杂度O(n*s)
