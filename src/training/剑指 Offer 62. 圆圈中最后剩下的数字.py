@@ -19,8 +19,6 @@
 1 <= n <= 10^5
 1 <= m <= 10^6
 '''
-
-
 class Solution:
     def lastRemaining(self, n: int, m: int) -> int:
         f =0

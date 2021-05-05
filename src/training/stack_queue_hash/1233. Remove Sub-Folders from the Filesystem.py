@@ -36,8 +36,6 @@ folder[i] 总是以字符 / 起始
 每个文件夹名都是唯一的
 
 '''
-
-
 class Solution:
     def removeSubfolders(self, folder):
         if not folder:return []

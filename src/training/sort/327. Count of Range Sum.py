@@ -26,8 +26,6 @@
 0 <= nums.length <= 10^4
 '''
 from typing import List
-
-
 class Solution:
     def countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:
         def merge_sort(l, r):

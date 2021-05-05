@@ -14,7 +14,6 @@
 输入: s1= "ab" s2 = "eidboaoo"
 输出: False
  
-
 提示：
 
 输入的字符串只包含小写字母
@@ -42,6 +41,24 @@ class Solution:
                 lookup[s2[left]] += 1
                 left += 1
             if right - left == len(s1):
+                return True
+        return False
+    def checkInclusion2(self, s1: str, s2: str) -> bool:
+        import collections
+        lookup = collections.defaultdict(int)
+        for c in s1:
+            lookup[c] += 1
+        l = r = count = 0
+        while r < len(s2):
+            if lookup[s2[r]] > 0:
+                lookup[s2[r]] -= 1
+                count += 1
+                r += 1
+            else:
+                lookup[s2[l]] += 1
+                count -= 1
+                l += 1
+            if count == len(s1):
                 return True
         return False
 

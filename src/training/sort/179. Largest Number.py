@@ -3,7 +3,6 @@
 给定一组非负整数 nums，重新排列它们每个数字的顺序（每个数字不可拆分）使之组成一个最大的整数。
 
 注意：输出结果可能非常大，所以你需要返回一个字符串而不是整数。
-
 示例 1：
 
 输入：nums = [10,2]
@@ -20,20 +19,15 @@
 
 输入：nums = [10]
 输出："10"
- 
-
 提示：
 
 1 <= nums.length <= 100
 0 <= nums[i] <= 109
 '''
-
-
 class Solution:
     def largestNumber(self, nums) -> str:
         def quick_sort(strs,l,r):
-            if l >= r:
-                return
+            if l >= r:return
             i,j=l,r
             pivot = strs[l]
             while i<j:
@@ -48,7 +42,7 @@ class Solution:
             quick_sort(strs,i+1,r)
         strs=[str(num) for num in nums]
         quick_sort(strs,0,len(strs)-1)
-        return '0' if strs[0] == '0' else ''.join(strs)
+       return ''.join(strs).lstrip('0') or '0'
 if __name__ =='__main__':
     s = Solution()
     nums = [10, 2]

@@ -55,9 +55,34 @@ class Solution:
             if right-left == len(p):
                 ret.append(left)
         return ret
+    def findAnagrams2(self, s: str, p: str):
+        import collections
+        lookup = collections.defaultdict(int)
+        for c in p:
+            lookup[c] +=1
+        l = r = 0
+        ret = []
+        count=0
+        while r < len(s):
+            if lookup[s[r]] >0:
+                lookup[s[r]] -=1
+                count +=1
+                r +=1
+            else:
+                lookup[s[l]] +=1
+                count -=1
+                l +=1
+
+            if count == len(p):
+                ret.append(l)
+        return ret
+
+
 if __name__=='__main__':
     ss = Solution()
     s="cbaebabacd";p="abc"
     print('1',ss.findAnagrams(s,p))
+    print('2', ss.findAnagrams2(s, p))
     s="abab";p="ab"
     print('1',ss.findAnagrams(s,p))
+    print('2', ss.findAnagrams2(s, p))

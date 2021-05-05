@@ -19,21 +19,22 @@ from src.common.tree import create_treenode
 from src.common.list import ListNode
 class Solution:
     def treeToDoublyList(self, root):
-        def dfs(cur):
-            if not cur: return
-            dfs(cur.left) # 递归左子树
-            if self.pre: # 修改节点引用
-                self.pre.right, cur.left = cur, self.pre
-            else: # 记录头节点
-                self.head = cur
-            self.pre = cur # 保存 cur
-            dfs(cur.right) # 递归右子树
-        
-        if not root: return
-        self.pre = None
+        if not root:return
+        def dfs(root):
+            nonlocal pre, head
+            if not root:
+                return
+            dfs(root.left)
+            if pre:
+                pre.right, root.left = root, pre
+            else:
+                head = root
+            pre = root
+            dfs(root.right)
+        pre = head = None
         dfs(root)
-        self.head.left, self.pre.right = self.pre, self.head
-        return self.head
+        head.left, pre.right = pre, head
+        return head
 
 if __name__ == '__main__':
     s = Solution()

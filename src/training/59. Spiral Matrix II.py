@@ -17,8 +17,6 @@
 
 1 <= n <= 20
 '''
-
-
 class Solution:
     def generateMatrix(self, n: int):
         matrix = [[0]*n for _ in range(n)]

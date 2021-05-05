@@ -24,8 +24,6 @@ n == matrix[i].length
 每列的所有元素从上到下升序排列
 -109 <= target <= 109
 '''
-
-
 class Solution:
 
     def searchMatrix(self, matrix, target: int) -> bool:#二分查找

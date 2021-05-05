@@ -37,28 +37,22 @@ nums.length == k
 -105 <= nums[i][j] <= 10^5
 nums[i] 按非递减顺序排列
 '''
-
-
 class Solution:
-    def smallestRange1(self, nums):  #小顶堆
-        if not nums: return None
+    def smallestRange1(self, nums):  # 小顶堆
+        import heapq
+        pq = [(row[0], i, 0) for i, row in enumerate(nums)]
+        heapq.heapify(pq)
         #时间复杂度O(nklogk) 空间复杂度取决于堆大小 O(k)
-        import queue
-        pq = queue.PriorityQueue()
-        max_value = 0
-        left, right = 0, float('inf')
-        for i in range(len(nums)):
-            pq.put((nums[i][0],i, 0))
-            max_value = max(max_value, nums[i][0])
-        while True:
-            min_value,min_i, min_ii = pq.get()
-            if max_value - min_value < right - left:
-                left, right = min_value, max_value
-            min_ii +=1
-            if min_ii >= len(nums[min_i]):break
-            pq.put((nums[min_i][min_ii],min_i,min_ii))
-            max_value = max(max_value,nums[min_i][min_ii])
-        return [left,right]
+        ans = -1e9, 1e9
+        right = max(row[0] for row in nums)
+        while pq:
+            left, r, c = heapq.heappop(pq)
+            if right - left < ans[1] - ans[0]:
+                ans = left, right
+            if c + 1 == len(nums[r]):
+                return ans
+            right = max(right, nums[r][c+1])
+            heapq.heappush(pq, (nums[r][c+1], r, c+1))
 
     def smallestRange2(self, nums):  #滑动窗口
         if not nums: return None
@@ -98,7 +92,7 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    # nums = [[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]]
+    nums = [[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]]
     print('1', s.smallestRange1(nums))
     print('2', s.smallestRange2(nums))
     nums = [[1, 2, 3], [1, 2, 3], [1, 2, 3]]

@@ -27,8 +27,6 @@
 
 进阶：你可以实现时间复杂度为 O(logN) 的解决方案吗？
 '''
-
-
 class Solution:
     def findPeakElement1(self, nums) -> int:
         #时间复杂度O(n)

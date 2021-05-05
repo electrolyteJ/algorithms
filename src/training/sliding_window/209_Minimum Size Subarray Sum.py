@@ -17,14 +17,11 @@
 
 输入：target = 11, nums = [1,1,1,1,1,1,1,1]
 输出：0
-
 提示：
 
 1 <= target <= 109
 1 <= nums.length <= 105
 1 <= nums[i] <= 105
- 
-
 进阶：
 
 如果你已经实现 O(n) 时间复杂度的解法, 请尝试设计一个 O(n log(n)) 时间复杂度的解法。
@@ -46,21 +43,19 @@ class Solution:
                 left += 1
         return min_len if min_len != float('inf') else 0
 
-    def minSubArrayLen2(self, target: int, nums) -> int:
+    def minSubArrayLen2(self, target: int, nums) -> int:#前缀和+二分查找
         #O(n log(n))二分查找  空间复杂度O(n)
         if not nums: return 0
         import bisect
         min_len=float('inf')
         n = len(nums)
-        sums = [0]*(n+1)
+        prefix_sum = [0]*(n+1)
         for i in range(n):
-            sums[i+1] = sums[i]+nums[i]
-        for i in range(1,n+1):
-            t = target+sums[i-1]
-            bound = bisect.bisect_left(sums,t)
-            if bound !=n+1:
-                min_len = min(min_len,bound -(i-1))
-
+            prefix_sum[i+1] = prefix_sum[i]+nums[i]
+        for i in range(n):
+            j = bisect.bisect_left(prefix_sum, target+prefix_sum[i])
+            if j !=n+1:
+                min_len = min(min_len,j -i)
         return min_len if min_len != float('inf') else 0
 
 

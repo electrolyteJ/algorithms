@@ -26,8 +26,7 @@ class Solution:
                 return 0
         strs = [str(num) for num in nums]
         strs.sort(key=functools.cmp_to_key(sort_rule))
-        return '0' if strs[0] == '0' else ''.join(strs)
-
+        return ''.join(strs)
     def minNumber2(self, nums) -> str:
         #时间复杂度O(n logn) 空间复杂度O(n) 
         def quick_sort(strs, l, r):
@@ -48,7 +47,7 @@ class Solution:
             quick_sort(strs, i+1, r)
         strs = [str(num) for num in nums]
         quick_sort(strs, 0, len(strs)-1)
-        return '0' if strs[0] == '0' else ''.join(strs)
+        return ''.join(strs)
 
 
 if __name__ == '__main__':
