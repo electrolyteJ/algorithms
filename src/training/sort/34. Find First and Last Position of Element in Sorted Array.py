@@ -29,11 +29,11 @@ import bisect
 class Solution:
     def searchRange(self, nums, target: int):
         n = len(nums)
-        def search(low):
+        def search(lower):
             left, right = 0, n-1
             while left <= right:
                 mid = (left+right)//2
-                if nums[mid] > target or (low and nums[mid] == target):
+                if nums[mid] > target or (lower and nums[mid] == target):
                     right = mid-1
                 else:
                     left = mid+1

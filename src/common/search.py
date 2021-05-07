@@ -8,6 +8,7 @@ if __name__ == "__main__":
 
     target = 4
     left, right = 0, len(l) - 1
+    #如果left <= right那么mid可以不算进去，不然容易形成死循环；如果left < right则一定要将mid算进去
     while left <= right:
         #如果left和right代表的是一个整数，就有必要使用后面一种写法防止整数越界
         #mid = (left + right) // 2
