@@ -149,17 +149,14 @@ class Solution:
             sign = -1
         ret = 0
         max_int = 2**31-1
-        min_int = -pow(2, 31)#由于python将负数
-        while index < n:
-            c = s[index]
-            c_int = ord(c)-ord('0')
-            if not c.isdigit():
-                break
+        min_int = -pow(2, 31)
+        while index < n and s[index].isnumeric():
+            c_int = (ord(s[index])-ord('0'))*sign
             if ret > max_int//10 or (ret == max_int//10 and c_int > max_int % 10):
                 return max_int
-            if ret < int(min_int/10) or (ret == int(min_int/10) and -c_int < min_int % (-10)):
+            if ret < int(min_int/10) or (ret == int(min_int/10) and c_int < min_int % (-10)):
                 return min_int
-            ret = ret*10+sign*c_int
+            ret = ret*10+c_int
             index += 1
         return ret
 
