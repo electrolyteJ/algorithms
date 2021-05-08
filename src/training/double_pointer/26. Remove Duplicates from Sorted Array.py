@@ -37,8 +37,6 @@ for (int i = 0; i < len; i++) {
 -104 <= nums[i] <= 104
 nums 已按升序排列
 '''
-
-
 class Solution:
     def removeDuplicates(self, nums) -> int:
         n = len(nums)

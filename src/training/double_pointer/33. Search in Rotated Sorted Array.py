@@ -27,12 +27,8 @@
 nums 中的每个值都 独一无二
 nums 肯定会在某个点上旋转
 -10^4 <= target <= 10^4
- 
-
-进阶：你可以设计一个时间复杂度为 O(log n) 的解决方案吗？
+ 进阶：你可以设计一个时间复杂度为 O(log n) 的解决方案吗？
 '''
-
-
 class Solution:
     def search(self, nums, target: int) -> int:
         if not nums:return -1

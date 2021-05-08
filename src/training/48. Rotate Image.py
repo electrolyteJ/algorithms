@@ -21,8 +21,6 @@
 
 输入：matrix = [[1,2],[3,4]]
 输出：[[3,1],[4,2]]
- 
-
 提示：
 
 matrix.length == n
@@ -31,8 +29,6 @@ matrix[i].length == n
 -1000 <= matrix[i][j] <= 1000
 
 '''
-
-
 class Solution:
 
     def rotate(self, matrix) -> None:
