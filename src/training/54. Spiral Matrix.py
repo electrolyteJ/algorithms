@@ -8,16 +8,12 @@
 示例 2：
 输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
 输出：[1,2,3,4,8,12,11,10,9,5,6,7]
-
 提示：
-
 m == matrix.length
 n == matrix[i].length
 1 <= m, n <= 10
 -100 <= matrix[i][j] <= 100
 '''
-
-
 class Solution:
     def spiralOrder(self, matrix):
         if not matrix or not matrix[0]:

@@ -54,7 +54,7 @@ class Solution:
         #时间复杂度O(logx)
         while x:
             pop = x % 10 if x>=0 else x%(-10)
-            x = x // 10 if x >= 0 else int(x / 10)  # 负数向上取整，正数向下取整
+            x = x // 10 if x >= 0 else int(x / 10)  # python负数向上取整，正数向下取整
             if recv > max_int//10 or (recv == max_int//10 and pop > max_int % 10):
                 return 0
             if recv < int(min_int/10) or (recv == int(min_int/10) and pop < min_int % (-10)):
