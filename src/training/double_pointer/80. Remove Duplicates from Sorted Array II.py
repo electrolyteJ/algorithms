@@ -45,7 +45,7 @@ class Solution:
             if count <=2:
                 nums[j] = nums[i]
                 j +=1
-        return j+1
+        return j
 if __name__=='__main__':
     s = Solution()
     nums = [1, 1, 1, 2, 2, 3]
