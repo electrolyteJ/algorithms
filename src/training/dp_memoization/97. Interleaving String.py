@@ -23,30 +23,26 @@ t = t1 + t2 + ... + tm
 输出：true
 
 提示：
-
 0 <= s1.length, s2.length <= 100
 0 <= s3.length <= 200
 s1、s2、和 s3 都由小写英文字母组成
 '''
-
-
 class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
         m,n = len(s1),len(s2)
-        if m+n !=len(s3):
-            return False
+        if m+n !=len(s3):return False
         dp=[[False]*(n+1) for _ in range(m+1)]
         dp[0][0]=True
         #时间复杂度O(mn) 空间复杂度O(mn)
         for i in range(m+1):
             for j in range(n+1):
-                p=j+i-1
-                if i>0:
-                    dp[i][j] = dp[i-1][j] and s1[i-1] == s3[p]
-                if j>0:
-                    dp[i][j] = dp[i][j] or (dp[i][j-1] and s2[j-1] == s3[p])
+                p=j+i # s3中的i+j个字符
+                if i>=1:
+                    dp[i][j] = dp[i-1][j] and s1[i-1] == s3[p-1]
+                if j>=1:
+                    dp[i][j] |=dp[i][j-1] and s2[j-1] == s3[p-1]
 
-        return dp[m][n]
+        return dp[-1][-1]
 
     def isInterleave2(self, s1: str, s2: str, s3: str) -> bool:#dp空间优化
         m, n = len(s1), len(s2)

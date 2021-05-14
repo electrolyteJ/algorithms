@@ -39,8 +39,6 @@ s 可能为空，且只包含从 a-z 的小写字母。
 p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。
 保证每次出现字符 * 时，前面都匹配到有效的字符
 '''
-
-
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
         m,n=len(s),len(p)
@@ -53,12 +51,12 @@ class Solution:
         for i in range(m+1):
             for j in range(1,n+1):
                 if p[j-1]=='*':
-                    dp[i][j] |= dp[i][j-2]
+                    dp[i][j] = dp[i][j-2]
                     if match(i,j-1):
                         dp[i][j] |=dp[i-1][j]
                 else:
                     if match(i,j):
-                        dp[i][j] |=dp[i-1][j-1]
+                        dp[i][j] =dp[i-1][j-1]
         return dp[-1][-1]
 if __name__ =='__main__':
     ss = Solution()

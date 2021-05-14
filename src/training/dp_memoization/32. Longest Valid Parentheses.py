@@ -23,8 +23,6 @@
 s[i] 为 '(' 或 ')'
 
 '''
-
-
 class Solution:
     def longestValidParentheses(self, s: str) -> int:  # dp
         # dp[i] 以i下标的最长有效括号子串的长度
