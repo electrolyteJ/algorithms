@@ -23,6 +23,7 @@ s 仅由数字和英文字母（大写和/或小写）组成
 '''
 class Solution:
     def longestPalindrome1(self, s: str) -> str:#dp
+        #dp[i][j] 第i-j个字符组成的串是否是回文字符
         #时间复杂度O(n^2) 空间复杂度O(n)
         n =len(s)   
         dp = [[False]*n for _ in range(n)]

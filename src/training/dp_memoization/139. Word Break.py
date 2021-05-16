@@ -21,7 +21,6 @@
 from typing import List
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:  #dp
-        if not s:return True
         # dp[i] [0,i-1]组成的字符串能否被。。。
         # 时间复杂度O(n*n) 空间复杂度O(n)
         n = len(s)
