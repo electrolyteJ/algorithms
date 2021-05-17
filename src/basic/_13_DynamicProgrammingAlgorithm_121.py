@@ -23,9 +23,9 @@
 class Solution:
     # 最多交易一次
     def maxProfit(self, prices) -> int:
-        if not prices:
-            return 0
+        if not prices:return 0
         ret = 0
+        #profit[i][j]  第i天手上持股状态j时，持有的现金数
         profit = [[0 for i in range(3)] for i in range(len(prices))]
         # 没有股票         买入股票       卖出股票
         profit[0][0], profit[0][1], profit[0][2] = 0, -prices[0], 0
@@ -33,9 +33,9 @@ class Solution:
             profit[i][0] = profit[i-1][0]
             profit[i][1] = max(profit[i-1][1], profit[i-1][0]-prices[i])
             profit[i][2] = profit[i-1][1] + prices[i]
-            ret = max(ret, profit[i][0], profit[i][1], profit[i][2])
+            # ret = max(ret, profit[i][0], profit[i][1], profit[i][2])
             # 如果为1的话说明手上游没有出售的股票，正常是不会考虑这个的，最后都会将股票卖出，所以可以去掉 profit[i][1],为了工整也可以加入
-            # ret = max(ret, profit[i][0], profit[i][2])
+            ret = max(ret, profit[i][2])
         return ret
 
 if __name__ == '__main__':
