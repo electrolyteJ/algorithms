@@ -41,6 +41,7 @@ class Solution:
         return None
 
     def detectCycle2(self, head: ListNode) -> ListNode:  # 快慢指针
+        #时间复杂度N(n)
         fast = slow = head
         while slow and fast and fast.next:
             slow = slow.next
@@ -51,7 +52,6 @@ class Solution:
                     slow2 = slow2.next
                     slow = slow.next
                 return slow
-        return None
 
 
 def main():

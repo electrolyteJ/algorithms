@@ -24,33 +24,28 @@ from src.common.list import ListNode, create_listnode
 
 
 class Solution:  # linked list :1->2->3->4->5->None
-    # 翻转一个子链表，并且返回新的头与尾
-    def reverse(self, head: ListNode, tail: ListNode):
-        cur_node = head
-        ret_node = tail
-        while cur_node != tail:
-            cur_node.next,ret_node,cur_node = ret_node,cur_node,cur_node.next
-
-        return ret_node, head
-
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
-        dummy_head = ListNode(0)
-        dummy_head.next = head
-        pre = dummy_head
+        # 翻转一个子链表，并且返回新的头与尾
+        def reverse(head, tail):
+            if not head:return
+            cur = head
+            new_head = tail
+            while cur != tail:
+                cur.next, cur, new_head = new_head, cur.next, cur
+            return new_head, head
 
+        dummy_head = ListNode(-1)
+        dummy_head.next = head
+        hair = dummy_head
         while head:
-            dummy_tail = pre
+            foot = hair
             for _ in range(k):
-                dummy_tail = dummy_tail.next
-                if not dummy_tail:
+                foot = foot.next
+                if not foot:
                     return dummy_head.next
-            tail = dummy_tail.next
-            # print('before', head, dummy_tail)
-            head, dummy_tail = self.reverse(head, tail)
-            # print('after', head, dummy_tail)
-            # 把子链表重新接回原链表
-            pre.next,head,pre = head,tail,dummy_tail
-            # pre.next,head,dummy_tail.next,pre = head,tail,tail,dummy_tail
+            tail = foot.next
+            head, foot = reverse(hair.next, tail)
+            hair.next, hair = head, foot
         return dummy_head.next
 
 

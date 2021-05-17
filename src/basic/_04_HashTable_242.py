@@ -16,8 +16,6 @@
 进阶:
 如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？
 '''
-
-
 class Solution:
     def isAnagram1(self, s: str, t: str) -> bool:
         # 时间复杂度O(nlogn)
@@ -42,14 +40,12 @@ class Solution:
             return False
         table = dict()
         # 时间复杂度O(n) 空间复杂度O(S)
-
         for e in s:
-            table[ord(e)] = table.get(ord(e), 0)+1
+            table[e] = table.get(e, 0)+1
         for e in t:
-            table[ord(e)] = table.get(ord(e), 0)-1
-            if table[ord(e)] < 0:
+            table[e] = table.get(e, 0)-1
+            if table[e] < 0:
                 return False
-
         return True
 
 

@@ -27,8 +27,6 @@
      根节点的值为 5 ，但是其右子节点值为 4 。
 '''
 from src.common.tree import create_treenode
-
-
 class Solution:
     def inorder(self, root):
         # O(n)

@@ -50,6 +50,7 @@ class KthLargest:
         if len(self.nums) < self.k:
             heapq.heappush(self.nums, val)
         elif self.nums[0] < val:
+            #先pop在push
             heapq.heappushpop(self.nums, val)
         return self.nums[0]
 

@@ -73,11 +73,8 @@ class Solution:
         # O(nlog k)
         for i in range(k, len(nums)):
             heapq.heappush(q, (-nums[i], i))
-            print(i-k, (-nums[i], i), q)
             while q[0][1] <= i-k:  # 通过i-k算出滑动窗口的左边界index，而处于maxheap的顶部值的index不能在边界之外
-                # print('before', q)
                 heapq.heappop(q)
-                # print('after', q)
             ret.append(-q[0][0])
         return ret
 
