@@ -14,16 +14,12 @@
 输入：x = 2.00000, n = -2
 输出：0.25000
 解释：2-2 = 1/22 = 1/4 = 0.25
- 
-
 提示：
 
 -100.0 < x < 100.0
 -231 <= n <= 231-1
 -104 <= xn <= 104
 '''
-
-
 class Solution:
     def myPow1(self, x: float, n: int) -> float:
         # O(log n)
@@ -33,7 +29,7 @@ class Solution:
             return 1/self.myPow1(x, -n)
         if n % 2:  # n为奇数
             return self.myPow1(x, n-1)*x
-        return self.myPow1(x*x, n/2)
+        return self.myPow1(x*x, n//2)
 
     def myPow2(self, x: float, n: int) -> float:
         # O(logn)
@@ -45,7 +41,6 @@ class Solution:
             if n & 1:  # n为奇数
                 pow *= x
             x *= x
-            print(n, n & 1)
             n >>= 1
         return pow
 

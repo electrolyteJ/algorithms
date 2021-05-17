@@ -1,26 +1,16 @@
 '''
 169. 多数元素
 给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素。
-
 你可以假设数组是非空的，并且给定的数组总是存在多数元素。
-
 示例 1：
-
 输入：[3,2,3]
 输出：3
 示例 2：
-
 输入：[2,2,1,1,1,2,2]
 输出：2
-
-
-进阶：
-
-尝试设计时间复杂度为 O(n)、空间复杂度为 O(1) 的算法解决此问题。
+进阶：尝试设计时间复杂度为 O(n)、空间复杂度为 O(1) 的算法解决此问题。
 '''
 import collections
-
-
 class Solution:
 
     def majorityElement1(self, nums) -> int:  # 暴力
@@ -38,36 +28,34 @@ class Solution:
                 max_value = counter
                 majority_e=e1
         return majority_e
-    def majorityElement2(self, nums) -> int:
+    def majorityElement2(self, nums) -> int:#hash
         # 时间复杂度O(n) 空间复杂度O(n)
         # counts = collections.Counter(nums)
         counts = dict()
         for e in nums:
             counts[e] = counts.get(e, 0) + 1
-        # return max(counts.keys(), key=counts.get)
         return max(counts.keys(), key=counts.get)
 
-    def majorityElement3(self, nums) -> int:
+    def majorityElement3(self, nums) -> int:#sort
         # 时间复杂度O(nlog n) 空间复杂度O(log n)
         new_nums = sorted(nums)
         return new_nums[len(nums)//2]
 
     def majorityElement4(self, nums) -> int:#分治
-        def majority_e_rec(lo,hi):
-            if lo==hi :
-                return nums[lo]
-            mid = (hi-lo)//2+lo
-            left = majority_e_rec(lo,mid)
-            right = majority_e_rec(mid+1,hi)
-            if left == right:
-                return left
-            left_count = sum(1 for i in range(lo, hi + 1) if nums[i] == left)
-            right_count = sum(1 for i in range(lo,hi+1) if nums[i] == right)
-            return left if left_count > right_count else right
+        #时间复杂度O(nlogn) 空间复杂度O(logn)
+        def majority(l, r):
+            if l >= r:
+                return nums[l]
+            mid = (l+r) >> 1
+            left_majority = majority(l, mid)
+            right_majority = majority(mid+1, r)
 
-        #O(nlogn)
-        return majority_e_rec(0,len(nums)-1)
-
+            if left_majority == right_majority:
+                return left_majority
+            left_count = sum(1 for i in range(l, r+1) if nums[i] == left_majority)
+            right_count = sum(1 for i in range(l, r+1) if nums[i] == right_majority)
+            return left_majority if left_count > right_count else right_majority
+        return majority(0, len(nums)-1)
 if __name__ == "__main__":
     s = Solution()
     l = [3, 2, 3]

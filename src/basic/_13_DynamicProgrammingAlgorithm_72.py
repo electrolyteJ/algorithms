@@ -25,18 +25,14 @@ inention -> enention (将 'i' 替换为 'e')
 enention -> exention (将 'n' 替换为 'x')
 exention -> exection (将 'n' 替换为 'c')
 exection -> execution (插入 'u')
- 
-
 提示：
-
 0 <= word1.length, word2.length <= 500
 word1 和 word2 由小写英文字母组成
 '''
-
-
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
         m,n = len(word1),len(word2)
+        #dp[i][j] word1的前i个字符与word2的前j个字符的编辑距离
         #时间复杂度O(mn) 空间复杂度O(mn)
         dp =[[0]*(n+1) for _ in range(m+1)]
         for i in range(m+1):dp[i][0]=i
