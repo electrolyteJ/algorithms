@@ -17,3 +17,7 @@ if __name__ =='__main__':
     od['c'] =0 
     od['f'] =2 
     print(od)
+
+    d = collections.defaultdict(int)
+    d['1'] =1
+    print(d['1'],d['2'],d.get('3',4))
