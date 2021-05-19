@@ -12,7 +12,8 @@
 '''
 
 class Solution:
-    def quick_sort(self,nums,start,end):
+    #可以使用归并排序和随机化快排
+    def sortArray(self, nums):
         def merge_sort(l, r):
             if l >= r:
                 return

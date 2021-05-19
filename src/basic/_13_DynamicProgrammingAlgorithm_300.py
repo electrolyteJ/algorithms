@@ -31,26 +31,34 @@ class Solution:
             ret = max(ret,dp[i])
         return ret
 
-    def lengthOfLIS2(self, nums) -> int:
-        lis=[]
+    def lengthOfLIS2(self, nums) -> int:  # 贪心+二分
+        def bisect_left(a, target):
+            l,r = 0,len(a)-1
+            while l <= r:
+                mid = (r+l) >> 1
+                if a[mid] >= target:
+                    r = mid-1
+                else:
+                    l = mid+1
+            return l
+        ret = []#创建一个数组保证单调性，虽然保存的结果不一定是对的
         for n in nums:
-            if not lis or n > lis[-1]:
-                lis.append(n)
-            else:
-                l, r = 0, len(lis) - 1
-                loc = r
-                while l <= r:
-                    mid = (l + r) // 2
-                    if lis[mid] >= n:
-                        loc = mid
-                        r = mid - 1
-                    else:
-                        l = mid + 1
-                lis[loc] = n
-        return len(lis)
+            if not ret or n > ret[-1]:
+                ret.append(n)
+            else:  # 通过二分查找到目标值在递增数组中的位置
+                pos = bisect_left(ret, n)
+                ret[pos] = n
+        return len(ret)
 
 
 if __name__ == '__main__':
     s = Solution()
-    nums = [10, 9, 2, 5, 3, 7, 101, 18]
-    print('1', s.lengthOfLIS1(nums))  # 4
+    nums = [10, 9, 2, 5, 3, 7, 101, 1]
+    print('1', s.lengthOfLIS1(nums))  # 4  [2,3,7,101] or [2, 3, 7, 18]
+    print('2', s.lengthOfLIS2(nums))  # 4
+    nums = [0, 1, 0, 3, 2, 3]
+    print('1', s.lengthOfLIS1(nums))  # 4  [0, 1, 2, 3]
+    print('2', s.lengthOfLIS2(nums))  # 4
+    nums = [7, 7, 7, 7, 7, 7, 7]
+    print('1', s.lengthOfLIS1(nums))  # 1  [7]
+    print('2', s.lengthOfLIS2(nums))  # 1 

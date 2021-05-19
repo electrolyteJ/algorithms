@@ -24,10 +24,18 @@ class Solution:
             while cur:
                 cur.next,cur,ret = ret,cur.next,cur
             return ret
-        frist_of_end,fast=head,head
-        while fast.next and fast.next.next:
-            frist_of_end,fast=frist_of_end.next,fast.next.next
-        frist,sec = head,reverse(frist_of_end.next)
+        mid = fast=head
+        # 1   3   1      1   2    2    1
+        #    end            end 
+        # while fast.next and fast.next.next:
+            # frist_of_end,fast=frist_of_end.next,fast.next.next
+        #1   3   1     1   2    2    1
+        #       mid            mid
+        while fast:
+            mid, fast = mid.next, fast.next
+            if fast:
+                fast = fast.next
+        frist, sec = head, reverse(mid)
         while sec:
             if frist.value !=sec.value:
                 return False
@@ -36,7 +44,7 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    head = create_listnode([1,2,])
+    head = create_listnode([1,2,1])
     print(s.isPalindrome(head))
     head = create_listnode([1,2,2,1])
     print(s.isPalindrome(head))

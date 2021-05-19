@@ -35,10 +35,10 @@
 '''
 class Status:
     def __init__(self,lsum,rsum,msum,isum):
-        self.lsum = lsum
-        self.rsum = rsum
-        self.msum = msum
-        self.isum = isum
+        self.lsum = lsum# l,r内以l为左端点的最大字段和
+        self.rsum = rsum# l,r内以r为右端点的最大子段和
+        self.msum = msum# l,r 内最大子段和
+        self.isum = isum# l,r区间最和
 
 class Solution:
     def maxSubArray(self, nums) -> int:  # dp
