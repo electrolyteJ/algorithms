@@ -32,21 +32,20 @@ class MedianFinder:
         """
         initialize your data structure here.
         """
-        self.minheap = []
-        self.maxheap = []
-        # heapq.heapify(self.minheap)
-        # heapq.heapify(self.maxheap)
+        self.small_heap = [] #堆顶元素为全堆最大值
+        self.large_heap = [] #堆顶元素为全堆最小值
+        # heapq.heapify(self.large_heap)
+        # heapq.heapify(self.small_heap)
 
     #时间复杂度O(logn)
     def addNum(self, num: int) -> None:
-        heapq.heappush(self.minheap, num)
-        heapq.heappush(self.maxheap, -heapq.heappop(self.minheap))
-        if len(self.minheap) < len(self.maxheap):
-            n = -heapq.heappop(self.maxheap)
-            heapq.heappush(self.minheap,n)
+        heapq.heappush(self.large_heap, num)
+        heapq.heappush(self.small_heap, -heapq.heappop(self.large_heap))
+        if len(self.large_heap) < len(self.small_heap):#large堆 始终比 small堆多一个元素
+            heapq.heappush(self.large_heap, -heapq.heappop(self.small_heap))
 
     def findMedian(self) -> float:
-        return (self.minheap[0]-self.maxheap[0])/2 if len(self.minheap) == len(self.maxheap) else self.minheap[0]
+        return (self.large_heap[0]-self.small_heap[0])/2 if len(self.large_heap) == len(self.small_heap) else self.large_heap[0]
 
 class MedianFinder2:
 

@@ -20,15 +20,12 @@
 -109 <= nums[i] <= 109
 '''
 from typing import List
-
-
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         s = set(nums)
         max_len = 0
         for num in nums:
-            if num-1 in s:
-                continue
+            if num-1 in s:continue
             cur_len = 1
             cur_num = num+1
             while cur_num in s:

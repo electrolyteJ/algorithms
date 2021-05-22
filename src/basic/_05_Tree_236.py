@@ -23,22 +23,19 @@
 所有节点的值都是唯一的。
 p、q 为不同节点且均存在于给定的二叉树中。
 '''
-
 from src.common.tree import create_treenode
-
-
 class Solution:
     def lowestCommonAncestor(self, root, p, q):
         #时间复杂度O(n) 空间复杂度O(n)
-        if root is None or p == root or q == root:
+        if not root or root == p or root == q:return root
+        p_q_exist_in_left = self.lowestCommonAncestor(root.left, p, q)
+        p_q_exist_in_right = self.lowestCommonAncestor(root.right, p, q)
+        if p_q_exist_in_left and p_q_exist_in_right:
             return root
-        left_subtree = self.lowestCommonAncestor(root.left, p, q)
-        right_subtree = self.lowestCommonAncestor(root.right, p, q)
-        if not left_subtree:
-            return right_subtree
+        elif not p_q_exist_in_left:
+            return p_q_exist_in_right
         else:
-            return left_subtree  if not right_subtree else root
-
+            return p_q_exist_in_left
 
 if __name__ == "__main__":
     s = Solution()
@@ -49,5 +46,4 @@ if __name__ == "__main__":
     print(s.lowestCommonAncestor(tree_node, p, q).value)
     p = tree_node[1]
     q = tree_node[8]
-    print(q)
     print(s.lowestCommonAncestor(tree_node, p, q).value)

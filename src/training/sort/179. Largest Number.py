@@ -42,7 +42,7 @@ class Solution:
             quick_sort(strs,i+1,r)
         strs=[str(num) for num in nums]
         quick_sort(strs,0,len(strs)-1)
-       return ''.join(strs).lstrip('0') or '0'
+        return ''.join(strs).lstrip('0') or '0'
 if __name__ =='__main__':
     s = Solution()
     nums = [10, 2]
