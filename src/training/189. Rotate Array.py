@@ -26,8 +26,6 @@
 0 <= k <= 105
 
 '''
-
-
 class Solution:
     def rotate1(self, nums, k: int) -> None:
         n = len(nums)

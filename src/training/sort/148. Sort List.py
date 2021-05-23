@@ -43,8 +43,8 @@ class Solution:
             if head .next == tail:
                 head.next = None
                 return head
-            #1  5   3   4  0     4  2   1   3
-            #      mid                 mid
+            #1  5   3   4  0->tail   4  2   1   3->tail
+            #          mid                  mid
             slow = fast = head#找中间点
             while fast != tail:
                 slow, fast = slow.next, fast.next
