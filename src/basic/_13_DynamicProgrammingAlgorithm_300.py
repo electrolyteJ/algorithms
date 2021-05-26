@@ -29,7 +29,7 @@ class Solution:
             for j in range(i):
                 if nums[j] <nums[i]:
                     dp[i]=max(dp[i],dp[j]+1)
-            ret = max(ret,dp[i])
+                ret = max(ret,dp[i])
         return ret
 
     def lengthOfLIS2(self, nums) -> int:  # 贪心+二分
