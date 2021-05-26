@@ -80,18 +80,18 @@ class Solution:
         q = []
         for l in lists:
             if l:
-                heapq.heappush(q, S(l.value, l))
+                heapq.heappush(q, E(l.value, l))
         dummy_head = ListNode(-1)
         tail = dummy_head
         while q:
-            s = heapq.heappop(q)
-            tail.next, tail = s.node, s.node
-            if s.node.next:
-                heapq.heappush(q, S(s.node.next.value, s.node.next))
+            e = heapq.heappop(q)
+            tail.next, tail = e.node, e.node
+            if e.node.next:
+                heapq.heappush(q, E(e.node.next.value, e.node.next))
         return dummy_head.next
 
 
-class S:
+class E:
     def __init__(self, val, node):
         self.val = val
         self.node = node
