@@ -19,13 +19,12 @@
 '''
 class Solution:
     def toHex(self, num: int) -> str:
-        if num == 0:return '0'
         hex_table = '0123456789abcdef'
         ret = ''
         for _ in range(8):
             ret = hex_table[num & 0b1111]+ret
             num = num >> 4
-        return ret.lstrip('0')
+        return ret.lstrip('0') or '0'
 if __name__ =='__main__':
     s = Solution()
     num= 26

@@ -44,12 +44,12 @@ class Solution:
         #     mid, fast = mid.next, fast.next
         #     if fast:
         #         fast = fast.next
-        # frist, sec = head, reverse(frist_of_end.next)
-        # while sec:
-        #     if frist.value !=sec.value:
-        #         return False
-        #     frist,sec=frist.next,sec.next
-        # return True
+        frist, sec = head, reverse(frist_of_end.next)
+        while sec:
+            if frist.value !=sec.value:
+                return False
+            frist,sec=frist.next,sec.next
+        return True
 
 if __name__ == '__main__':
     s = Solution()

@@ -27,14 +27,28 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        i = len(nums)-2
+        n = len(nums)
+        i = n-2
+        while i >=0 and nums[i] >= nums[i+1]:#从右往左找最小值,[i+1,n]为下降排序
+            i-=1
+        if i >=0:
+            j = n-1
+            while j >= 0 and nums[i] >= nums[j]:  # 找到较大数  3 5 4 2 1 --> 4 5 3 2 1
+                j-=1
+            nums[i],nums[j] =nums[j],nums[i]
+        l,r=i+1,n-1
+        while l <r:
+            nums[l],nums[r]=nums[r],nums[l]
+            l+=1
+            r-=1
+
 if __name__ =='__main__':
     s = Solution()
     nums = [1, 2, 3]
-    print('1',s.nextPermutation(nums))
+    print('1', s.nextPermutation(nums), nums)
     nums = [3, 2, 1]
-    print('1',s.nextPermutation(nums))
+    print('1', s.nextPermutation(nums), nums)
     nums = [1, 1, 5]
-    print('1',s.nextPermutation(nums))
+    print('1', s.nextPermutation(nums), nums)
     nums = [1]
-    print('1',s.nextPermutation(nums))
+    print('1', s.nextPermutation(nums), nums)

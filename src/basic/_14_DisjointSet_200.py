@@ -112,7 +112,7 @@ class Solution:
             return 1
 
         visited = set()
-        return sum([floadfill_dfs(i, j) for i in range(len(grid)) for j in range(len(grid[0]))])
+        return sum(floadfill_dfs(i, j) for i in range(len(grid)) for j in range(len(grid[0])))
 
     def numIslands3(self, grid) -> int:  # disjoinset
        

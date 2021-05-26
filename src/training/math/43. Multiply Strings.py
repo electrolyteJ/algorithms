@@ -15,8 +15,6 @@ num1 和 num2 均不以零开头，除非是数字 0 本身。
 '''
 class Solution:
     def multiply(self, num1: str, num2: str) -> str:
-        if num1 == '0' or num2 == '0':
-            return '0'
         # 时间复杂度O(n1*n2) 空间复杂度O(n1+n2)
         n1, n2 = len(num1), len(num2)
         ret = [0]*(n1+n2)
@@ -26,7 +24,7 @@ class Solution:
         for i in range(n1+n2-1, 0, -1):
             ret[i-1] += ret[i]//10
             ret[i] %= 10
-        return ''.join(str(x) for x in ret).lstrip('0')
+        return ''.join(str(x) for x in ret).lstrip('0') or '0'
 
 if __name__ == '__main__':
     s = Solution()

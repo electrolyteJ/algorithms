@@ -40,7 +40,7 @@ class Solution:
     def twoSum2(self, numbers: List[int], target: int) -> List[int]:#双指针
         n = len(numbers)
         l,r=0,n-1
-        #世间法复杂度O(n)
+        #时间复杂度复杂度O(n)
         while l < r:
             sum_ret = numbers[l]+numbers[r]
             if sum_ret ==target:

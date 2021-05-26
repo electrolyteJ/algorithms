@@ -15,7 +15,7 @@ B: [3,2,1,4,7]
 from typing import List
 class Solution:
     def findLength1(self, nums1: List[int], nums2: List[int]) -> int:#dp
-        #dp[i][j] a中前i个数字与b中前j个数字存在公共子数组的大小  if nums1[i-1] == nums2[j-1] dp[i][j] =max(dp[i-1][j-1]+1,dp[i][j])
+        #dp[i][j] a[:i]与b[:j]存在公共子数组的大小  if nums1[i-1] == nums2[j-1] dp[i][j] =max(dp[i-1][j-1]+1,dp[i][j])
         n1,n2=len(nums1),len(nums2)
         dp=[[0]*(n2+1) for _ in range(n1+1)]
         # dp[0][0]=1

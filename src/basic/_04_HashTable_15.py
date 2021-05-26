@@ -36,8 +36,7 @@ class Solution:
         size = len(nums)
         #时间复杂度为O(n*n)
         for i, e1 in enumerate(nums[:-2]):
-            if i > 0 and e1 == nums[i-1]:
-                continue
+            if i >=1 and e1 == nums[i-1]:continue
             l,r = i+1,size-1
             while l<r:
                 s = e1+nums[l]+nums[r]

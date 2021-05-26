@@ -19,10 +19,8 @@
 注意:
 字符串大小将在 [1，100] 范围内。
 '''
-
-
 class Solution:
-    def checkValidString(self, s: str) -> bool:
+    def checkValidString(self, s: str) -> bool:#贪心算法
         lo = hi = 0  # 存在多余的左括号，上边界与下边界
         for c in s:
             if c == '(':

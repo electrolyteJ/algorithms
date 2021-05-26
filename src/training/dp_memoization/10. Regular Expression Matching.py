@@ -46,6 +46,7 @@ class Solution:
             if i ==0:return False
             if p[j-1]=='.':return True
             return s[i-1] ==p[j-1]
+        #dp[i][j] s[:i]与p[:j]能否相互匹配
         dp=[[False]*(n+1) for _ in range(m+1)]
         dp[0][0]=True
         for i in range(m+1):
