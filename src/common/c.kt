@@ -1,9 +1,9 @@
-package mock
+package common
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.*
-import kotlin.Comparator
+
+import java.lang.Thread.yield
 
 fun gen(nums: IntArray) = sequence {
     for (i in 0 until nums.size) {
@@ -23,21 +23,33 @@ fun main() {
 //    println(g.take(1).toList())
 //    println(g.take(4).toList())
     println("abd".compareTo("abc "))
-    Collections.sort(nums.toList(),object : java.util.Comparator<Int> {
-        override fun compare(o1: Int, o2: Int): Int {
-            println("$o1,$o2")
-            return when {
-                o1> o2 -> {
-                    1 // o1大于o2
-                }
-                o1< o2 -> {
-                    -1
-                }
-                else -> {
-                    0//表示两数相等
-                }
-            }
-        }
-    })
+//    Collections.sort(nums.toList(),object : java.util.Comparator<Int> {
+//        override fun compare(o1: Int, o2: Int): Int {
+//            println("$o1,$o2")
+//            return when {
+//                o1> o2 -> {
+//                    1 // o1大于o2
+//                }
+//                o1< o2 -> {
+//                    -1
+//                }
+//                else -> {
+//                    0//表示两数相等
+//                }
+//            }
+//        }
+//    })
 
+    println(test())
+}
+fun test():String{
+    var a = "try"
+    try {
+        return a
+    }catch (e:Exception){
+        return "catch"
+    }finally {
+        println("finally")
+
+    }
 }
