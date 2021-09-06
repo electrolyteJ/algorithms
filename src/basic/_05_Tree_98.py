@@ -36,7 +36,7 @@ class Solution:
 
     def isValidBST1(self, root) -> bool:
         inorder = self.inorder(root)
-        return inorder == list(sorted(set(inorder)))
+        return inorder == sorted(set(inorder))
 
     def helper(self, root):
         if root is None:
