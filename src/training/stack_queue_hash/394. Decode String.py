@@ -33,32 +33,32 @@ class Solution:
         ret = ''
         # 时间复杂度O(n) 空间复杂度O(n)
         for c in s:
-            if c == '[':
+            if '0' <= c <= '9':
+                k = k*10 + int(c)
+            elif c.isalpha():
+                ret += c
+            elif c == '[':
                 stack.append([k, ret])
                 ret, k = '', 0
             elif c == ']':
-                cur_k, last_ret = stack.pop()
-                ret = last_ret + cur_k*ret
-            elif '0' <= c <= '9':
-                k = k*10 + int(c)
-            else:
-                ret += c
+                last_k, last_ret = stack.pop()
+                ret = last_ret + last_k*ret
         return ret
 
     def decodeString2(self, s: str) -> str:
         def dfs(s, i):
-            ret, k = '', 0
+            k, ret = 0, ''
             while i < len(s):
-                if '0' <= s[i] <= '9':
-                    k = k * 10+int(s[i])
-                elif s[i] == '[':
-                    last_ret, i = dfs(s, i+1)
-                    ret += k*last_ret
-                    k = 0
-                elif s[i] == ']':
-                    return ret, i
-                else:
+                if s[i].isnumeric():
+                    k = k*10 + int(s[i])
+                elif s[i].isalpha():
                     ret += s[i]
+                elif s[i] == '[':
+                    i, next_ret = dfs(s, i+1)
+                    ret += k*next_ret
+                    k = 0
+                else:
+                    return i, ret
                 i += 1
             return ret
         return dfs(s, 0)

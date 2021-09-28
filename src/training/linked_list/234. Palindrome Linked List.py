@@ -34,9 +34,9 @@ class Solution:
 
         # 1   3   1      1   2    2    1
         #    end  fast      end  fast
-        frist_of_end = fast = head
-        while fast.next and fast.next.next:
-            frist_of_end,fast=frist_of_end.next,fast.next.next
+        # frist_of_end = fast = head
+        # while fast.next and fast.next.next:
+            # frist_of_end,fast=frist_of_end.next,fast.next.next
         #1   3   1     1   2    2    1
         #       mid            mid
         # mid = fast=head
@@ -44,13 +44,39 @@ class Solution:
         #     mid, fast = mid.next, fast.next
         #     if fast:
         #         fast = fast.next
-        frist, sec = head, reverse(frist_of_end.next)
-        while sec:
-            if frist.value !=sec.value:
+        # frist, sec = head, reverse(frist_of_end.next)
+        # while sec:
+            # if frist.value !=sec.value:
+                # return False
+            # frist,sec=frist.next,sec.next
+        slow = fast = head
+        while fast and fast.next:
+            slow, fast = slow.next, fast.next.next
+        #1 2 |2 1
+        #1 2 |1 2 1
+        r = reverse(slow)
+        cur = head
+        while r:
+            if cur.value != r.value:
                 return False
-            frist,sec=frist.next,sec.next
+            r, cur = r.next, cur.next
         return True
 
+    def isPalindrome2(self, head: ListNode) -> bool:
+        if not head: return
+        dummy_head = ListNode(-1)
+        cur = head
+        dummy_head.next = head
+        pre = dummy_head
+        while cur:
+            cur.pre = pre
+            cur,pre = cur.next,pre.next
+        foot = pre
+        while head:
+            if head.val !=foot.val:
+                return False
+            head,foot =head.next,foot.pre
+        return True
 if __name__ == '__main__':
     s = Solution()
     head = create_listnode([1,2,1])

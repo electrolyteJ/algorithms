@@ -100,7 +100,7 @@ class Solution:
         while left <= right:
             if s[left] == ' ' and word:
                 q.appendleft(''.join(word))  # 头部插入
-                word = []
+                word.clear()
             elif s[left] != ' ':
                 word.append(s[left])
             left += 1

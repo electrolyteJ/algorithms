@@ -28,8 +28,7 @@ class Solution:
 
         left = inorder[:root_i]
         left_subtree = self.buildTree(preorder[1:1+len(left)], left)
-        right_subtree = self.buildTree(
-            preorder[1+len(left):], inorder[1+root_i:])
+        right_subtree = self.buildTree(preorder[1+len(left):], inorder[1+root_i:])
 
         node = Node(root_v)
         node.left = left_subtree

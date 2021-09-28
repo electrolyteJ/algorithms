@@ -15,20 +15,30 @@ from src.common.list import create_listnode,ListNode
 class Solution:
     def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
         #遍历了两次
+        if not head:
+            return
         dummy_head = ListNode(-1)
-        dummy_head.next = head
-        first, second, third = head, head, dummy_head
-        for _ in range(right-left):
-            first = first.next
+        pre = dummy_head
+        pre.next = head
+        start = head
         for _ in range(left-1):
-            first = first.next
-            second = second.next
-            third = third.next
-        d =first.next
-        while first and second and first != second:
-            second.next,second,d = d,second.next,second
-        second.next, second, d = d, second.next, second
-        third.next = d
+            start = start.next
+            pre = pre.next
+
+        tail = head
+        for _ in range(right):
+            tail = tail.next
+
+        def reverse(s, tail):
+            if not s:
+                return None
+            ret = tail
+            cur = s
+            while cur and cur != tail:
+                cur.next, cur, ret = ret, cur.next, cur
+            return ret
+        r = reverse(start, tail)
+        pre.next = r
         return dummy_head.next
     def reverseBetween2(self, head: ListNode, left: int, right: int) -> ListNode:
         dummy_head = ListNode(-1)

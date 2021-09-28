@@ -20,11 +20,10 @@ class Solution:
         #通过数组中的元素推算出新的position，然后取反作为已经被比较过的数
         for i in range(n):
             num = abs(nums[i])
-            new_pos = num-1
-            if nums[new_pos] < 0:
+            if nums[num-1] < 0:
                 ret.append(num)
             else:
-                nums[new_pos] = -nums[new_pos]
+                nums[num-1] = -nums[num-1]
         return ret
 
 

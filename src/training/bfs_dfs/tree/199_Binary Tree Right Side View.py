@@ -23,7 +23,7 @@ class Solution:
         import collections
         q = collections.deque([root])
         while q:
-            ret.append(q[-1].val)
+            ret.append(q[-1].value)
             for _ in range(len(q)):
                 node = q.popleft()
                 if node.left:
@@ -36,16 +36,14 @@ class Solution:
     def rightSideView_dfs(self, root):
         if not root:return []
         stack,ret =[(root,0)],dict()
-        max_depth =0
         while stack:
             node,depth = stack.pop()
             if node:
-                # ret.append(node.value)
-                max_depth = max(max_depth,depth)
+                #setdefault已经存在的key，就不会重复插入
                 ret.setdefault(depth, node.value)
                 stack.append((node.left,depth+1))
                 stack.append((node.right,depth+1))
-        return [ret[d] for d in range(max_depth+1)]
+        return [val for _,val in ret.items()]
 
 if __name__ == '__main__':
     s = Solution()

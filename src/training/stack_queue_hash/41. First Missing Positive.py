@@ -17,11 +17,12 @@
 '''
 class Solution:
     def firstMissingPositive(self, nums) -> int:  # 标记法
-        # 哈希表 时间复杂度O(n)  空降复杂度O(1)
+        # 哈希表 时间复杂度O(n)  空间复杂度O(1)
         n = len(nums)
         for i in range(n):
             if nums[i] <= 0:
                 nums[i] = n+1
+        #把数组内的数据当做索引，hash的结果为负数
         for i in range(n):
             num = abs(nums[i])
             if num <= n:
@@ -32,16 +33,16 @@ class Solution:
         return n+1
 
     def firstMissingPositive2(self, nums) -> int:
-        if not nums:return []
-        n = len(nums)
-        for i in range(n):
-            if nums[i] <= 0:
-                nums[i] = n+1
+        '''
+        使用hashset
+        时间复杂度O(n) 空间复杂度O(n)
+        '''
+        if not nums:return 0
         s = set(nums)
-        for i in range(1, n+1):
+        for i in range(1, len(nums)+1):
             if i not in s:
                 return i
-        return n+1
+        return len(nums)+1
 
 
 if __name__ == '__main__':

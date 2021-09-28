@@ -25,18 +25,18 @@ class Solution:
     def partition(self, head: ListNode, x: int) -> ListNode:
         if not head:return
         s_dummy_head,l_dummy_head = ListNode(-1),ListNode(-1)
-        small_head,large_head = s_dummy_head,l_dummy_head
+        small_foot, large_foot = s_dummy_head, l_dummy_head
         while head:
             if head.value < x:
-                small_head.next = head
-                small_head = small_head.next
+                small_foot.next = head
+                small_foot = small_foot.next
             else:
-                large_head.next = head
-                large_head = large_head.next
+                large_foot.next = head
+                large_foot = large_foot.next
             head = head.next
 
-        large_head.next = None
-        small_head.next = l_dummy_head.next
+        large_foot.next = None
+        small_foot.next = l_dummy_head.next
         return s_dummy_head.next
 
 if __name__ == '__main__':
