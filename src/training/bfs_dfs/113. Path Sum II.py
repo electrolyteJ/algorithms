@@ -31,13 +31,15 @@ class Solution:
         import collections
         q = collections.deque([(root, root.value, [root.value])])
         while q:
-            node, v, ls = q.popleft()
+            node, v, path = q.popleft()
             if not node.left and not node.right and v == targetSum:
-                ret.append(ls)
+                ret.append(path)
             if node.left:
-                q.append((node.left, v+node.left.value, ls+[node.left.value]))
+                q.append((node.left, v+node.left.value,
+                          path+[node.left.value]))
             if node.right:
-                q.append((node.right, v+node.right.value, ls+[node.right.value]))
+                q.append((node.right, v+node.right.value,
+                          path+[node.right.value]))
         return ret
 
     def pathSum_dfs(self, root, targetSum: int):

@@ -19,18 +19,18 @@ from src.common.tree import create_treenode
 from src.common.list import ListNode
 class Solution:
     def treeToDoublyList(self, root):
-        if not root:return
-        def dfs(root):
+        def dfs(node):
             nonlocal pre, head
-            if not root:
-                return
-            dfs(root.left)
+            if not node:return
+            dfs(node.left)
             if pre:
-                pre.right, root.left = root, pre
+                pre.right, node.left = node, pre
             else:
-                head = root
-            pre = root
-            dfs(root.right)
+                head = node
+            pre = node
+            dfs(node.right)
+            
+        if not root:return
         pre = head = None
         dfs(root)
         head.left, pre.right = pre, head

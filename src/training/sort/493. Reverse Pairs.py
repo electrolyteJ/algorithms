@@ -28,7 +28,7 @@ class Solution:
             tmp[l:r+1] = nums[l:r+1]
             while i<mid+1 and j<r+1:
                 if tmp[i] > 2*tmp[j]:
-                    ret += mid-i+1
+                    ret += mid+1-i
                     j+=1
                 else:
                     i+=1
