@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 project(algorithms)
 set(CMAKE_CXX_STANDARD 14)
-
-add_executable(
-        src/basic/_01_Array_LinkedList_24.cpp)
+add_executable(algorithms
+        src/basic/_01_Array_LinkedList_24.cpp
+        )
+target_include_directories(algorithms PUBLIC src/common/)
