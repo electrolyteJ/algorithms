@@ -11,26 +11,48 @@
 
 示例:
 
-给定 1->2->3->4->5, 你应该返回 2->1->4->3->5.
+给定 1->2->3->4->5->nullptr, 你应该返回 2->1->4->3->5->nullptr.
  */
 class Solution {
 public:
     ListNode *swapPairs(ListNode *head) {
-        if (head == nullptr || head) return head;
-        return nullptr;
+        auto *dummy_head = new ListNode();
+        dummy_head->next = head;
+        auto p = dummy_head;
+        //nullptr->1->2
+        while (p->next != nullptr && p->next->next != nullptr) {
+            auto node1 = p->next;
+            auto node2 = p->next->next;
+            node1->next = node2->next;
+            node2->next = node1;
+            p->next = node2;
+            p = node1;
+        }
+        return dummy_head->next;
+    }
+
+    ListNode *swapPairs1(ListNode *head) {
+        if (head == nullptr || head->next == nullptr) return head;
+        auto node1 = head;
+        auto node2 = head->next;
+        auto node = swapPairs1(node2->next);
+        node1->next = node;
+        node2->next = node1;
+        return node2;
     }
 };
 
 
 int main() {
-    std::vector<int> datas = {1, 2, 3, 4, 5};
-    ListNode *listnode = create_listnode(datas);
-//    std::cout << "raw data ";
-//    println(datas);
-//    Solution s;
-    std::cout << "迭代: ";
-    println(listnode);
-//    s.swapPairs(listnode);
-
+    try {
+        std::vector<int> datas = {1, 2, 3, 4, 5};
+        ListNode *listnode = create_listnode(datas);
+        print("raw data ", listnode);
+        Solution s;
+        print("迭代: ", s.swapPairs(listnode));
+        listnode = create_listnode(datas);
+        print("递归: ", s.swapPairs1(listnode));
+    } catch (...) {
+    }
     return 0;
 }

@@ -1,7 +1,13 @@
 cmake_minimum_required(VERSION 3.20)
 project(algorithms)
 set(CMAKE_CXX_STANDARD 14)
-add_executable(algorithms
-        src/basic/_01_Array_LinkedList_24.cpp
-        )
-target_include_directories(algorithms PUBLIC src/common/)
+#target_include_directories(algorithms PUBLIC src/common/)
+include_directories(src/common/)
+
+file(GLOB dir "${CMAKE_CURRENT_SOURCE_DIR}/src/basic/*.cpp")
+
+foreach (file ${dir})
+    get_filename_component(name ${file} NAME)
+    add_executable(${name} ${file})
+endforeach ()
+

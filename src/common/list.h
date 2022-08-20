@@ -6,31 +6,14 @@
 #define ALGORITHMS_LIST_H
 
 #include <iostream>
-#include <vector>
 #include <list>
 #include <string>
+#include <vector>
 
 using namespace std;
-//using IntVector = vector<int>;
-//typedef vector<string> StringVector;
+// using IntVector = vector<int>;
+// typedef vector<string> StringVector;
 
-template<class T>
-void println(std::vector<T> a) {
-    std::cout << "a = { ";
-    for (int n : a) {
-        std::cout << n << ", ";
-    }
-    std::cout << "};\n";
-}
-
-template<class T>
-void println(std::list<T> l) {
-    std::cout << "l = { ";
-    for (int n : l) {
-        std::cout << n << ", ";
-    }
-    std::cout << "};\n";
-}
 
 
 struct ListNode {
@@ -44,37 +27,60 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-string joinStr(ListNode *node, string formatStr) {
-    if (node != nullptr) {
-        cout<< formatStr<<endl;
-        return joinStr(node->next, formatStr + "->" + to_string(node->val));
-    } else {
-        return formatStr + "->None";
-    }
-}
-
-void println(ListNode *l) {
-    string s = joinStr(l->next, std::to_string(l->val));
-    string  formatStr = "cjf";
-    std::cout << formatStr + "->None" +std::to_string(1) << std::endl;
-}
 
 ListNode *create_listnode(const std::vector<int> &datas) {
     int size = datas.size();
     std::vector<ListNode *> listnodes(size);
     for (int i = 0; i < size; ++i) {
-        cout << datas[i] << endl;
-        ListNode node = ListNode(datas[i]);
-        listnodes[i] = &node;
+        //使用new之后还需要手动delete 不然就用智能指针
+        auto *node = new ListNode(datas[i]);
+        listnodes[i] = node;
         if (i != 0) {
-            listnodes[i - 1]->next = &node;
+            listnodes[i - 1]->next = node;
         }
     }
-    if (listnodes.size() > 0) {
-        return listnodes[0];
-    } else {
+    if (listnodes.empty()) {
         return nullptr;
+    } else {
+        return listnodes[0];
     }
 }
 
-#endif //ALGORITHMS_LIST_H
+template<class T>
+void print(const string &pre, std::vector<T> a) {
+    cout << pre;
+    std::cout << "a = { ";
+    for (int n : a) {
+        std::cout << n << ", ";
+    }
+    std::cout << "};\n";
+}
+
+template<class T>
+void print(std::list<T> l) {
+    std::cout << "l = { ";
+    for (int n : l) {
+        std::cout << n << ", ";
+    }
+    std::cout << "};\n";
+}
+
+string joinStr(ListNode *node, string formatStr) {
+    if (node != nullptr) {
+        return joinStr(node->next, formatStr + "->" + to_string(node->val));
+    } else {
+        return formatStr + "->nullptr";
+    }
+}
+
+void print(const string &pre, ListNode *l) {
+    cout << pre;
+    if (l == nullptr) {
+        cout << " nullptr" << endl;
+        return;
+    }
+    string s = joinStr(l->next, std::to_string(l->val));
+    cout << s << endl;
+}
+
+#endif // ALGORITHMS_LIST_H
