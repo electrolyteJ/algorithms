@@ -25,8 +25,40 @@ k 是一个正整数，它的值小于或等于链表的长度。
 
 class Solution {
 public:
+    pair<ListNode*,ListNode*> reverse(ListNode* head,ListNode* tail){
+        auto pre = tail->next;
+        auto  p = head;
+        while (pre != tail){
+            auto next = p->next;
+            p->next= pre;
+            pre = p;
+            p = next;
+        }
+        return {tail,head};
+
+    }
     ListNode *reverseKGroup(ListNode *head, int k) {
-        return nullptr;
+        auto  hair = new ListNode(0);
+        hair->next = head;
+        auto pre = hair;
+        while (head){
+            auto tail = pre;
+            for (int i=0;i<k;++i){
+                tail = tail->next;
+                if (!tail) return hair->next;
+            }
+            auto next = tail->next;
+            pair<ListNode*,ListNode*> p = reverse(head,tail);
+            head = p.first;
+            tail = p.second;
+            pre->next = head;
+            tail->next = next;
+            pre = tail;
+            head = tail->next;
+
+        }
+
+        return hair->next;
     }
 };
 
