@@ -8,6 +8,6 @@ file(GLOB dir "${CMAKE_CURRENT_SOURCE_DIR}/src/basic/*.cpp")
 
 foreach (file ${dir})
     get_filename_component(name ${file} NAME)
-    add_executable(${name} ${file})
+    add_executable(${name} ${file} src/basic/_01_Array_LinkedList_141.cpp src/basic/_01_Array_LinkedList_142.cpp src/basic/_01_Array_LinkedList_206.cpp)
 endforeach ()
 
