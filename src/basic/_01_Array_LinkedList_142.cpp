@@ -68,9 +68,9 @@ int main() {
         ListNode *listnode = create_listnode(datas);
         print("raw data ", listnode);
         Solution s;
-        cout << "hash: " << s.detectCycle0(listnode) << endl;
+        print("hash: ", s.detectCycle0(listnode));
         listnode = create_listnode(datas);
-        cout << "快慢指针：" << s.detectCycle1(listnode) << endl;
+        print("快慢指针: ", s.detectCycle1(listnode));
     } catch (...) {
     }
     return 0;

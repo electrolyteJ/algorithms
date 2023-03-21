@@ -37,17 +37,14 @@ public:
 };
 
 int main() {
-    1, 2, 3, 5,4
-    1, 2,  5,4 ,3
-    1, 2,  5,4 ,3
     try {
         std::vector<int> datas = {1, 2, 3, 4, 5};
         ListNode *listnode = create_listnode(datas);
         print("raw data ", listnode);
         Solution s;
-        cout << "迭代: " << s.reverseList0(listnode) << endl;
+        print("迭代: ", s.reverseList0(listnode));
         listnode = create_listnode(datas);
-        cout << "递归：" << s.reverseList1(listnode) << endl;
+        print("递归: ", s.reverseList1(listnode));
     } catch (...) {
     }
     return 0;
