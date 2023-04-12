@@ -25,7 +25,7 @@
 l1 和 l2 均按 非递减顺序 排列
 """
 
-from src.common.list import ListNode, create_listnode
+from common.list import ListNode, create_listnode
 
 
 class Solution:

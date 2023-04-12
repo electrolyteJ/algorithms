@@ -5,7 +5,7 @@ description = ""
 authors = ["electrolyteJ <hawks.jamesf@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{ include = "basic" , from ="src"},{ include = "common" , from ="src"},{ include = "training" , from ="src"}]
+packages = [{ include = "basic", from = "src" }, { include = "common", from = "src" }, { include = "training", from = "src" }]
 [tool.poetry.dependencies]
 python = "^3.10"
 

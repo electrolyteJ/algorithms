@@ -16,7 +16,7 @@ ans.val = 3, ans.next.val = 4, ans.next.next.val = 5, 以及 ans.next.next.next 
 提示：
 给定链表的结点数介于 1 和 100 之间。
 '''
-from src.common.list import ListNode,create_listnode
+from common.list import ListNode,create_listnode
 class Solution:
     def middleNode(self, head: ListNode) -> ListNode:
         mid = fast = head

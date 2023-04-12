@@ -20,7 +20,7 @@
 -200 <= x <= 200
 '''
 
-from src.common.list import create_listnode,ListNode
+from common.list import create_listnode,ListNode
 class Solution:
     def partition(self, head: ListNode, x: int) -> ListNode:
         if not head:return

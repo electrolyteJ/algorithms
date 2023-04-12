@@ -85,7 +85,7 @@ class Solution:
             
 if __name__ =='__main__':
     s = Solution()
-    from src.common.tree import create_treenode
+    from common.tree import create_treenode
     root = create_treenode([3, 5, 1, 6, 2, 0, 8, None, None, 7, 4])
     target = root[1]
     K = 2

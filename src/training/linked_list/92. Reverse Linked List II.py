@@ -11,7 +11,7 @@
 输出: 1->4->3->2->5->NULL
 '''
 
-from src.common.list import create_listnode,ListNode
+from common.list import create_listnode,ListNode
 class Solution:
     def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
         #遍历了两次

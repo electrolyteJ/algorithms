@@ -8,7 +8,7 @@
 输入：(7 -> 2 -> 4 -> 3) + (5 -> 6 -> 4)
 输出：7 -> 8 -> 0 -> 7
 '''
-from src.common.list import create_listnode, ListNode
+from common.list import create_listnode, ListNode
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         stack1=[]

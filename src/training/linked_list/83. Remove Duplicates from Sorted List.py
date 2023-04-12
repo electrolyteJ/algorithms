@@ -14,7 +14,7 @@
 -100 <= Node.val <= 100
 题目数据保证链表已经按升序排列
 '''
-from src.common.list import create_listnode,ListNode
+from common.list import create_listnode,ListNode
 class Solution:
     def deleteDuplicates(self, head: ListNode) -> ListNode:
         if not head:return

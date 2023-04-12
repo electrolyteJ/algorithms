@@ -20,7 +20,7 @@
 向右旋转 4 步: 2->0->1->NULL
 '''
 
-from src.common.list import ListNode,create_listnode
+from common.list import ListNode,create_listnode
 class Solution:
     def rotateRight(self, head: ListNode, k: int) -> ListNode:
         if not head or not head.next:

@@ -19,7 +19,7 @@
 ]
 '''
 
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 class Solution:
     def zigzagLevelOrder(self, root):
         if not root:return []

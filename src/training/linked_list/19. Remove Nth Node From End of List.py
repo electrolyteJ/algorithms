@@ -23,7 +23,7 @@
 1 <= n <= sz
 
 '''
-from src.common.list import ListNode, create_listnode
+from common.list import ListNode, create_listnode
 
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:

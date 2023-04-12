@@ -45,7 +45,7 @@ class Solution:
         return ret
 if __name__ =='__main__':
     s = Solution()
-    from src.common.tree import create_treenode
+    from common.tree import create_treenode
     root = create_treenode(
         [5, 4, 8, 11, None, 13, 4, 7, 2, None, None, None, None,5, 1])
     target = 22

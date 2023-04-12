@@ -14,7 +14,7 @@
  \     \
   5     4       <---
 '''
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 class Solution:
     def rightSideView_bfs(self, root):
         if not root:return []

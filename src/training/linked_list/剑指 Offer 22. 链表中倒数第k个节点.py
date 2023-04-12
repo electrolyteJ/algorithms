@@ -11,7 +11,7 @@
 返回链表 4->5.
 '''
 
-from src.common.list import ListNode,create_listnode
+from common.list import ListNode,create_listnode
 class Solution:
     def getKthFromEnd(self, head: ListNode, k: int) -> ListNode:
         #时间复杂度O(n)

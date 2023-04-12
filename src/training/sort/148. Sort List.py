@@ -19,7 +19,7 @@
 链表中节点的数目在范围 [0, 5 * 104] 内
 -105 <= Node.val <= 105
 '''
-from src.common.list import ListNode, create_listnode
+from common.list import ListNode, create_listnode
 class Solution:
     def sortList(self, head: ListNode) -> ListNode:
         # 时间复杂度O(n logn) 空间复杂度O(n logn)

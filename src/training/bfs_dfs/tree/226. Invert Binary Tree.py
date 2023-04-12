@@ -35,7 +35,7 @@ class Solution:
 
 if __name__ =='__main__':
     s = Solution()
-    from src.common.tree import create_treenode
+    from common.tree import create_treenode
     root = create_treenode([4, 2, 7, 1, 3, 6, 9])
     print(root)
     print('1',s.invertTree(root))

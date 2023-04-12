@@ -30,7 +30,7 @@
 2
 注意: 给定的二叉树不超过10000个结点。 树的高度不超过1000。
 '''
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 
 class Solution:
     def longestUnivaluePath(self, root) -> int:

@@ -26,7 +26,7 @@
 题目数据保证列表表示的数字不含前导零
 '''
 
-from src.common.list import create_listnode,ListNode
+from common.list import create_listnode,ListNode
 class Solution:
     def addTwoNumbers(self, l1, l2) -> ListNode:
         add =0

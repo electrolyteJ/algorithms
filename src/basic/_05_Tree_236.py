@@ -23,7 +23,7 @@
 所有节点的值都是唯一的。
 p、q 为不同节点且均存在于给定的二叉树中。
 '''
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 class Solution:
     def lowestCommonAncestor(self, root, p, q):
         #时间复杂度O(n) 空间复杂度O(n)

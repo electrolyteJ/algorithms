@@ -21,7 +21,7 @@
 输出: -1->0->3->4->5
 '''
 
-from src.common.list import ListNode,create_listnode
+from common.list import ListNode,create_listnode
 class Solution:
     def insertionSortList(self, head: ListNode) -> ListNode:
         #时间复杂度O(n*n)

@@ -27,7 +27,7 @@
 解释：链表中没有环。
 """
 
-from src.common.list import ListNode, create_listnode
+from common.list import ListNode, create_listnode
 
 
 class Solution:

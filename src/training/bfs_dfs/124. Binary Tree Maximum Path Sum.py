@@ -23,7 +23,7 @@
 -1000 <= Node.val <= 1000
 '''
 
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 class Solution:
     def maxPathSum(self, root) -> int:
         def maxGain(node):
