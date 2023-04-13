@@ -16,7 +16,7 @@
    15   7
 返回它的最大深度 3 。
 '''
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 class Solution:
     def maxDepth_bfs(self, root) -> int:
         if not root:return 0

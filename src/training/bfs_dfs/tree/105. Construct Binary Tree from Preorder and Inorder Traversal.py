@@ -17,7 +17,7 @@
     /  \
    15   7
 '''
-from src.common.tree import Node
+from common.tree import Node
 
 class Solution:
     def buildTree(self, preorder, inorder):

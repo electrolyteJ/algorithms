@@ -14,7 +14,7 @@
 你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？
 '''
 
-from src.common.list import create_listnode,ListNode
+from common.list import create_listnode,ListNode
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
         if not head:return True

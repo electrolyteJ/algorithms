@@ -28,7 +28,7 @@
 你能用 O(1)（即，常量）内存解决此问题吗？
 """
 
-from src.common.list import ListNode, create_listnode
+from common.list import ListNode, create_listnode
 
 
 class Solution:

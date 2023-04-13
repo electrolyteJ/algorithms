@@ -11,7 +11,7 @@
 输入: 1->1->1->2->3
 输出: 2->3
 '''
-from src.common.list import create_listnode, ListNode
+from common.list import create_listnode, ListNode
 
 
 class Solution:

@@ -92,7 +92,7 @@ class Solution:
             
 if __name__ =='__main__':
     s= Solution()
-    from src.common.tree import create_treenode
+    from common.tree import create_treenode
     root = create_treenode([1,3,2,5,3,None,9])
     print(root)
     print('1', s.widthOfBinaryTree(root))

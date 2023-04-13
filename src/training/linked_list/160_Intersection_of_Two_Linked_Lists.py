@@ -34,7 +34,7 @@
 可假定整个链表结构中没有循环。
 程序尽量满足 O(n) 时间复杂度，且仅用 O(1) 内存。
 '''
-from src.common.list import create_listnode
+from common.list import create_listnode
 
 
 class Solution:

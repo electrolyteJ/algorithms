@@ -22,7 +22,7 @@
 树中将会有 1 到 100 个结点。
 
 '''
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 class Solution:
     def isCompleteTree(self, root) -> bool:
         if not root: return False

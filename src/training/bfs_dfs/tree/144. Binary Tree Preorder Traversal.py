@@ -32,7 +32,7 @@
 -100 <= Node.val <= 100
 
 '''
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 class Solution:
     def preorderTraversal1(self, root):#递归
         if not root:

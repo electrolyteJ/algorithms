@@ -15,8 +15,8 @@
 注意：此题对比原题有改动。
 '''
 
-from src.common.tree import create_treenode
-from src.common.list import ListNode
+from common.tree import create_treenode
+from common.list import ListNode
 class Solution:
     def treeToDoublyList(self, root):
         def dfs(node):

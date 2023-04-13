@@ -34,7 +34,7 @@ lists[i] 按 升序 排列
 lists[i].length 的总和不超过 10^4
 '''
 from typing import List
-from src.common.list import ListNode, create_listnode
+from common.list import ListNode, create_listnode
 
 
 class Solution:

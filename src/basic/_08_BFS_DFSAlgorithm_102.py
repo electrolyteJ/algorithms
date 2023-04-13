@@ -17,7 +17,7 @@
   [9,20],
   [15,7]
 '''
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 from queue import Queue
 class Solution:
     def levelOrder1(self, root):  # bfs

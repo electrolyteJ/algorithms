@@ -12,7 +12,7 @@
 
 """
 
-from src.common.list import ListNode, create_listnode
+from common.list import ListNode, create_listnode
 
 
 class Solution:  # linked list :1->2->3->4->5->None

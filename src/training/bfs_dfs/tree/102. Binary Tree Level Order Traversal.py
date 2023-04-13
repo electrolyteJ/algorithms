@@ -17,7 +17,7 @@
   [15,7]
 ]
 '''
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 class Solution:
     def levelOrder(self, root):#bfs
         if not root:return []

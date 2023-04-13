@@ -36,7 +36,7 @@
 进阶: 递归算法很简单，你可以通过迭代算法完成吗？
 '''
 
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 class Solution:
     def inorderTraversal(self, root):
         if not root:

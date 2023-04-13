@@ -22,7 +22,7 @@
 你可以运用递归和迭代两种方法解决这个问题吗？
 '''
 
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 class Solution:
     def isSymmetric(self, root) -> bool:
         if not root: return False

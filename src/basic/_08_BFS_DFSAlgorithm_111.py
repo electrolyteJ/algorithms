@@ -10,7 +10,7 @@
 输入：root = [2,null,3,null,4,null,5,null,6]
 输出：5
 '''
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 class Solution:
     def minDepth(self, root) -> int:
         if not root:return 0

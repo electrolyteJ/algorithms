@@ -38,7 +38,7 @@ random_index：随机指针指向的节点索引（范围从 0 到 n-1）；如�
 -10000 <= Node.val <= 10000
 Node.random 为空（null）或指向链表中的节点。
 '''
-from src.common.list import create_listnode,ListNode
+from common.list import create_listnode,ListNode
 class Solution:
     def copyRandomList(self, head):
         if not head:

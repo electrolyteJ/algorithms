@@ -21,7 +21,7 @@
    [5,8,4,5]
 ]
 '''
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 
 
 class Solution:

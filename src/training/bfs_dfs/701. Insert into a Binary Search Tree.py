@@ -27,7 +27,7 @@
 新值和原始二叉搜索树中的任意节点值都不同
 '''
 
-from src.common.tree import create_treenode,Node
+from common.tree import create_treenode,Node
 class Solution:
     def insertIntoBST(self, root, val: int):
         if not root:return Node(val)

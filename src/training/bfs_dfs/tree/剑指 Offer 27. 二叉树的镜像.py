@@ -29,7 +29,7 @@
 注意：本题与主站 226 题相同：https://leetcode-cn.com/problems/invert-binary-tree/
 '''
 
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 class Solution:
     def mirrorTree(self, root):
         #时间复杂度O(n) 空间复杂度O(n)

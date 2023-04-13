@@ -27,7 +27,7 @@
 树中的节点数在范围 [0, 5000] 内
 -104 <= Node.val <= 104
 '''
-from src.common.tree import create_treenode
+from common.tree import create_treenode
 
 class Solution:
     def isBalanced(self, root) -> bool:

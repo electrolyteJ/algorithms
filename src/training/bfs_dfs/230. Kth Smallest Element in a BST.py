@@ -35,7 +35,7 @@ class Solution:
 
 if __name__ =='__main__':
     s = Solution()
-    from src.common.tree import create_treenode
+    from common.tree import create_treenode
     root = create_treenode([3, 1, 4, None, 2])
     k=1
     print(root)

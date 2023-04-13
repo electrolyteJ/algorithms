@@ -47,7 +47,7 @@ class Solution:
         return dfs(root,0)
 if __name__ =='__main__':
     s =Solution()
-    from src.common.tree import create_treenode
+    from common.tree import create_treenode
     root = create_treenode([1, 2, 3])
     print(root)
     print('1',s.sumNumbers(root))
