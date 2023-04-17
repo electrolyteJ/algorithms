@@ -2,12 +2,6 @@
  ============
   Array
   
-  Stack
-
-  Queue
-  - priority queue
-  - lifo queue
-
   Linkedlist
   - Singly linked list
   - Doubly linked list
@@ -15,6 +9,14 @@
   - Circular linked list
   - Hash linking
   - ...
+
+  Stack
+
+  Queue
+  - priority queue
+  - lifo queue
+
+  Hash Table
 
   Tree
   - binary tree
@@ -31,8 +33,6 @@
     - b+ tree
     - b* tree
   - dic tree
-
-  Hash Table
 
   Disjoint Set
 
