@@ -41,7 +41,9 @@
   Bloom Filter
 
   LRU Cache
- 
+
+  Graph
+
   Algorithm
  ============
   Greedy
@@ -57,8 +59,6 @@
   Dynamic Programming
 
   Binary Search
-
-  Graph
   
   复杂度
 ============
